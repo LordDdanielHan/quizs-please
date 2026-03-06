@@ -6,7 +6,52 @@ import {
   type BitWrapperJson,
 } from "@gmb/bitmark-parser-generator";
 
-function buildSystemPrompt(topic: string, turns: number, requirements?: string): string {
+type Difficulty = "easy" | "medium" | "hard";
+
+type TurnPlanItem = {
+  turn: number;
+  difficulty: Difficulty;
+  questionCount: number;
+  questionIds: string[];
+};
+
+const QUESTIONS_PER_DIFFICULTY: Record<Difficulty, number> = {
+  easy: 3,
+  medium: 2,
+  hard: 1,
+};
+
+function getDifficultyForTurn(turnIndex: number, totalTurns: number): Difficulty {
+  const progress = turnIndex / totalTurns;
+
+  if (progress <= 0.4) return "easy";
+  if (progress <= 0.75) return "medium";
+  return "hard";
+}
+
+function buildTurnPlan(turns: number): TurnPlanItem[] {
+  const plan: TurnPlanItem[] = [];
+  let nextQuestionNumber = 1;
+
+  for (let turn = 1; turn <= turns; turn += 1) {
+    const difficulty = getDifficultyForTurn(turn, turns);
+    const questionCount = QUESTIONS_PER_DIFFICULTY[difficulty];
+    const questionIds = Array.from({ length: questionCount }, () => `q${nextQuestionNumber++}`);
+    plan.push({ turn, difficulty, questionCount, questionIds });
+  }
+
+  return plan;
+}
+
+function buildSystemPrompt(topic: string, turnPlan: TurnPlanItem[], requirements?: string): string {
+  const turns = turnPlan.length;
+  const totalQuestions = turnPlan.reduce((sum, item) => sum + item.questionCount, 0);
+  const turnPlanText = turnPlan
+    .map(
+      (item) =>
+        `- Turn ${item.turn}: difficulty=${item.difficulty}, questionCount=${item.questionCount}, ids=${item.questionIds.join(", ")}`
+    )
+    .join("\n");
   const requirementText = requirements?.trim()
     ? `\nADDITIONAL REQUIREMENTS:\n"${requirements.trim()}"\n`
     : "";
@@ -15,10 +60,13 @@ function buildSystemPrompt(topic: string, turns: number, requirements?: string):
 
 TOPIC: "${topic}"
 TURNS: ${turns}
+TOTAL QUESTIONS: ${totalQuestions}
 ${requirementText}
+TURN PLAN:
+${turnPlanText}
 
 Task:
-1. Create exactly ${turns} quiz bits.
+1. Create exactly ${totalQuestions} quiz bits.
 2. Infer what knowledge should be tested from the topic.
 3. Apply any additional user requirements if they are present.
 4. Mix these supported quiz types appropriately:
@@ -113,9 +161,15 @@ Tool payload rules:
 - Use multiple tools in the same question whenever that improves solvability.
 
 Rules:
-- Use ids "q1"..."q${turns}" in order.
+- Use ids "q1"..."q${totalQuestions}" in order.
 - Keep "format" = "text" on all bits.
 - Include "instruction" for every bit and include "hint" when reasonable.
+- In every bit, include:
+  - "extraProperties.turn" (number)
+  - "extraProperties.difficulty" ("easy" | "medium" | "hard")
+- Follow the turn plan exactly:
+  - Turn difficulty must match the plan.
+  - Question count per turn must match the plan.
 - Ensure tool data is sufficient for users to solve the question without missing context.
 - No markdown fences.
 - No explanation text.
@@ -139,6 +193,30 @@ function tryParseGeneratedJson(text: string): unknown {
     }
 
     throw new Error("AI returned invalid JSON.");
+  }
+}
+
+function normalizeQuizMetadata(normalized: BitWrapperJson[], turnPlan: TurnPlanItem[]): void {
+  let quizIndex = 0;
+
+  for (const item of turnPlan) {
+    for (let i = 0; i < item.questionCount; i += 1) {
+      const wrapper = normalized[quizIndex];
+      const bit = wrapper.bit as {
+        id?: unknown;
+        extraProperties?: { difficulty?: unknown; turn?: unknown; quizTools?: unknown };
+      };
+
+      bit.id = item.questionIds[i];
+
+      if (!bit.extraProperties || typeof bit.extraProperties !== "object") {
+        bit.extraProperties = {};
+      }
+
+      bit.extraProperties.turn = item.turn;
+      bit.extraProperties.difficulty = item.difficulty;
+      quizIndex += 1;
+    }
   }
 }
 
@@ -270,11 +348,13 @@ export async function POST(req: NextRequest) {
     }
 
     const openai = createOpenAI({ apiKey });
+    const turnPlan = buildTurnPlan(parsedTurns);
+    const totalQuestions = turnPlan.reduce((sum, item) => sum + item.questionCount, 0);
 
     const { text } = await generateText({
       model: openai("gpt-4o"),
-      system: buildSystemPrompt(topic, parsedTurns, requirements),
-      prompt: `Create a ${parsedTurns}-turn quiz about: ${topic}`,
+      system: buildSystemPrompt(topic, turnPlan, requirements),
+      prompt: `Create a ${parsedTurns}-turn quiz about: ${topic}. Produce ${totalQuestions} total questions based on the turn difficulty plan.`,
       maxOutputTokens: 4096,
       temperature: 0.7,
     });
@@ -290,15 +370,22 @@ export async function POST(req: NextRequest) {
       throw new Error("Generated output could not be converted to Bitmark JSON wrappers.");
     }
 
-    if (normalized.length !== parsedTurns) {
+    if (normalized.length !== totalQuestions) {
       throw new Error(
-        `Expected ${parsedTurns} quiz bits, but got ${normalized.length} after Bitmark normalization.`
+        `Expected ${totalQuestions} quiz bits from ${parsedTurns} turns, but got ${normalized.length} after Bitmark normalization.`
       );
     }
 
+    normalizeQuizMetadata(normalized, turnPlan);
     validateTooling(normalized);
 
-    return NextResponse.json({ quiz: normalized, rawText: text });
+    return NextResponse.json({
+      quiz: normalized,
+      rawText: text,
+      turns: parsedTurns,
+      totalQuestions,
+      turnPlan,
+    });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error occurred";
     console.error("Quiz generation error:", message);
