@@ -1,0 +1,545 @@
+{
+  "id": "ba4c2e1e-2acd-40ce-9562-b0ed50f55f6b",
+  "userId": "fad",
+  "completedAt": "2026-03-06T16:13:20.463Z",
+  "marked": false,
+  "markedAt": null,
+  "teacherName": null,
+  "maxScore": 40,
+  "awardedScore": 8,
+  "awardedMarks": {
+    "q1": 2,
+    "q2": 2,
+    "q3": 0,
+    "q4": 0,
+    "q5": 4,
+    "q6": 0,
+    "q8": 0,
+    "q9": 0
+  },
+  "quizData": {
+    "title": "Generated Quiz",
+    "turns": [
+      {
+        "id": "turn-1",
+        "label": "Turn 1",
+        "briefing": "Complete Turn 1. Use the reference items on the desk.",
+        "documents": [
+          {
+            "id": "t1q1-newspaper",
+            "title": "Daily Brief",
+            "type": "newspaper",
+            "width": 420,
+            "height": 340,
+            "headline": "Given a table 'employees' with columns 'id', 'name', and 'department', which SQL query will correctly retrieve",
+            "subhead": "Use this bulletin to answer the question.",
+            "byline": "Operations Desk",
+            "publishDate": "Generated",
+            "columns": [
+              "Context summary: Given a table 'employees' with columns 'id', 'name', and 'department', which SQL query will correctly retrieve.",
+              "Cross-check the details before selecting your answer."
+            ]
+          },
+          {
+            "id": "t1q1-memo",
+            "title": "Supervisor Note",
+            "type": "memo",
+            "width": 360,
+            "height": 270,
+            "content": "Question focus:\nGiven a table 'employees' with columns 'id', 'name', and 'department', which SQL query will correctly retrieve\n\nReminder:\nUse the provided context and avoid assumptions."
+          },
+          {
+            "id": "t1q2-newspaper",
+            "title": "Daily Brief",
+            "type": "newspaper",
+            "width": 420,
+            "height": 340,
+            "headline": "Using the 'products' table with columns 'id', 'name', and 'price', how would you find products with a price gr",
+            "subhead": "Use this bulletin to answer the question.",
+            "byline": "Operations Desk",
+            "publishDate": "Generated",
+            "columns": [
+              "Context summary: Using the 'products' table with columns 'id', 'name', and 'price', how would you find products with a price gr.",
+              "Cross-check the details before selecting your answer."
+            ]
+          },
+          {
+            "id": "t1q2-memo",
+            "title": "Supervisor Note",
+            "type": "memo",
+            "width": 360,
+            "height": 270,
+            "content": "Question focus:\nUsing the 'products' table with columns 'id', 'name', and 'price', how would you find products with a price gr\n\nReminder:\nUse the provided context and avoid assumptions."
+          }
+        ],
+        "questions": [
+          {
+            "id": "q1",
+            "kind": "multiple-choice",
+            "prompt": "Given a table 'employees' with columns 'id', 'name', and 'department', which SQL query will correctly retrieve the 'name' and 'department' columns?",
+            "marks": 2,
+            "options": [
+              "SELECT name, department FROM employees;",
+              "SELECT id, name FROM employees;",
+              "SELECT department, id FROM employees;",
+              "SELECT * FROM employees WHERE name;"
+            ],
+            "expected": "SELECT name, department FROM employees;",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          },
+          {
+            "id": "q2",
+            "kind": "multiple-choice",
+            "prompt": "Using the 'products' table with columns 'id', 'name', and 'price', how would you find products with a price greater than 100?",
+            "marks": 2,
+            "options": [
+              "SELECT * FROM products WHERE price > 100;",
+              "SELECT price FROM products WHERE price > 100;",
+              "SELECT * FROM products WHERE price = 100;",
+              "SELECT name FROM products WHERE price > 100;"
+            ],
+            "expected": "SELECT * FROM products WHERE price > 100;",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "turn-2",
+        "label": "Turn 2",
+        "briefing": "Complete Turn 2. Use the reference items on the desk.",
+        "documents": [
+          {
+            "id": "t2q1-sheet",
+            "title": "Turn Data Sheet",
+            "type": "spreadsheet",
+            "width": 390,
+            "height": 300,
+            "table": {
+              "columns": [
+                "Entry",
+                "Value",
+                "Status"
+              ],
+              "rows": [
+                [
+                  "Item 1",
+                  "SELECT region, SUM(total_sales) FROM sales GROUP BY region HAVING SUM(total_sales) > 5000;",
+                  "Verified"
+                ],
+                [
+                  "Item 2",
+                  "SELECT region, total_sales FROM sales WHERE total_sales > 5000;",
+                  "Pending"
+                ],
+                [
+                  "Item 3",
+                  "SELECT SUM(total_sales) FROM sales GROUP BY region;",
+                  "Verified"
+                ],
+                [
+                  "Item 4",
+                  "SELECT region FROM sales HAVING SUM(total_sales) > 5000;",
+                  "Pending"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "t2q1-memo",
+            "title": "Calculation Memo",
+            "type": "memo",
+            "width": 340,
+            "height": 250,
+            "content": "Review the sheet values and compare anomalies before answering."
+          },
+          {
+            "id": "t2q2-sheet",
+            "title": "Turn Data Sheet",
+            "type": "spreadsheet",
+            "width": 390,
+            "height": 300,
+            "table": {
+              "columns": [
+                "Entry",
+                "Value",
+                "Status"
+              ],
+              "rows": [
+                [
+                  "Item 1",
+                  "SELECT orders.id, customers.name FROM orders INNER JOIN customers ON orders.customer_id = customers.id;",
+                  "Verified"
+                ],
+                [
+                  "Item 2",
+                  "SELECT orders.id, customers.name FROM orders JOIN customers;",
+                  "Pending"
+                ],
+                [
+                  "Item 3",
+                  "SELECT orders.id, customers.name FROM orders FULL JOIN customers ON orders.customer_id = customers.id;",
+                  "Verified"
+                ],
+                [
+                  "Item 4",
+                  "SELECT orders.id, customers.name FROM orders LEFT JOIN customers;",
+                  "Pending"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "t2q2-memo",
+            "title": "Calculation Memo",
+            "type": "memo",
+            "width": 340,
+            "height": 250,
+            "content": "Review the sheet values and compare anomalies before answering."
+          },
+          {
+            "id": "t2q3-sheet",
+            "title": "Turn Data Sheet",
+            "type": "spreadsheet",
+            "width": 390,
+            "height": 300,
+            "table": {
+              "columns": [
+                "Entry",
+                "Value",
+                "Status"
+              ],
+              "rows": [
+                [
+                  "Item 1",
+                  "Using a JOIN is generally more efficient in this scenario.",
+                  "Verified"
+                ],
+                [
+                  "Item 2",
+                  "Using a subquery is generally more efficient in this scenario.",
+                  "Pending"
+                ],
+                [
+                  "Item 3",
+                  "Both are equally efficient in this scenario.",
+                  "Verified"
+                ],
+                [
+                  "Item 4",
+                  "Neither is efficient for this scenario.",
+                  "Pending"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "t2q3-memo",
+            "title": "Calculation Memo",
+            "type": "memo",
+            "width": 340,
+            "height": 250,
+            "content": "Review the sheet values and compare anomalies before answering."
+          }
+        ],
+        "questions": [
+          {
+            "id": "q3",
+            "kind": "multiple-choice",
+            "prompt": "In a 'sales' table with columns 'region', 'salesperson', and 'total_sales', which query calculates the total sales by region and filters regions with total sales over 5000?",
+            "marks": 4,
+            "options": [
+              "SELECT region, SUM(total_sales) FROM sales GROUP BY region HAVING SUM(total_sales) > 5000;",
+              "SELECT region, total_sales FROM sales WHERE total_sales > 5000;",
+              "SELECT SUM(total_sales) FROM sales GROUP BY region;",
+              "SELECT region FROM sales HAVING SUM(total_sales) > 5000;"
+            ],
+            "expected": "SELECT region, SUM(total_sales) FROM sales GROUP BY region HAVING SUM(total_sales) > 5000;",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          },
+          {
+            "id": "q4",
+            "kind": "multiple-choice",
+            "prompt": "You have two tables, 'orders' and 'customers'. Which SQL query will correctly join these tables to list all orders with the customer's name?",
+            "marks": 4,
+            "options": [
+              "SELECT orders.id, customers.name FROM orders INNER JOIN customers ON orders.customer_id = customers.id;",
+              "SELECT orders.id, customers.name FROM orders JOIN customers;",
+              "SELECT orders.id, customers.name FROM orders FULL JOIN customers ON orders.customer_id = customers.id;",
+              "SELECT orders.id, customers.name FROM orders LEFT JOIN customers;"
+            ],
+            "expected": "SELECT orders.id, customers.name FROM orders INNER JOIN customers ON orders.customer_id = customers.id;",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          },
+          {
+            "id": "q5",
+            "kind": "multiple-choice",
+            "prompt": "For a 'departments' and 'employees' table, which is more efficient to find employees in departments with more than 10 employees: a subquery or a JOIN?",
+            "marks": 4,
+            "options": [
+              "Using a JOIN is generally more efficient in this scenario.",
+              "Using a subquery is generally more efficient in this scenario.",
+              "Both are equally efficient in this scenario.",
+              "Neither is efficient for this scenario."
+            ],
+            "expected": "Using a JOIN is generally more efficient in this scenario.",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "turn-3",
+        "label": "Turn 3",
+        "briefing": "Complete Turn 3. Use the reference items on the desk.",
+        "documents": [
+          {
+            "id": "t3q1-image",
+            "title": "Evidence Image",
+            "type": "image",
+            "width": 340,
+            "height": 260,
+            "imageSrc": "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22760%22%20viewBox%3D%220%200%201200%20760%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%232a2f43%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%234a5f7a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22760%22%20fill%3D%22url(%23bg)%22%2F%3E%3Crect%20x%3D%2270%22%20y%3D%2270%22%20width%3D%221060%22%20height%3D%22620%22%20rx%3D%2224%22%20fill%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.35)%22%20stroke-width%3D%223%22%2F%3E%3Ctext%20x%3D%22110%22%20y%3D%22210%22%20fill%3D%22%23f4f8ff%22%20font-size%3D%2262%22%20font-family%3D%22Georgia%2C%20serif%22%3EEvidence%20Board%3C%2Ftext%3E%3Ctext%20x%3D%22110%22%20y%3D%22280%22%20fill%3D%22%23d7e4ff%22%20font-size%3D%2232%22%20font-family%3D%22Georgia%2C%20serif%22%3EGiven%20a%20complex%20query%20that%20runs%20slowly%2C%20how%20would%20you%20analyze%20its%20execution%20plan%20to%20identify%20bottlenecks%3F%3C%2Ftext%3E%3C%2Fsvg%3E",
+            "imagePrompt": "Given a complex query that runs slowly, how would you analyze its execution plan to identify bottlenecks?"
+          },
+          {
+            "id": "t3q1-transcript",
+            "title": "Witness Transcript",
+            "type": "transcript",
+            "width": 390,
+            "height": 300,
+            "entries": [
+              "Inspector: Given a complex query that runs slowly, how would you analyze its execution plan to identify bottlenecks?",
+              "Analyst: Reviewing the attached evidence.",
+              "Inspector: Confirm your conclusion with supporting details."
+            ]
+          },
+          {
+            "id": "t3q2-image",
+            "title": "Evidence Image",
+            "type": "image",
+            "width": 340,
+            "height": 260,
+            "imageSrc": "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22760%22%20viewBox%3D%220%200%201200%20760%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%232a2f43%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%234a5f7a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22760%22%20fill%3D%22url(%23bg)%22%2F%3E%3Crect%20x%3D%2270%22%20y%3D%2270%22%20width%3D%221060%22%20height%3D%22620%22%20rx%3D%2224%22%20fill%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.35)%22%20stroke-width%3D%223%22%2F%3E%3Ctext%20x%3D%22110%22%20y%3D%22210%22%20fill%3D%22%23f4f8ff%22%20font-size%3D%2262%22%20font-family%3D%22Georgia%2C%20serif%22%3EEvidence%20Board%3C%2Ftext%3E%3Ctext%20x%3D%22110%22%20y%3D%22280%22%20fill%3D%22%23d7e4ff%22%20font-size%3D%2232%22%20font-family%3D%22Georgia%2C%20serif%22%3EDesign%20an%20indexing%20strategy%20for%20a%20%26%2339%3Btransactions%26%2339%3B%20table%20frequently%20queried%20by%20%26%2339%3Bdate%26%2339%3B%20and%20%26%2339%3Bamount%26%2339%3B.%3C%2Ftext%3E%3C%2Fsvg%3E",
+            "imagePrompt": "Design an indexing strategy for a 'transactions' table frequently queried by 'date' and 'amount'."
+          },
+          {
+            "id": "t3q2-transcript",
+            "title": "Witness Transcript",
+            "type": "transcript",
+            "width": 390,
+            "height": 300,
+            "entries": [
+              "Inspector: Design an indexing strategy for a 'transactions' table frequently queried by 'date' and 'amount'.",
+              "Analyst: Reviewing the attached evidence.",
+              "Inspector: Confirm your conclusion with supporting details."
+            ]
+          },
+          {
+            "id": "t3q3-image",
+            "title": "Evidence Image",
+            "type": "image",
+            "width": 340,
+            "height": 260,
+            "imageSrc": "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22760%22%20viewBox%3D%220%200%201200%20760%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%232a2f43%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%234a5f7a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22760%22%20fill%3D%22url(%23bg)%22%2F%3E%3Crect%20x%3D%2270%22%20y%3D%2270%22%20width%3D%221060%22%20height%3D%22620%22%20rx%3D%2224%22%20fill%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.35)%22%20stroke-width%3D%223%22%2F%3E%3Ctext%20x%3D%22110%22%20y%3D%22210%22%20fill%3D%22%23f4f8ff%22%20font-size%3D%2262%22%20font-family%3D%22Georgia%2C%20serif%22%3EEvidence%20Board%3C%2Ftext%3E%3Ctext%20x%3D%22110%22%20y%3D%22280%22%20fill%3D%22%23d7e4ff%22%20font-size%3D%2232%22%20font-family%3D%22Georgia%2C%20serif%22%3ERefactor%20the%20following%20nested%20query%20for%20efficiency%3A%20SELECT%20*%20FROM%20(SELECT%20*%20FROM%20orders%20WHERE%20amount%20%26gt%3B%20100)%20AS%3C%2Ftext%3E%3C%2Fsvg%3E",
+            "imagePrompt": "Refactor the following nested query for efficiency: SELECT * FROM (SELECT * FROM orders WHERE amount > 100) AS"
+          },
+          {
+            "id": "t3q3-transcript",
+            "title": "Witness Transcript",
+            "type": "transcript",
+            "width": 390,
+            "height": 300,
+            "entries": [
+              "Inspector: Refactor the following nested query for efficiency: SELECT * FROM (SELECT * FROM orders WHERE amount > 100) AS",
+              "Analyst: Reviewing the attached evidence.",
+              "Inspector: Confirm your conclusion with supporting details."
+            ]
+          },
+          {
+            "id": "t3q4-image",
+            "title": "Evidence Image",
+            "type": "image",
+            "width": 340,
+            "height": 260,
+            "imageSrc": "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22760%22%20viewBox%3D%220%200%201200%20760%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%232a2f43%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%234a5f7a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22760%22%20fill%3D%22url(%23bg)%22%2F%3E%3Crect%20x%3D%2270%22%20y%3D%2270%22%20width%3D%221060%22%20height%3D%22620%22%20rx%3D%2224%22%20fill%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.35)%22%20stroke-width%3D%223%22%2F%3E%3Ctext%20x%3D%22110%22%20y%3D%22210%22%20fill%3D%22%23f4f8ff%22%20font-size%3D%2262%22%20font-family%3D%22Georgia%2C%20serif%22%3EEvidence%20Board%3C%2Ftext%3E%3Ctext%20x%3D%22110%22%20y%3D%22280%22%20fill%3D%22%23d7e4ff%22%20font-size%3D%2232%22%20font-family%3D%22Georgia%2C%20serif%22%3EWhich%20aspect%20of%20transaction%20isolation%20levels%20can%20lead%20to%20different%20performance%20outcomes%20in%20a%20high-concurrency%20%3C%2Ftext%3E%3C%2Fsvg%3E",
+            "imagePrompt": "Which aspect of transaction isolation levels can lead to different performance outcomes in a high-concurrency "
+          },
+          {
+            "id": "t3q4-transcript",
+            "title": "Witness Transcript",
+            "type": "transcript",
+            "width": 390,
+            "height": 300,
+            "entries": [
+              "Inspector: Which aspect of transaction isolation levels can lead to different performance outcomes in a high-concurrency ",
+              "Analyst: Reviewing the attached evidence.",
+              "Inspector: Confirm your conclusion with supporting details."
+            ]
+          }
+        ],
+        "questions": [
+          {
+            "id": "q6",
+            "kind": "cloze",
+            "prompt": "Given a complex query that runs slowly, how would you analyze its execution plan to identify bottlenecks?",
+            "marks": 6,
+            "expected": "Use the EXPLAIN command to view the execution plan and identify slow operations or missing indexes.",
+            "idealAnswer": "Use the EXPLAIN command to view the execution plan and identify slow operations or missing indexes.",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          },
+          {
+            "id": "q7",
+            "kind": "essay",
+            "prompt": "Design an indexing strategy for a 'transactions' table frequently queried by 'date' and 'amount'.",
+            "marks": 6,
+            "idealAnswer": "Create an index on 'date' and a composite index on ('date', 'amount') to optimize query performance.",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          },
+          {
+            "id": "q8",
+            "kind": "cloze",
+            "prompt": "Refactor the following nested query for efficiency: SELECT * FROM (SELECT * FROM orders WHERE amount > 100) AS sub WHERE sub.date > '2023-01-01'.",
+            "marks": 6,
+            "expected": "SELECT * FROM orders WHERE amount > 100 AND date > '2023-01-01';",
+            "idealAnswer": "SELECT * FROM orders WHERE amount > 100 AND date > '2023-01-01';",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          },
+          {
+            "id": "q9",
+            "kind": "multiple-choice",
+            "prompt": "Which aspect of transaction isolation levels can lead to different performance outcomes in a high-concurrency environment?",
+            "marks": 6,
+            "options": [
+              "The level of locking and potential for blocking or deadlocks.",
+              "The size of the database index.",
+              "The number of tables in the database.",
+              "The presence of foreign keys."
+            ],
+            "expected": "The level of locking and potential for blocking or deadlocks.",
+            "usesDocuments": [],
+            "tools": [
+              "notepad"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "turns": [
+    {
+      "turnId": "turn-1",
+      "turnLabel": "Turn 1",
+      "questions": [
+        {
+          "questionId": "q1",
+          "prompt": "Given a table 'employees' with columns 'id', 'name', and 'department', which SQL query will correctly retrieve the 'name' and 'department' columns?",
+          "kind": "multiple-choice",
+          "marks": 2,
+          "answer": "SELECT name, department FROM employees;"
+        },
+        {
+          "questionId": "q2",
+          "prompt": "Using the 'products' table with columns 'id', 'name', and 'price', how would you find products with a price greater than 100?",
+          "kind": "multiple-choice",
+          "marks": 2,
+          "answer": "SELECT * FROM products WHERE price > 100;"
+        }
+      ]
+    },
+    {
+      "turnId": "turn-2",
+      "turnLabel": "Turn 2",
+      "questions": [
+        {
+          "questionId": "q3",
+          "prompt": "In a 'sales' table with columns 'region', 'salesperson', and 'total_sales', which query calculates the total sales by region and filters regions with total sales over 5000?",
+          "kind": "multiple-choice",
+          "marks": 4,
+          "answer": "SELECT SUM(total_sales) FROM sales GROUP BY region;"
+        },
+        {
+          "questionId": "q4",
+          "prompt": "You have two tables, 'orders' and 'customers'. Which SQL query will correctly join these tables to list all orders with the customer's name?",
+          "kind": "multiple-choice",
+          "marks": 4,
+          "answer": "SELECT orders.id, customers.name FROM orders FULL JOIN customers ON orders.customer_id = customers.id;"
+        },
+        {
+          "questionId": "q5",
+          "prompt": "For a 'departments' and 'employees' table, which is more efficient to find employees in departments with more than 10 employees: a subquery or a JOIN?",
+          "kind": "multiple-choice",
+          "marks": 4,
+          "answer": "Using a JOIN is generally more efficient in this scenario."
+        }
+      ]
+    },
+    {
+      "turnId": "turn-3",
+      "turnLabel": "Turn 3",
+      "questions": [
+        {
+          "questionId": "q6",
+          "prompt": "Given a complex query that runs slowly, how would you analyze its execution plan to identify bottlenecks?",
+          "kind": "cloze",
+          "marks": 6,
+          "idealAnswer": "Use the EXPLAIN command to view the execution plan and identify slow operations or missing indexes.",
+          "answer": "123"
+        },
+        {
+          "questionId": "q7",
+          "prompt": "Design an indexing strategy for a 'transactions' table frequently queried by 'date' and 'amount'.",
+          "kind": "essay",
+          "marks": 6,
+          "idealAnswer": "Create an index on 'date' and a composite index on ('date', 'amount') to optimize query performance.",
+          "answer": "123"
+        },
+        {
+          "questionId": "q8",
+          "prompt": "Refactor the following nested query for efficiency: SELECT * FROM (SELECT * FROM orders WHERE amount > 100) AS sub WHERE sub.date > '2023-01-01'.",
+          "kind": "cloze",
+          "marks": 6,
+          "idealAnswer": "SELECT * FROM orders WHERE amount > 100 AND date > '2023-01-01';",
+          "answer": "123"
+        },
+        {
+          "questionId": "q9",
+          "prompt": "Which aspect of transaction isolation levels can lead to different performance outcomes in a high-concurrency environment?",
+          "kind": "multiple-choice",
+          "marks": 6,
+          "answer": "The size of the database index."
+        }
+      ]
+    }
+  ]
+}

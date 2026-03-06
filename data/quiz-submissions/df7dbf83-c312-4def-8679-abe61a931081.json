@@ -1,0 +1,544 @@
+{
+  "id": "df7dbf83-c312-4def-8679-abe61a931081",
+  "userId": "Josse",
+  "completedAt": "2026-03-06T15:10:45.172Z",
+  "marked": false,
+  "markedAt": null,
+  "teacherName": null,
+  "maxScore": 40,
+  "awardedScore": 8,
+  "awardedMarks": {
+    "q1": 2,
+    "q2": 0,
+    "q3": 0,
+    "q4": 0,
+    "q5": 0,
+    "q8": 6,
+    "q9": 0
+  },
+  "quizData": {
+    "title": "Generated Quiz",
+    "turns": [
+      {
+        "id": "turn-1",
+        "label": "Turn 1",
+        "briefing": "Complete Turn 1. Use the reference items on the desk.",
+        "documents": [
+          {
+            "id": "turn-1-sheet",
+            "title": "Customer Orders Dataset",
+            "type": "spreadsheet",
+            "width": 470,
+            "height": 330,
+            "persistent": false,
+            "filePath": "",
+            "table": {
+              "columns": [
+                "customer_id",
+                "region",
+                "tier",
+                "orders_count",
+                "avg_order_value",
+                "total_spend",
+                "discount_pct",
+                "days_late",
+                "risk_score",
+                "payment_status"
+              ],
+              "rows": [
+                [
+                  "1100",
+                  "EMEA",
+                  "Mid-Market",
+                  "15",
+                  "652",
+                  "9776",
+                  "15",
+                  "5",
+                  "96",
+                  "On-time"
+                ],
+                [
+                  "1101",
+                  "NA",
+                  "SMB",
+                  "2",
+                  "145",
+                  "290",
+                  "4",
+                  "14",
+                  "77",
+                  "Late"
+                ],
+                [
+                  "1102",
+                  "LATAM",
+                  "Enterprise",
+                  "6",
+                  "286",
+                  "1715",
+                  "25",
+                  "9",
+                  "70",
+                  "On-time"
+                ],
+                [
+                  "1103",
+                  "APAC",
+                  "Mid-Market",
+                  "5",
+                  "604",
+                  "3021",
+                  "12",
+                  "17",
+                  "35",
+                  "Late"
+                ],
+                [
+                  "1104",
+                  "EMEA",
+                  "SMB",
+                  "9",
+                  "267",
+                  "2400",
+                  "16",
+                  "13",
+                  "58",
+                  "Late"
+                ],
+                [
+                  "1105",
+                  "NA",
+                  "Enterprise",
+                  "18",
+                  "678",
+                  "12208",
+                  "21",
+                  "14",
+                  "81",
+                  "Late"
+                ]
+              ]
+            }
+          }
+        ],
+        "questions": [
+          {
+            "id": "q1",
+            "kind": "multiple-choice",
+            "prompt": "You have a table customers(customer_id, first_name, last_name, email, signup_date). A colleague asks for every column for all customers who signed up on or after 2023-01-01. Which SQL statement returns the correct rows? Use the table.",
+            "marks": 2,
+            "options": [
+              "SELECT * FROM customers WHERE signup_date >= '2023-01-01';",
+              "SELECT ALL FROM customers WHERE signup_date = '2023-01-01';",
+              "SELECT customer_id, first_name FROM customers WHERE signup_date > '2023-01-01';",
+              "SELECT * FROM customers WHERE signup_date BETWEEN '2023-01-01' AND NOW();"
+            ],
+            "expected": "SELECT * FROM customers WHERE signup_date >= '2023-01-01';",
+            "usesDocuments": [
+              "turn-1-sheet"
+            ],
+            "tools": [
+              "calculator",
+              "notepad",
+              "highlighter",
+              "eraser"
+            ]
+          },
+          {
+            "id": "q2",
+            "kind": "cloze",
+            "prompt": "Using the same customers table, write a short SQL query to return customer_id and email for customers whose email ends with '@example.com'. Use the table.",
+            "marks": 2,
+            "expected": "SELECT customer_id, email FROM customers WHERE email LIKE '%@example.com';",
+            "idealAnswer": "SELECT customer_id, email FROM customers WHERE email LIKE '%@example.com';",
+            "usesDocuments": [
+              "turn-1-sheet"
+            ],
+            "tools": [
+              "calculator",
+              "notepad",
+              "highlighter",
+              "eraser"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "turn-2",
+        "label": "Turn 2",
+        "briefing": "Complete Turn 2.",
+        "documents": [],
+        "questions": [
+          {
+            "id": "q3",
+            "kind": "multiple-choice",
+            "prompt": "Now you add orders(order_id, customer_id, order_date, total_amount). You need a list of customers and their total order amount across all orders. Which JOIN and aggregation approach is best? Use the customers and orders tables.",
+            "marks": 4,
+            "options": [
+              "SELECT c.customer_id, SUM(o.total_amount) FROM customers c JOIN orders o ON c.customer_id=o.customer_id GROUP BY c.customer_id;",
+              "SELECT c.customer_id, COALESCE(SUM(o.total_amount),0) FROM customers c LEFT JOIN orders o ON c.customer_id=o.customer_id GROUP BY c.customer_id;",
+              "SELECT o.customer_id, SUM(o.total_amount) FROM orders o GROUP BY o.customer_id;",
+              "SELECT DISTINCT c.customer_id, o.total_amount FROM customers c LEFT JOIN orders o ON c.customer_id=o.customer_id;"
+            ],
+            "expected": "SELECT c.customer_id, COALESCE(SUM(o.total_amount),0) FROM customers c LEFT JOIN orders o ON c.customer_id=o.customer_id GROUP BY c.customer_id;",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          },
+          {
+            "id": "q4",
+            "kind": "multiple-choice",
+            "prompt": "You must report how many orders each month had total_amount > 100. Given orders(order_date, total_amount), which query correctly groups by month and counts qualifying orders? Use the orders table.",
+            "marks": 4,
+            "options": [
+              "SELECT MONTH(order_date) AS month, COUNT(*) FROM orders WHERE total_amount > 100 GROUP BY MONTH(order_date);",
+              "SELECT DATE_TRUNC('month', order_date) AS month, COUNT(*) FROM orders WHERE total_amount > 100 GROUP BY DATE_TRUNC('month', order_date);",
+              "SELECT TO_CHAR(order_date,'MM') AS month, SUM(total_amount>100) FROM orders GROUP BY TO_CHAR(order_date,'MM');",
+              "SELECT order_date, COUNT(*) FROM orders WHERE total_amount > 100 GROUP BY order_date;"
+            ],
+            "expected": "SELECT DATE_TRUNC('month', order_date) AS month, COUNT(*) FROM orders WHERE total_amount > 100 GROUP BY DATE_TRUNC('month', order_date);",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          },
+          {
+            "id": "q5",
+            "kind": "cloze",
+            "prompt": "A product_views table(view_id, product_id, user_id, viewed_at) exists. Write a query that returns product_id and the number of unique users who viewed it in the last 7 days, but only for products where that count exceeds the average unique viewers across all products in the same 7-day window. Use product_views and consider current_date as reference.",
+            "marks": 4,
+            "expected": "WITH recent AS ( SELECT product_id, COUNT(DISTINCT user_id) AS viewers FROM product_views WHERE viewed_at >= current_date - INTERVAL '7 days' GROUP BY product_id ) SELECT r.product_id, r.viewers FROM recent r WHERE r.viewers > (SELECT AVG(viewers) FROM recent);",
+            "idealAnswer": "WITH recent AS ( SELECT product_id, COUNT(DISTINCT user_id) AS viewers FROM product_views WHERE viewed_at >= current_date - INTERVAL '7 days' GROUP BY product_id ) SELECT r.product_id, r.viewers FROM recent r WHERE r.viewers > (SELECT AVG(viewers) FROM recent);",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "turn-3",
+        "label": "Turn 3",
+        "briefing": "Complete Turn 3. Use the reference items on the desk.",
+        "documents": [
+          {
+            "id": "turn-3-sheet",
+            "title": "Customer Orders Dataset",
+            "type": "spreadsheet",
+            "width": 470,
+            "height": 330,
+            "persistent": false,
+            "filePath": "",
+            "table": {
+              "columns": [
+                "customer_id",
+                "region",
+                "tier",
+                "orders_count",
+                "avg_order_value",
+                "total_spend",
+                "discount_pct",
+                "days_late",
+                "risk_score",
+                "payment_status"
+              ],
+              "rows": [
+                [
+                  "1300",
+                  "LATAM",
+                  "Enterprise",
+                  "14",
+                  "168",
+                  "2347",
+                  "16",
+                  "3",
+                  "47",
+                  "On-time"
+                ],
+                [
+                  "1301",
+                  "APAC",
+                  "Mid-Market",
+                  "3",
+                  "174",
+                  "523",
+                  "16",
+                  "17",
+                  "90",
+                  "Late"
+                ],
+                [
+                  "1302",
+                  "EMEA",
+                  "SMB",
+                  "9",
+                  "1139",
+                  "10251",
+                  "25",
+                  "7",
+                  "55",
+                  "On-time"
+                ],
+                [
+                  "1303",
+                  "NA",
+                  "Enterprise",
+                  "14",
+                  "695",
+                  "9730",
+                  "24",
+                  "12",
+                  "57",
+                  "Late"
+                ],
+                [
+                  "1304",
+                  "LATAM",
+                  "Mid-Market",
+                  "8",
+                  "771",
+                  "6170",
+                  "8",
+                  "16",
+                  "68",
+                  "Late"
+                ],
+                [
+                  "1305",
+                  "APAC",
+                  "SMB",
+                  "9",
+                  "833",
+                  "7495",
+                  "16",
+                  "13",
+                  "87",
+                  "Late"
+                ],
+                [
+                  "1306",
+                  "EMEA",
+                  "Enterprise",
+                  "13",
+                  "419",
+                  "5446",
+                  "17",
+                  "4",
+                  "69",
+                  "On-time"
+                ],
+                [
+                  "1307",
+                  "NA",
+                  "Mid-Market",
+                  "12",
+                  "1046",
+                  "12557",
+                  "5",
+                  "9",
+                  "92",
+                  "On-time"
+                ],
+                [
+                  "1308",
+                  "LATAM",
+                  "SMB",
+                  "4",
+                  "621",
+                  "2484",
+                  "4",
+                  "8",
+                  "91",
+                  "On-time"
+                ],
+                [
+                  "1309",
+                  "APAC",
+                  "Enterprise",
+                  "4",
+                  "703",
+                  "2813",
+                  "10",
+                  "2",
+                  "37",
+                  "On-time"
+                ]
+              ]
+            }
+          }
+        ],
+        "questions": [
+          {
+            "id": "q6",
+            "kind": "essay",
+            "prompt": "Sales team asks for a report: list customers whose monthly spending is above the average monthly spending for that customer across all months. The schema: orders(order_id, customer_id, order_date, total_amount). Explain and write a correlated subquery that returns customer_id, month, month_total where month_total is that month's total and is greater than that customer's average monthly total. Evidence required: use the orders table.",
+            "marks": 6,
+            "idealAnswer": "SELECT o.customer_id, DATE_TRUNC('month', o.order_date) AS month, SUM(o.total_amount) AS month_total FROM orders o GROUP BY o.customer_id, DATE_TRUNC('month', o.order_date) HAVING SUM(o.total_amount) > ( SELECT AVG(month_sum) FROM ( SELECT DATE_TRUNC('month', o2.order_date) AS m2, SUM(o2.total_amount) AS month_sum FROM orders o2 WHERE o2.customer_id = o.customer_id GROUP BY DATE_TRUNC('month', o2.order_date) ) t );",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          },
+          {
+            "id": "q7",
+            "kind": "essay",
+            "prompt": "You need to pick the top 3 orders by total_amount for each customer using orders(order_id, customer_id, order_date, total_amount). Describe how to use a window function to produce order_rank and return only ranks 1-3. Provide the SQL and brief justification. Evidence required: use the orders table.",
+            "marks": 6,
+            "idealAnswer": "SELECT order_id, customer_id, order_date, total_amount FROM ( SELECT o.*, ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY total_amount DESC) AS rn FROM orders o ) t WHERE rn <= 3;",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          },
+          {
+            "id": "q8",
+            "kind": "multiple-choice",
+            "prompt": "Database performance issue: table orders has 50M rows; queries filtering by order_date and customer_id are slow. Which indexing strategy gives the best general improvement for those filters and why? Use the orders table.",
+            "marks": 6,
+            "options": [
+              "Create a composite B-tree index on (customer_id, order_date) because it supports queries filtering by customer first then date ranges efficiently.",
+              "Create separate single-column indexes on customer_id and order_date; the optimizer will always combine them for best performance.",
+              "Create a full-text index on total_amount and order_date to speed up numeric range queries.",
+              "No index; rely on sequential scan because indexes slow down inserts and won't help read performance."
+            ],
+            "expected": "Create a composite B-tree index on (customer_id, order_date) because it supports queries filtering by customer first then date ranges efficiently.",
+            "usesDocuments": [
+              "turn-3-sheet"
+            ],
+            "tools": [
+              "calculator",
+              "notepad",
+              "highlighter",
+              "eraser"
+            ]
+          },
+          {
+            "id": "q9",
+            "kind": "sequence",
+            "prompt": "You're preparing a deployment plan to optimize a slow aggregation query that groups orders by product_id and computes SUM(total_amount). Put these steps in the recommended order. Evidence required: use the orders table and explainors.",
+            "marks": 6,
+            "sequencePool": [
+              "Add or adjust appropriate indexes (e.g., on product_id).",
+              "Rewrite the query to reduce data scanned (use WHERE, pre-aggregated tables, or partitioning).",
+              "Run the query again and compare metrics.",
+              "Consider materialized view or summary table if still slow.",
+              "Capture the slow query plan and execution metrics."
+            ],
+            "expected": [
+              "Capture the slow query plan and execution metrics.",
+              "Add or adjust appropriate indexes (e.g., on product_id).",
+              "Rewrite the query to reduce data scanned (use WHERE, pre-aggregated tables, or partitioning).",
+              "Run the query again and compare metrics.",
+              "Consider materialized view or summary table if still slow."
+            ],
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "turns": [
+    {
+      "turnId": "turn-1",
+      "turnLabel": "Turn 1",
+      "questions": [
+        {
+          "questionId": "q1",
+          "prompt": "You have a table customers(customer_id, first_name, last_name, email, signup_date). A colleague asks for every column for all customers who signed up on or after 2023-01-01. Which SQL statement returns the correct rows? Use the table.",
+          "kind": "multiple-choice",
+          "marks": 2,
+          "answer": "SELECT * FROM customers WHERE signup_date >= '2023-01-01';"
+        },
+        {
+          "questionId": "q2",
+          "prompt": "Using the same customers table, write a short SQL query to return customer_id and email for customers whose email ends with '@example.com'. Use the table.",
+          "kind": "cloze",
+          "marks": 2,
+          "idealAnswer": "SELECT customer_id, email FROM customers WHERE email LIKE '%@example.com';",
+          "answer": "123"
+        }
+      ]
+    },
+    {
+      "turnId": "turn-2",
+      "turnLabel": "Turn 2",
+      "questions": [
+        {
+          "questionId": "q3",
+          "prompt": "Now you add orders(order_id, customer_id, order_date, total_amount). You need a list of customers and their total order amount across all orders. Which JOIN and aggregation approach is best? Use the customers and orders tables.",
+          "kind": "multiple-choice",
+          "marks": 4,
+          "answer": "SELECT c.customer_id, SUM(o.total_amount) FROM customers c JOIN orders o ON c.customer_id=o.customer_id GROUP BY c.customer_id;"
+        },
+        {
+          "questionId": "q4",
+          "prompt": "You must report how many orders each month had total_amount > 100. Given orders(order_date, total_amount), which query correctly groups by month and counts qualifying orders? Use the orders table.",
+          "kind": "multiple-choice",
+          "marks": 4,
+          "answer": "SELECT TO_CHAR(order_date,'MM') AS month, SUM(total_amount>100) FROM orders GROUP BY TO_CHAR(order_date,'MM');"
+        },
+        {
+          "questionId": "q5",
+          "prompt": "A product_views table(view_id, product_id, user_id, viewed_at) exists. Write a query that returns product_id and the number of unique users who viewed it in the last 7 days, but only for products where that count exceeds the average unique viewers across all products in the same 7-day window. Use product_views and consider current_date as reference.",
+          "kind": "cloze",
+          "marks": 4,
+          "idealAnswer": "WITH recent AS ( SELECT product_id, COUNT(DISTINCT user_id) AS viewers FROM product_views WHERE viewed_at >= current_date - INTERVAL '7 days' GROUP BY product_id ) SELECT r.product_id, r.viewers FROM recent r WHERE r.viewers > (SELECT AVG(viewers) FROM recent);",
+          "answer": "123"
+        }
+      ]
+    },
+    {
+      "turnId": "turn-3",
+      "turnLabel": "Turn 3",
+      "questions": [
+        {
+          "questionId": "q6",
+          "prompt": "Sales team asks for a report: list customers whose monthly spending is above the average monthly spending for that customer across all months. The schema: orders(order_id, customer_id, order_date, total_amount). Explain and write a correlated subquery that returns customer_id, month, month_total where month_total is that month's total and is greater than that customer's average monthly total. Evidence required: use the orders table.",
+          "kind": "essay",
+          "marks": 6,
+          "idealAnswer": "SELECT o.customer_id, DATE_TRUNC('month', o.order_date) AS month, SUM(o.total_amount) AS month_total FROM orders o GROUP BY o.customer_id, DATE_TRUNC('month', o.order_date) HAVING SUM(o.total_amount) > ( SELECT AVG(month_sum) FROM ( SELECT DATE_TRUNC('month', o2.order_date) AS m2, SUM(o2.total_amount) AS month_sum FROM orders o2 WHERE o2.customer_id = o.customer_id GROUP BY DATE_TRUNC('month', o2.order_date) ) t );",
+          "answer": "123"
+        },
+        {
+          "questionId": "q7",
+          "prompt": "You need to pick the top 3 orders by total_amount for each customer using orders(order_id, customer_id, order_date, total_amount). Describe how to use a window function to produce order_rank and return only ranks 1-3. Provide the SQL and brief justification. Evidence required: use the orders table.",
+          "kind": "essay",
+          "marks": 6,
+          "idealAnswer": "SELECT order_id, customer_id, order_date, total_amount FROM ( SELECT o.*, ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY total_amount DESC) AS rn FROM orders o ) t WHERE rn <= 3;",
+          "answer": "123"
+        },
+        {
+          "questionId": "q8",
+          "prompt": "Database performance issue: table orders has 50M rows; queries filtering by order_date and customer_id are slow. Which indexing strategy gives the best general improvement for those filters and why? Use the orders table.",
+          "kind": "multiple-choice",
+          "marks": 6,
+          "answer": "Create a composite B-tree index on (customer_id, order_date) because it supports queries filtering by customer first then date ranges efficiently."
+        },
+        {
+          "questionId": "q9",
+          "prompt": "You're preparing a deployment plan to optimize a slow aggregation query that groups orders by product_id and computes SUM(total_amount). Put these steps in the recommended order. Evidence required: use the orders table and explainors.",
+          "kind": "sequence",
+          "marks": 6,
+          "answer": [
+            "Run the query again and compare metrics.",
+            "Add or adjust appropriate indexes (e.g., on product_id).",
+            "Consider materialized view or summary table if still slow.",
+            "Capture the slow query plan and execution metrics.",
+            "Rewrite the query to reduce data scanned (use WHERE, pre-aggregated tables, or partitioning)."
+          ]
+        }
+      ]
+    }
+  ]
+}

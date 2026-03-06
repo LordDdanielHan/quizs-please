@@ -1,0 +1,699 @@
+{
+  "id": "a1662975-3cef-497f-9af7-03a1ef04803b",
+  "userId": "art",
+  "completedAt": "2026-03-06T15:05:32.689Z",
+  "marked": true,
+  "markedAt": "2026-03-06T15:06:21.166Z",
+  "teacherName": null,
+  "maxScore": 40,
+  "awardedScore": 10,
+  "awardedMarks": {
+    "q1": 0,
+    "q2": 2,
+    "q3": 4,
+    "q4": 4,
+    "q5": 0,
+    "q6": 0,
+    "q7": 0,
+    "q9": 0,
+    "q8": 0
+  },
+  "quizData": {
+    "title": "Generated Quiz",
+    "turns": [
+      {
+        "id": "turn-1",
+        "label": "Turn 1",
+        "briefing": "Complete Turn 1. Use the reference items assigned to these questions.",
+        "documents": [
+          {
+            "id": "turn-1-sheet",
+            "title": "Customer Orders Dataset",
+            "type": "spreadsheet",
+            "width": 470,
+            "height": 330,
+            "persistent": false,
+            "table": {
+              "columns": [
+                "customer_id",
+                "region",
+                "tier",
+                "orders_count",
+                "avg_order_value",
+                "total_spend",
+                "discount_pct",
+                "days_late",
+                "risk_score",
+                "payment_status"
+              ],
+              "rows": [
+                [
+                  "1100",
+                  "EMEA",
+                  "Mid-Market",
+                  "7",
+                  "1056",
+                  "7389",
+                  "25",
+                  "13",
+                  "94",
+                  "Late"
+                ],
+                [
+                  "1101",
+                  "NA",
+                  "SMB",
+                  "4",
+                  "774",
+                  "3094",
+                  "10",
+                  "17",
+                  "86",
+                  "Late"
+                ],
+                [
+                  "1102",
+                  "LATAM",
+                  "Enterprise",
+                  "7",
+                  "241",
+                  "1688",
+                  "5",
+                  "12",
+                  "86",
+                  "Late"
+                ],
+                [
+                  "1103",
+                  "APAC",
+                  "Mid-Market",
+                  "14",
+                  "844",
+                  "11817",
+                  "26",
+                  "21",
+                  "79",
+                  "Late"
+                ],
+                [
+                  "1104",
+                  "EMEA",
+                  "SMB",
+                  "6",
+                  "394",
+                  "2366",
+                  "25",
+                  "16",
+                  "51",
+                  "Late"
+                ],
+                [
+                  "1105",
+                  "NA",
+                  "Enterprise",
+                  "5",
+                  "398",
+                  "1991",
+                  "7",
+                  "10",
+                  "69",
+                  "On-time"
+                ]
+              ]
+            }
+          }
+        ],
+        "questions": [
+          {
+            "id": "q1",
+            "kind": "multiple-choice",
+            "prompt": "You are given a table employees(id, name, department, salary). The CEO asks: \"Show every column for all employees.\" Which SQL statement best returns all columns and rows from the employees table? Use the table.",
+            "marks": 2,
+            "options": [
+              "SELECT ALL FROM employees;",
+              "SELECT * FROM employees;",
+              "SELECT employees.* WHERE TRUE;",
+              "GET * FROM employees;"
+            ],
+            "expected": "SELECT * FROM employees;",
+            "usesDocuments": [
+              "turn-1-sheet"
+            ],
+            "tools": [
+              "calculator",
+              "notepad",
+              "highlighter",
+              "eraser"
+            ]
+          },
+          {
+            "id": "q2",
+            "kind": "true-false",
+            "prompt": "Continuing from the employees table (id, name, department, salary): the HR lead asks for only employees in the 'Sales' department. The query WHERE department = 'Sales' applied to SELECT * FROM employees will return only Sales rows. Use the table.",
+            "marks": 2,
+            "expected": "true",
+            "usesDocuments": [
+              "turn-1-sheet"
+            ],
+            "tools": [
+              "calculator",
+              "notepad",
+              "highlighter",
+              "eraser"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "turn-2",
+        "label": "Turn 2",
+        "briefing": "Complete Turn 2. Use the reference items assigned to these questions.",
+        "documents": [
+          {
+            "id": "turn-2-sheet",
+            "title": "Customer Orders Dataset",
+            "type": "spreadsheet",
+            "width": 470,
+            "height": 330,
+            "persistent": false,
+            "table": {
+              "columns": [
+                "customer_id",
+                "region",
+                "tier",
+                "orders_count",
+                "avg_order_value",
+                "total_spend",
+                "discount_pct",
+                "days_late",
+                "risk_score",
+                "payment_status"
+              ],
+              "rows": [
+                [
+                  "1200",
+                  "NA",
+                  "SMB",
+                  "11",
+                  "500",
+                  "5495",
+                  "4",
+                  "21",
+                  "80",
+                  "Late"
+                ],
+                [
+                  "1201",
+                  "LATAM",
+                  "Enterprise",
+                  "7",
+                  "121",
+                  "844",
+                  "4",
+                  "13",
+                  "63",
+                  "Late"
+                ],
+                [
+                  "1202",
+                  "APAC",
+                  "Mid-Market",
+                  "16",
+                  "271",
+                  "4336",
+                  "20",
+                  "5",
+                  "43",
+                  "On-time"
+                ],
+                [
+                  "1203",
+                  "EMEA",
+                  "SMB",
+                  "6",
+                  "431",
+                  "2586",
+                  "20",
+                  "8",
+                  "57",
+                  "On-time"
+                ],
+                [
+                  "1204",
+                  "NA",
+                  "Enterprise",
+                  "3",
+                  "1034",
+                  "3102",
+                  "24",
+                  "6",
+                  "51",
+                  "On-time"
+                ],
+                [
+                  "1205",
+                  "LATAM",
+                  "Mid-Market",
+                  "15",
+                  "570",
+                  "8547",
+                  "26",
+                  "8",
+                  "45",
+                  "On-time"
+                ],
+                [
+                  "1206",
+                  "APAC",
+                  "SMB",
+                  "11",
+                  "151",
+                  "1663",
+                  "14",
+                  "0",
+                  "40",
+                  "On-time"
+                ],
+                [
+                  "1207",
+                  "EMEA",
+                  "Enterprise",
+                  "3",
+                  "1128",
+                  "3384",
+                  "28",
+                  "16",
+                  "48",
+                  "Late"
+                ]
+              ]
+            }
+          }
+        ],
+        "questions": [
+          {
+            "id": "q3",
+            "kind": "multiple-choice",
+            "prompt": "Now the operations manager wants a count of employees per department from employees(id, name, department, salary). Which query correctly groups rows and returns department plus employee count? Use the table.",
+            "marks": 4,
+            "options": [
+              "SELECT department, COUNT(*) FROM employees GROUP BY department;",
+              "SELECT department, COUNT(*) FROM employees;",
+              "SELECT COUNT(*) FROM employees GROUP BY department;",
+              "SELECT department FROM employees HAVING COUNT(*) > 0;"
+            ],
+            "expected": "SELECT department, COUNT(*) FROM employees GROUP BY department;",
+            "usesDocuments": [
+              "turn-2-sheet"
+            ],
+            "tools": [
+              "calculator",
+              "notepad",
+              "highlighter",
+              "eraser"
+            ]
+          },
+          {
+            "id": "q4",
+            "kind": "multiple-choice",
+            "prompt": "Your analytics team has two tables: employees(id, name, department_id) and departments(id, name). They need a list of employee names with their department name. Which INNER JOIN query produces that result? Use the tables.",
+            "marks": 4,
+            "options": [
+              "SELECT employees.name, departments.name FROM employees JOIN departments ON employees.department_id = departments.id;",
+              "SELECT name FROM employees, departments;",
+              "SELECT e.name, d.name FROM employees e LEFT JOIN departments d ON e.id = d.department_id;",
+              "SELECT e.name || d.name FROM employees e INNER JOIN departments d;"
+            ],
+            "expected": "SELECT employees.name, departments.name FROM employees JOIN departments ON employees.department_id = departments.id;",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          },
+          {
+            "id": "q5",
+            "kind": "multiple-choice",
+            "prompt": "The product lead asks for the top 3 highest-paid employees from employees(id, name, salary). Which query correctly orders salaries descending and limits results to 3? Use the table.",
+            "marks": 4,
+            "options": [
+              "SELECT * FROM employees ORDER BY salary DESC LIMIT 3;",
+              "SELECT TOP 3 * FROM employees ORDER BY salary ASC;",
+              "SELECT * FROM employees LIMIT 3 ORDER BY salary DESC;",
+              "SELECT * FROM employees ORDER BY salary LIMIT 3;"
+            ],
+            "expected": "SELECT * FROM employees ORDER BY salary DESC LIMIT 3;",
+            "usesDocuments": [
+              "turn-2-sheet"
+            ],
+            "tools": [
+              "calculator",
+              "notepad",
+              "highlighter",
+              "eraser"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "turn-3",
+        "label": "Turn 3",
+        "briefing": "Complete Turn 3. Use the reference items assigned to these questions.",
+        "documents": [
+          {
+            "id": "turn-3-sheet",
+            "title": "Customer Orders Dataset",
+            "type": "spreadsheet",
+            "width": 470,
+            "height": 330,
+            "persistent": false,
+            "table": {
+              "columns": [
+                "customer_id",
+                "region",
+                "tier",
+                "orders_count",
+                "avg_order_value",
+                "total_spend",
+                "discount_pct",
+                "days_late",
+                "risk_score",
+                "payment_status"
+              ],
+              "rows": [
+                [
+                  "1300",
+                  "LATAM",
+                  "Enterprise",
+                  "5",
+                  "423",
+                  "2114",
+                  "26",
+                  "3",
+                  "79",
+                  "On-time"
+                ],
+                [
+                  "1301",
+                  "APAC",
+                  "Mid-Market",
+                  "9",
+                  "774",
+                  "6968",
+                  "3",
+                  "14",
+                  "75",
+                  "Late"
+                ],
+                [
+                  "1302",
+                  "EMEA",
+                  "SMB",
+                  "17",
+                  "812",
+                  "13807",
+                  "23",
+                  "15",
+                  "47",
+                  "Late"
+                ],
+                [
+                  "1303",
+                  "NA",
+                  "Enterprise",
+                  "15",
+                  "755",
+                  "11327",
+                  "4",
+                  "4",
+                  "39",
+                  "On-time"
+                ],
+                [
+                  "1304",
+                  "LATAM",
+                  "Mid-Market",
+                  "6",
+                  "1007",
+                  "6041",
+                  "1",
+                  "12",
+                  "97",
+                  "Late"
+                ],
+                [
+                  "1305",
+                  "APAC",
+                  "SMB",
+                  "8",
+                  "536",
+                  "4285",
+                  "8",
+                  "13",
+                  "74",
+                  "Late"
+                ],
+                [
+                  "1306",
+                  "EMEA",
+                  "Enterprise",
+                  "18",
+                  "329",
+                  "5928",
+                  "6",
+                  "4",
+                  "38",
+                  "On-time"
+                ],
+                [
+                  "1307",
+                  "NA",
+                  "Mid-Market",
+                  "3",
+                  "537",
+                  "1611",
+                  "1",
+                  "17",
+                  "46",
+                  "Late"
+                ],
+                [
+                  "1308",
+                  "LATAM",
+                  "SMB",
+                  "16",
+                  "793",
+                  "12684",
+                  "21",
+                  "15",
+                  "60",
+                  "Late"
+                ],
+                [
+                  "1309",
+                  "APAC",
+                  "Enterprise",
+                  "18",
+                  "441",
+                  "7945",
+                  "26",
+                  "6",
+                  "57",
+                  "On-time"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "turn-3-brief",
+            "title": "Casewire Bulletin",
+            "type": "newspaper",
+            "width": 430,
+            "height": 340,
+            "persistent": false,
+            "headline": "Simple SQL Quiz - Turn 3 Briefing",
+            "subhead": "Use this briefing together with the referenced evidence.",
+            "byline": "Scenario Desk",
+            "publishDate": "Turn 3/3 / Generated",
+            "columns": [
+              "Case focus: Department / Salary / Employees / Total. Stage: mid-cycle validation. Progress: turn 3 of 3. This turn extends the case from Turn 2, especially around Employees / Select / Name / Department.",
+              "Evidence digest: 4/10 rows are high-value accounts by total_spend.",
+              "Control note: 6/10 rows have payment_status=Late and may affect filtering logic."
+            ]
+          },
+          {
+            "id": "turn-3-memo",
+            "title": "Supervisor Strategy Memo",
+            "type": "memo",
+            "width": 390,
+            "height": 290,
+            "persistent": false,
+            "content": "Turn 3 Strategy Note\n\nStage: mid-cycle validation.\nCarry-over from Turn 2: Employees / Select / Name / Department.\n\nGuidance:\n- This turn includes mixed signals by design.\n- Balance efficiency improvements against remaining risk.\n- Give a justified conclusion, not a one-sided claim.\n\nSignal summary: 4/10 rows are high-value accounts by total_spend. 6/10 rows have payment_status=Late and may affect filtering logic."
+          }
+        ],
+        "questions": [
+          {
+            "id": "q6",
+            "kind": "cloze",
+            "prompt": "Senior management now asks: \"Return departments whose average salary is above 70000.\" You have employees(id, department_id, salary) and departments(id, name). Write a SQL query using a subquery to filter departments based on the aggregated average salary. Use the tables.",
+            "marks": 6,
+            "expected": "SELECT d.name FROM departments d WHERE d.id IN (SELECT department_id FROM employees GROUP BY department_id HAVING AVG(salary) > 70000);",
+            "idealAnswer": "SELECT d.name FROM departments d WHERE d.id IN (SELECT department_id FROM employees GROUP BY department_id HAVING AVG(salary) > 70000);",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          },
+          {
+            "id": "q7",
+            "kind": "cloze",
+            "prompt": "The CTO wants the highest-paid employee per department using a window function. Given employees(id, name, department_id, salary), write a query that returns id, name, department_id, salary for rows where the employee is ranked number 1 by salary within their department. Use the table and window functions.",
+            "marks": 6,
+            "expected": "SELECT id, name, department_id, salary FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY department_id ORDER BY salary DESC) AS rn FROM employees) t WHERE rn = 1;",
+            "idealAnswer": "SELECT id, name, department_id, salary FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY department_id ORDER BY salary DESC) AS rn FROM employees) t WHERE rn = 1;",
+            "usesDocuments": [
+              "turn-3-sheet",
+              "turn-3-memo"
+            ],
+            "tools": [
+              "calculator",
+              "notepad",
+              "highlighter",
+              "eraser"
+            ]
+          },
+          {
+            "id": "q8",
+            "kind": "essay",
+            "prompt": "A developer submitted this query against sales(order_id, customer_id, amount): SELECT customer_id, amount FROM sales GROUP BY customer_id; It fails in most SQL systems. Explain what is wrong and provide a corrected query that returns each customer_id with their total amount. Use the table.",
+            "marks": 6,
+            "expected": "Error: amount is neither aggregated nor grouped. Fix: SELECT customer_id, SUM(amount) AS total_amount FROM sales GROUP BY customer_id;",
+            "idealAnswer": "Error: amount is neither aggregated nor grouped. Fix: SELECT customer_id, SUM(amount) AS total_amount FROM sales GROUP BY customer_id;",
+            "usesDocuments": [
+              "turn-3-sheet",
+              "turn-3-memo"
+            ],
+            "tools": [
+              "calculator",
+              "notepad",
+              "highlighter",
+              "eraser"
+            ]
+          },
+          {
+            "id": "q9",
+            "kind": "sequence",
+            "prompt": "For a report pipeline you must order these steps to get: (1) per-department total salary, (2) top department by total salary, (3) employees in that top department. Arrange these SQL steps in the correct execution order. Use the employees and departments tables.",
+            "marks": 6,
+            "sequencePool": [
+              "Select the top department by total salary (ORDER BY total DESC LIMIT 1 or use MAX).",
+              "Retrieve employees in the top department (filter employees by department_id).",
+              "Compute per-department total salary (GROUP BY department_id, SUM(salary))."
+            ],
+            "expected": [
+              "Compute per-department total salary (GROUP BY department_id, SUM(salary)).",
+              "Select the top department by total salary (ORDER BY total DESC LIMIT 1 or use MAX).",
+              "Retrieve employees in the top department (filter employees by department_id)."
+            ],
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "turns": [
+    {
+      "turnId": "turn-1",
+      "turnLabel": "Turn 1",
+      "questions": [
+        {
+          "questionId": "q1",
+          "prompt": "You are given a table employees(id, name, department, salary). The CEO asks: \"Show every column for all employees.\" Which SQL statement best returns all columns and rows from the employees table? Use the table.",
+          "kind": "multiple-choice",
+          "marks": 2,
+          "answer": "SELECT employees.* WHERE TRUE;"
+        },
+        {
+          "questionId": "q2",
+          "prompt": "Continuing from the employees table (id, name, department, salary): the HR lead asks for only employees in the 'Sales' department. The query WHERE department = 'Sales' applied to SELECT * FROM employees will return only Sales rows. Use the table.",
+          "kind": "true-false",
+          "marks": 2,
+          "answer": "true"
+        }
+      ]
+    },
+    {
+      "turnId": "turn-2",
+      "turnLabel": "Turn 2",
+      "questions": [
+        {
+          "questionId": "q3",
+          "prompt": "Now the operations manager wants a count of employees per department from employees(id, name, department, salary). Which query correctly groups rows and returns department plus employee count? Use the table.",
+          "kind": "multiple-choice",
+          "marks": 4,
+          "answer": "SELECT department, COUNT(*) FROM employees GROUP BY department;"
+        },
+        {
+          "questionId": "q4",
+          "prompt": "Your analytics team has two tables: employees(id, name, department_id) and departments(id, name). They need a list of employee names with their department name. Which INNER JOIN query produces that result? Use the tables.",
+          "kind": "multiple-choice",
+          "marks": 4,
+          "answer": "SELECT employees.name, departments.name FROM employees JOIN departments ON employees.department_id = departments.id;"
+        },
+        {
+          "questionId": "q5",
+          "prompt": "The product lead asks for the top 3 highest-paid employees from employees(id, name, salary). Which query correctly orders salaries descending and limits results to 3? Use the table.",
+          "kind": "multiple-choice",
+          "marks": 4,
+          "answer": "SELECT * FROM employees LIMIT 3 ORDER BY salary DESC;"
+        }
+      ]
+    },
+    {
+      "turnId": "turn-3",
+      "turnLabel": "Turn 3",
+      "questions": [
+        {
+          "questionId": "q6",
+          "prompt": "Senior management now asks: \"Return departments whose average salary is above 70000.\" You have employees(id, department_id, salary) and departments(id, name). Write a SQL query using a subquery to filter departments based on the aggregated average salary. Use the tables.",
+          "kind": "cloze",
+          "marks": 6,
+          "idealAnswer": "SELECT d.name FROM departments d WHERE d.id IN (SELECT department_id FROM employees GROUP BY department_id HAVING AVG(salary) > 70000);",
+          "answer": "sad"
+        },
+        {
+          "questionId": "q7",
+          "prompt": "The CTO wants the highest-paid employee per department using a window function. Given employees(id, name, department_id, salary), write a query that returns id, name, department_id, salary for rows where the employee is ranked number 1 by salary within their department. Use the table and window functions.",
+          "kind": "cloze",
+          "marks": 6,
+          "idealAnswer": "SELECT id, name, department_id, salary FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY department_id ORDER BY salary DESC) AS rn FROM employees) t WHERE rn = 1;",
+          "answer": "asd"
+        },
+        {
+          "questionId": "q8",
+          "prompt": "A developer submitted this query against sales(order_id, customer_id, amount): SELECT customer_id, amount FROM sales GROUP BY customer_id; It fails in most SQL systems. Explain what is wrong and provide a corrected query that returns each customer_id with their total amount. Use the table.",
+          "kind": "essay",
+          "marks": 6,
+          "idealAnswer": "Error: amount is neither aggregated nor grouped. Fix: SELECT customer_id, SUM(amount) AS total_amount FROM sales GROUP BY customer_id;",
+          "answer": "asd"
+        },
+        {
+          "questionId": "q9",
+          "prompt": "For a report pipeline you must order these steps to get: (1) per-department total salary, (2) top department by total salary, (3) employees in that top department. Arrange these SQL steps in the correct execution order. Use the employees and departments tables.",
+          "kind": "sequence",
+          "marks": 6,
+          "answer": [
+            "Retrieve employees in the top department (filter employees by department_id).",
+            "Compute per-department total salary (GROUP BY department_id, SUM(salary)).",
+            "Select the top department by total salary (ORDER BY total DESC LIMIT 1 or use MAX)."
+          ]
+        }
+      ]
+    }
+  ]
+}

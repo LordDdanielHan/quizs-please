@@ -1,0 +1,611 @@
+{
+  "id": "ebf7e9e9-60d1-4980-85a6-81a9a80cc69d",
+  "userId": "artemii (3)",
+  "completedAt": "2026-03-06T16:23:00.128Z",
+  "marked": true,
+  "markedAt": "2026-03-06T16:23:41.508Z",
+  "teacherName": null,
+  "maxScore": 40,
+  "awardedScore": 6,
+  "awardedMarks": {
+    "q1": 0,
+    "q2": 2,
+    "q3": 0,
+    "q4": 0,
+    "q5": 4,
+    "q6": 0,
+    "q9": 0,
+    "q7": 0,
+    "q8": 0
+  },
+  "quizData": {
+    "title": "Generated Quiz",
+    "turns": [
+      {
+        "id": "turn-1",
+        "label": "Turn 1",
+        "briefing": "Complete Turn 1. Use the reference items on the desk.",
+        "documents": [
+          {
+            "id": "t1q1-newspaper",
+            "title": "Daily Brief",
+            "type": "newspaper",
+            "width": 420,
+            "height": 340,
+            "headline": "You have a table orders(order_id, customer_id, order_date, total_amount). Write a query to list customer_id an",
+            "subhead": "Use this bulletin to answer the question.",
+            "byline": "Operations Desk",
+            "publishDate": "Generated",
+            "columns": [
+              "Context summary: You have a table orders(order_id, customer_id, order_date, total_amount). Write a query to list customer_id an.",
+              "Cross-check the details before selecting your answer."
+            ]
+          },
+          {
+            "id": "t1q1-memo",
+            "title": "Supervisor Note",
+            "type": "memo",
+            "width": 360,
+            "height": 270,
+            "content": "Question focus:\nYou have a table orders(order_id, customer_id, order_date, total_amount). Write a query to list customer_id an\n\nReminder:\nUse the provided context and avoid assumptions."
+          },
+          {
+            "id": "t1q2-newspaper",
+            "title": "Daily Brief",
+            "type": "newspaper",
+            "width": 420,
+            "height": 340,
+            "headline": "Given a products table(product_id, name, price, discontinued) — to find active products priced under 50, you w",
+            "subhead": "Use this bulletin to answer the question.",
+            "byline": "Operations Desk",
+            "publishDate": "Generated",
+            "columns": [
+              "Context summary: Given a products table(product_id, name, price, discontinued) — to find active products priced under 50, you w.",
+              "Cross-check the details before selecting your answer."
+            ]
+          },
+          {
+            "id": "t1q2-memo",
+            "title": "Supervisor Note",
+            "type": "memo",
+            "width": 360,
+            "height": 270,
+            "content": "Question focus:\nGiven a products table(product_id, name, price, discontinued) — to find active products priced under 50, you w\n\nReminder:\nUse the provided context and avoid assumptions."
+          }
+        ],
+        "questions": [
+          {
+            "id": "q1",
+            "kind": "multiple-choice",
+            "prompt": "You have a table orders(order_id, customer_id, order_date, total_amount). Write a query to list customer_id and total_amount for orders placed on '2024-01-15'. Which of the following SELECT statements returns only those two columns correctly?",
+            "marks": 2,
+            "options": [
+              "SELECT * FROM orders WHERE order_date = '2024-01-15';",
+              "SELECT customer_id, total_amount FROM orders WHERE order_date = '2024-01-15';",
+              "SELECT customer_id total_amount FROM orders WHERE order_date = '2024-01-15';",
+              "SELECT customer_id, total_amount, order_date FROM orders WHERE order_date = '2024-01-15';"
+            ],
+            "expected": "SELECT customer_id, total_amount FROM orders WHERE order_date = '2024-01-15';",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          },
+          {
+            "id": "q2",
+            "kind": "true-false",
+            "prompt": "Given a products table(product_id, name, price, discontinued) — to find active products priced under 50, you write: SELECT * FROM products WHERE price < 50 AND discontinued = false; True or False: This WHERE clause will correctly filter out discontinued products and return only price < 50 rows.",
+            "marks": 2,
+            "expected": "true",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "turn-2",
+        "label": "Turn 2",
+        "briefing": "Complete Turn 2. Use the reference items on the desk.",
+        "documents": [
+          {
+            "id": "turn-2-sheet",
+            "title": "Customer Orders Dataset",
+            "type": "spreadsheet",
+            "width": 470,
+            "height": 330,
+            "persistent": false,
+            "filePath": "",
+            "table": {
+              "columns": [
+                "customer_id",
+                "region",
+                "tier",
+                "orders_count",
+                "avg_order_value",
+                "total_spend",
+                "discount_pct",
+                "days_late",
+                "risk_score",
+                "payment_status"
+              ],
+              "rows": [
+                [
+                  "1200",
+                  "NA",
+                  "SMB",
+                  "9",
+                  "235",
+                  "2115",
+                  "22",
+                  "16",
+                  "71",
+                  "Late"
+                ],
+                [
+                  "1201",
+                  "LATAM",
+                  "Enterprise",
+                  "4",
+                  "576",
+                  "2302",
+                  "8",
+                  "8",
+                  "57",
+                  "On-time"
+                ],
+                [
+                  "1202",
+                  "APAC",
+                  "Mid-Market",
+                  "11",
+                  "356",
+                  "3912",
+                  "23",
+                  "6",
+                  "70",
+                  "On-time"
+                ],
+                [
+                  "1203",
+                  "EMEA",
+                  "SMB",
+                  "16",
+                  "1112",
+                  "17789",
+                  "12",
+                  "1",
+                  "94",
+                  "On-time"
+                ],
+                [
+                  "1204",
+                  "NA",
+                  "Enterprise",
+                  "13",
+                  "815",
+                  "10592",
+                  "24",
+                  "6",
+                  "94",
+                  "On-time"
+                ],
+                [
+                  "1205",
+                  "LATAM",
+                  "Mid-Market",
+                  "8",
+                  "1047",
+                  "8378",
+                  "7",
+                  "20",
+                  "68",
+                  "Late"
+                ],
+                [
+                  "1206",
+                  "APAC",
+                  "SMB",
+                  "12",
+                  "798",
+                  "9578",
+                  "0",
+                  "13",
+                  "70",
+                  "Late"
+                ],
+                [
+                  "1207",
+                  "EMEA",
+                  "Enterprise",
+                  "13",
+                  "618",
+                  "8039",
+                  "27",
+                  "2",
+                  "45",
+                  "On-time"
+                ]
+              ]
+            }
+          }
+        ],
+        "questions": [
+          {
+            "id": "q3",
+            "kind": "cloze",
+            "prompt": "Now we extend the case: there is a sales table(sale_id, product_id, sale_date, quantity, sale_amount). Write a single SQL query that returns product_id and total_quantity_sold for sales in January 2024, grouping by product_id. Use the table and date range in your answer.",
+            "marks": 4,
+            "expected": "SELECT product_id, SUM(quantity) AS total_quantity_sold FROM sales WHERE sale_date BETWEEN '2024-01-01' AND '2024-01-31' GROUP BY product_id;",
+            "idealAnswer": "SELECT product_id, SUM(quantity) AS total_quantity_sold FROM sales WHERE sale_date BETWEEN '2024-01-01' AND '2024-01-31' GROUP BY product_id;",
+            "usesDocuments": [
+              "turn-2-sheet"
+            ],
+            "tools": [
+              "calculator",
+              "notepad",
+              "highlighter",
+              "eraser"
+            ]
+          },
+          {
+            "id": "q4",
+            "kind": "multiple-choice",
+            "prompt": "You need to combine customers(customer_id, name) with orders(order_id, customer_id, total_amount) to list all customers and any matching order totals. Which JOIN type should you use so every customer appears even if they have no orders?",
+            "marks": 4,
+            "options": [
+              "INNER JOIN",
+              "RIGHT JOIN",
+              "LEFT JOIN",
+              "FULL JOIN"
+            ],
+            "expected": "LEFT JOIN",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          },
+          {
+            "id": "q5",
+            "kind": "multiple-choice",
+            "prompt": "You must filter users who have made at least one order. Which approach is more efficient for most databases: using EXISTS with a correlated subquery or using an INNER JOIN to orders and DISTINCT on users? Choose the best option for performance and explainability in the interface.",
+            "marks": 4,
+            "options": [
+              "INNER JOIN users u JOIN orders o ON u.id = o.user_id with DISTINCT",
+              "EXISTS (SELECT 1 FROM orders o WHERE o.user_id = u.id)",
+              "LEFT JOIN and WHERE o.user_id IS NOT NULL",
+              "Use UNION of users and orders"
+            ],
+            "expected": "EXISTS (SELECT 1 FROM orders o WHERE o.user_id = u.id)",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "turn-3",
+        "label": "Turn 3",
+        "briefing": "Complete Turn 3. Use the reference items on the desk.",
+        "documents": [
+          {
+            "id": "turn-3-sheet",
+            "title": "Customer Orders Dataset",
+            "type": "spreadsheet",
+            "width": 470,
+            "height": 330,
+            "persistent": false,
+            "filePath": "",
+            "table": {
+              "columns": [
+                "customer_id",
+                "region",
+                "tier",
+                "orders_count",
+                "avg_order_value",
+                "total_spend",
+                "discount_pct",
+                "days_late",
+                "risk_score",
+                "payment_status"
+              ],
+              "rows": [
+                [
+                  "1300",
+                  "LATAM",
+                  "Enterprise",
+                  "18",
+                  "212",
+                  "3813",
+                  "24",
+                  "7",
+                  "93",
+                  "On-time"
+                ],
+                [
+                  "1301",
+                  "APAC",
+                  "Mid-Market",
+                  "6",
+                  "910",
+                  "5461",
+                  "4",
+                  "5",
+                  "50",
+                  "On-time"
+                ],
+                [
+                  "1302",
+                  "EMEA",
+                  "SMB",
+                  "10",
+                  "727",
+                  "7272",
+                  "13",
+                  "18",
+                  "60",
+                  "Late"
+                ],
+                [
+                  "1303",
+                  "NA",
+                  "Enterprise",
+                  "3",
+                  "522",
+                  "1566",
+                  "22",
+                  "8",
+                  "80",
+                  "On-time"
+                ],
+                [
+                  "1304",
+                  "LATAM",
+                  "Mid-Market",
+                  "15",
+                  "1045",
+                  "15674",
+                  "18",
+                  "4",
+                  "67",
+                  "On-time"
+                ],
+                [
+                  "1305",
+                  "APAC",
+                  "SMB",
+                  "3",
+                  "290",
+                  "869",
+                  "12",
+                  "7",
+                  "74",
+                  "On-time"
+                ],
+                [
+                  "1306",
+                  "EMEA",
+                  "Enterprise",
+                  "14",
+                  "499",
+                  "6983",
+                  "6",
+                  "14",
+                  "42",
+                  "Late"
+                ],
+                [
+                  "1307",
+                  "NA",
+                  "Mid-Market",
+                  "14",
+                  "177",
+                  "2472",
+                  "4",
+                  "1",
+                  "79",
+                  "On-time"
+                ],
+                [
+                  "1308",
+                  "LATAM",
+                  "SMB",
+                  "3",
+                  "1003",
+                  "3010",
+                  "26",
+                  "8",
+                  "69",
+                  "On-time"
+                ],
+                [
+                  "1309",
+                  "APAC",
+                  "Enterprise",
+                  "2",
+                  "189",
+                  "377",
+                  "15",
+                  "17",
+                  "88",
+                  "Late"
+                ]
+              ]
+            }
+          }
+        ],
+        "questions": [
+          {
+            "id": "q6",
+            "kind": "cloze",
+            "prompt": "Your reporting requirement now asks for each salesperson (salesperson_id) the running total of sale_amount ordered by sale_date within each salesperson for 2024. Provide the SQL using window functions on sales(sale_id, salesperson_id, sale_date, sale_amount).",
+            "marks": 6,
+            "expected": "SELECT salesperson_id, sale_date, sale_amount, SUM(sale_amount) OVER (PARTITION BY salesperson_id ORDER BY sale_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS running_total FROM sales WHERE sale_date BETWEEN '2024-01-01' AND '2024-12-31';",
+            "idealAnswer": "SELECT salesperson_id, sale_date, sale_amount, SUM(sale_amount) OVER (PARTITION BY salesperson_id ORDER BY sale_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS running_total FROM sales WHERE sale_date BETWEEN '2024-01-01' AND '2024-12-31';",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          },
+          {
+            "id": "q7",
+            "kind": "essay",
+            "prompt": "You are designing a transactions table that will be queried frequently by account_id and timestamp. Describe a normalization and indexing strategy that balances write performance and read performance for a high-traffic OLTP system. Include specific index types and whether to use single table or vertical partitioning. Use the case context (queries by account_id and time ranges).",
+            "marks": 6,
+            "idealAnswer": "Normalize to avoid duplicating account metadata; keep transactions tall (one row per transaction). Use a clustered index on (account_id, timestamp) for efficient range scans per account, and a non-clustered covering index for common filters (status, amount). Consider horizontal partitioning by time ranges to prune old partitions; this speeds reads and simplifies archiving but adds complexity for writes and cross-partition queries.",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          },
+          {
+            "id": "q8",
+            "kind": "essay",
+            "prompt": "A particular query joining orders and order_items is slow: SELECT o.order_id, o.order_date, SUM(oi.quantity * oi.unit_price) FROM orders o JOIN order_items oi ON o.order_id = oi.order_id WHERE o.order_date >= '2024-01-01' GROUP BY o.order_id, o.order_date; Diagnose likely causes and propose three concrete optimizations. Base your answer on the query and table join keys.",
+            "marks": 6,
+            "idealAnswer": "Possible causes: missing index on order_items.order_id causing large nested-loop scans; lack of index on orders.order_date preventing date range seek; outdated statistics. Optimizations: add an index on order_items(order_id) or a composite index (order_id, unit_price, quantity) to make the aggregation from the index; add an index on orders(order_date) to limit rows; ensure statistics are up-to-date and consider partitioning orders by date for large tables.",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "converter",
+              "notepad"
+            ]
+          },
+          {
+            "id": "q9",
+            "kind": "sequence",
+            "prompt": "You're preparing a migration: order history older than 3 years will be archived. Order the migration steps for minimal downtime: A) Create archive table with same schema; B) Add indexes to archive table; C) Copy old rows in batches to archive; D) Verify row counts and constraints; E) Drop old rows from production; F) Back up production database. Provide the correct operational sequence.",
+            "marks": 6,
+            "sequencePool": [
+              "A",
+              "B",
+              "C",
+              "D",
+              "E",
+              "F"
+            ],
+            "expected": [
+              "F",
+              "A",
+              "B",
+              "C",
+              "D",
+              "E"
+            ],
+            "usesDocuments": [
+              "turn-3-sheet"
+            ],
+            "tools": [
+              "calculator",
+              "notepad",
+              "highlighter",
+              "eraser"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "turns": [
+    {
+      "turnId": "turn-1",
+      "turnLabel": "Turn 1",
+      "questions": [
+        {
+          "questionId": "q1",
+          "prompt": "You have a table orders(order_id, customer_id, order_date, total_amount). Write a query to list customer_id and total_amount for orders placed on '2024-01-15'. Which of the following SELECT statements returns only those two columns correctly?",
+          "kind": "multiple-choice",
+          "marks": 2,
+          "answer": "SELECT * FROM orders WHERE order_date = '2024-01-15';"
+        },
+        {
+          "questionId": "q2",
+          "prompt": "Given a products table(product_id, name, price, discontinued) — to find active products priced under 50, you write: SELECT * FROM products WHERE price < 50 AND discontinued = false; True or False: This WHERE clause will correctly filter out discontinued products and return only price < 50 rows.",
+          "kind": "true-false",
+          "marks": 2,
+          "answer": "true"
+        }
+      ]
+    },
+    {
+      "turnId": "turn-2",
+      "turnLabel": "Turn 2",
+      "questions": [
+        {
+          "questionId": "q3",
+          "prompt": "Now we extend the case: there is a sales table(sale_id, product_id, sale_date, quantity, sale_amount). Write a single SQL query that returns product_id and total_quantity_sold for sales in January 2024, grouping by product_id. Use the table and date range in your answer.",
+          "kind": "cloze",
+          "marks": 4,
+          "idealAnswer": "SELECT product_id, SUM(quantity) AS total_quantity_sold FROM sales WHERE sale_date BETWEEN '2024-01-01' AND '2024-01-31' GROUP BY product_id;",
+          "answer": "43"
+        },
+        {
+          "questionId": "q4",
+          "prompt": "You need to combine customers(customer_id, name) with orders(order_id, customer_id, total_amount) to list all customers and any matching order totals. Which JOIN type should you use so every customer appears even if they have no orders?",
+          "kind": "multiple-choice",
+          "marks": 4,
+          "answer": "INNER JOIN"
+        },
+        {
+          "questionId": "q5",
+          "prompt": "You must filter users who have made at least one order. Which approach is more efficient for most databases: using EXISTS with a correlated subquery or using an INNER JOIN to orders and DISTINCT on users? Choose the best option for performance and explainability in the interface.",
+          "kind": "multiple-choice",
+          "marks": 4,
+          "answer": "EXISTS (SELECT 1 FROM orders o WHERE o.user_id = u.id)"
+        }
+      ]
+    },
+    {
+      "turnId": "turn-3",
+      "turnLabel": "Turn 3",
+      "questions": [
+        {
+          "questionId": "q6",
+          "prompt": "Your reporting requirement now asks for each salesperson (salesperson_id) the running total of sale_amount ordered by sale_date within each salesperson for 2024. Provide the SQL using window functions on sales(sale_id, salesperson_id, sale_date, sale_amount).",
+          "kind": "cloze",
+          "marks": 6,
+          "idealAnswer": "SELECT salesperson_id, sale_date, sale_amount, SUM(sale_amount) OVER (PARTITION BY salesperson_id ORDER BY sale_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS running_total FROM sales WHERE sale_date BETWEEN '2024-01-01' AND '2024-12-31';",
+          "answer": "k"
+        },
+        {
+          "questionId": "q7",
+          "prompt": "You are designing a transactions table that will be queried frequently by account_id and timestamp. Describe a normalization and indexing strategy that balances write performance and read performance for a high-traffic OLTP system. Include specific index types and whether to use single table or vertical partitioning. Use the case context (queries by account_id and time ranges).",
+          "kind": "essay",
+          "marks": 6,
+          "idealAnswer": "Normalize to avoid duplicating account metadata; keep transactions tall (one row per transaction). Use a clustered index on (account_id, timestamp) for efficient range scans per account, and a non-clustered covering index for common filters (status, amount). Consider horizontal partitioning by time ranges to prune old partitions; this speeds reads and simplifies archiving but adds complexity for writes and cross-partition queries.",
+          "answer": "123"
+        },
+        {
+          "questionId": "q8",
+          "prompt": "A particular query joining orders and order_items is slow: SELECT o.order_id, o.order_date, SUM(oi.quantity * oi.unit_price) FROM orders o JOIN order_items oi ON o.order_id = oi.order_id WHERE o.order_date >= '2024-01-01' GROUP BY o.order_id, o.order_date; Diagnose likely causes and propose three concrete optimizations. Base your answer on the query and table join keys.",
+          "kind": "essay",
+          "marks": 6,
+          "idealAnswer": "Possible causes: missing index on order_items.order_id causing large nested-loop scans; lack of index on orders.order_date preventing date range seek; outdated statistics. Optimizations: add an index on order_items(order_id) or a composite index (order_id, unit_price, quantity) to make the aggregation from the index; add an index on orders(order_date) to limit rows; ensure statistics are up-to-date and consider partitioning orders by date for large tables.",
+          "answer": "k"
+        },
+        {
+          "questionId": "q9",
+          "prompt": "You're preparing a migration: order history older than 3 years will be archived. Order the migration steps for minimal downtime: A) Create archive table with same schema; B) Add indexes to archive table; C) Copy old rows in batches to archive; D) Verify row counts and constraints; E) Drop old rows from production; F) Back up production database. Provide the correct operational sequence.",
+          "kind": "sequence",
+          "marks": 6,
+          "answer": [
+            "A",
+            "E",
+            "B",
+            "D",
+            "C",
+            "F"
+          ]
+        }
+      ]
+    }
+  ]
+}

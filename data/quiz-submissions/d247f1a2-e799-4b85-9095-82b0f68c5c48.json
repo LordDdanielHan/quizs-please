@@ -1,0 +1,284 @@
+{
+  "id": "d247f1a2-e799-4b85-9095-82b0f68c5c48",
+  "userId": "Josse (2)",
+  "completedAt": "2026-03-06T15:31:57.147Z",
+  "marked": false,
+  "markedAt": null,
+  "teacherName": null,
+  "maxScore": 40,
+  "awardedScore": 2,
+  "awardedMarks": {
+    "q1": 0,
+    "q2": 2,
+    "q3": 0,
+    "q4": 0,
+    "q5": 0,
+    "q8": 0,
+    "q9": 0
+  },
+  "quizData": {
+    "title": "Generated Quiz",
+    "turns": [
+      {
+        "id": "turn-1",
+        "label": "Turn 1",
+        "briefing": "Complete Turn 1.",
+        "documents": [],
+        "questions": [
+          {
+            "id": "q1",
+            "kind": "multiple-choice",
+            "prompt": "You are given a table orders(order_id, customer_id, order_date, total). Product team asks for a quick list of order_id and total for all orders placed on 2025-01-15. Which SELECT projects only needed columns and filters by date? Use the table.",
+            "marks": 2,
+            "options": [
+              "SELECT * FROM orders WHERE order_date = '2025-01-15';",
+              "SELECT order_id, total FROM orders WHERE order_date = '2025-01-15';",
+              "SELECT order_id, total, customer_id FROM orders;",
+              "SELECT DISTINCT total FROM orders WHERE order_date BETWEEN '2025-01-15' AND '2025-01-15';"
+            ],
+            "expected": "SELECT order_id, total FROM orders WHERE order_date = '2025-01-15';",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          },
+          {
+            "id": "q2",
+            "kind": "true-false",
+            "prompt": "Team lead asks: to find customers with total order value > 1000, you can write WHERE total > 1000 on the orders table and get per-customer results. Based on the orders(order_id, customer_id, total) table, this single WHERE will correctly list customers meeting that aggregate threshold.",
+            "marks": 2,
+            "expected": "true",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "turn-2",
+        "label": "Turn 2",
+        "briefing": "Complete Turn 2.",
+        "documents": [],
+        "questions": [
+          {
+            "id": "q3",
+            "kind": "cloze",
+            "prompt": "Using orders(order_id, customer_id, order_date, total), write a short SQL query that returns each customer_id and their total spent across all orders, but only include customers whose total spent is at least 500. Use GROUP BY and an aggregate.",
+            "marks": 4,
+            "expected": "SELECT customer_id, SUM(total) AS total_spent FROM orders GROUP BY customer_id HAVING SUM(total) >= 500;",
+            "idealAnswer": "SELECT customer_id, SUM(total) AS total_spent FROM orders GROUP BY customer_id HAVING SUM(total) >= 500;",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          },
+          {
+            "id": "q4",
+            "kind": "multiple-choice",
+            "prompt": "The product database has customers(customer_id, name) and orders(order_id, customer_id, total). You need every customer and their latest order total if any; customers without orders should still appear with NULL. Which JOIN and query accomplishes this correctly?",
+            "marks": 4,
+            "options": [
+              "SELECT c.customer_id, o.total FROM customers c INNER JOIN orders o ON c.customer_id = o.customer_id;",
+              "SELECT c.customer_id, MAX(o.total) FROM customers c LEFT JOIN orders o ON c.customer_id = o.customer_id GROUP BY c.customer_id;",
+              "SELECT c.customer_id, o.total FROM customers c LEFT JOIN orders o ON c.customer_id = o.customer_id AND o.order_date = (SELECT MAX(order_date) FROM orders o2 WHERE o2.customer_id = c.customer_id);",
+              "SELECT o.customer_id, o.total FROM orders o RIGHT JOIN customers c ON o.customer_id = c.customer_id WHERE o.order_date = (SELECT MAX(order_date) FROM orders WHERE customer_id = o.customer_id);"
+            ],
+            "expected": "SELECT c.customer_id, o.total FROM customers c LEFT JOIN orders o ON c.customer_id = o.customer_id AND o.order_date = (SELECT MAX(order_date) FROM orders o2 WHERE o2.customer_id = c.customer_id);",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          },
+          {
+            "id": "q5",
+            "kind": "multiple-choice",
+            "prompt": "Analytics asks for a running total of daily sales ordered by order_date for 2025-01- (first 20 days). Given orders(order_id, order_date, total), which SQL using a window function produces a cumulative sum per day (assume one row per order)?",
+            "marks": 4,
+            "options": [
+              "SELECT order_date, SUM(total) FROM orders WHERE order_date BETWEEN '2025-01-01' AND '2025-01-20' GROUP BY order_date ORDER BY order_date;",
+              "SELECT order_date, total, SUM(total) OVER (ORDER BY order_date ROWS UNBOUNDED PRECEDING) AS running_total FROM orders WHERE order_date BETWEEN '2025-01-01' AND '2025-01-20' ORDER BY order_date;",
+              "SELECT order_date, total, SUM(total) AS running_total FROM orders WHERE order_date BETWEEN '2025-01-01' AND '2025-01-20' GROUP BY order_date ORDER BY order_date;",
+              "SELECT order_date, total, SUM(total) OVER (PARTITION BY order_date) AS running_total FROM orders WHERE order_date BETWEEN '2025-01-01' AND '2025-01-20';"
+            ],
+            "expected": "SELECT order_date, total, SUM(total) OVER (ORDER BY order_date ROWS UNBOUNDED PRECEDING) AS running_total FROM orders WHERE order_date BETWEEN '2025-01-01' AND '2025-01-20' ORDER BY order_date;",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad",
+              "highlighter",
+              "eraser"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "turn-3",
+        "label": "Turn 3",
+        "briefing": "Complete Turn 3.",
+        "documents": [],
+        "questions": [
+          {
+            "id": "q6",
+            "kind": "essay",
+            "prompt": "Your team considers denormalizing a product_orders table by storing customer_address on every order row to speed reads for reporting. Describe tradeoffs and recommend whether to denormalize in a high-write, read-heavy reporting system. Use at least two pieces of evidence: expected update frequency of addresses and read latency requirements.",
+            "marks": 6,
+            "idealAnswer": "Recommendation: avoid denormalizing if addresses change frequently or strong consistency is required; instead use caching or materialized views. Evidence 1: addresses update ~weekly -> consistency cost high. Evidence 2: reporting SLA requires <200ms reads -> consider read replica and indexed joins or cached materialized view to meet latency with normalized schema.",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          },
+          {
+            "id": "q7",
+            "kind": "essay",
+            "prompt": "A slow query joins orders and order_items; EXPLAIN shows a sequential scan on order_items and nested loop joining orders on item_id, causing high latency. Based on this evidence, diagnose the primary performance issues and propose two concrete fixes mentioning how each addresses the shown plan.",
+            "marks": 6,
+            "idealAnswer": "Diagnosis: missing index on order_items.item_id causing seq scan; nested loop indicates many iterations. Fix 1: add index on order_items.item_id to enable index scan and reduce scanned rows. Fix 2: rewrite join to use hash join by ensuring sufficient memory or force planner with optimizer hints or aggregate beforehand to reduce rows.",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          },
+          {
+            "id": "q8",
+            "kind": "sequence",
+            "prompt": "Write the logical steps (sequence) you would use to build a single SQL query that returns top 5 customers by total spending in 2025, including customer name and total_spent. Steps should form an ordered pipeline from raw tables to final result. Use customers(customer_id,name) and orders(order_id,customer_id,order_date,total).",
+            "marks": 6,
+            "sequencePool": [
+              "GROUP BY customer_id and compute SUM(total) AS total_spent",
+              "JOIN the aggregated results to customers ON customer_id to get customer name",
+              "ORDER BY total_spent DESC",
+              "LIMIT 5",
+              "Filter orders to order_date between '2025-01-01' and '2025-12-31'"
+            ],
+            "expected": [
+              "Filter orders to order_date between '2025-01-01' and '2025-12-31'",
+              "GROUP BY customer_id and compute SUM(total) AS total_spent",
+              "JOIN the aggregated results to customers ON customer_id to get customer name",
+              "ORDER BY total_spent DESC",
+              "LIMIT 5"
+            ],
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          },
+          {
+            "id": "q9",
+            "kind": "cloze",
+            "prompt": "You must ensure reports run with consistent snapshot semantics while multiple updates occur. Which transaction isolation level should you choose to prevent non-repeatable reads and phantom reads for analytic reports, and why? Provide the level name and a one-sentence justification referencing snapshot behavior.",
+            "marks": 6,
+            "expected": "SERIALIZABLE — it ensures a serializable snapshot preventing both non-repeatable reads and phantoms by executing transactions as if sequentially.",
+            "idealAnswer": "SERIALIZABLE — it ensures a serializable snapshot preventing both non-repeatable reads and phantoms by executing transactions as if sequentially.",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "turns": [
+    {
+      "turnId": "turn-1",
+      "turnLabel": "Turn 1",
+      "questions": [
+        {
+          "questionId": "q1",
+          "prompt": "You are given a table orders(order_id, customer_id, order_date, total). Product team asks for a quick list of order_id and total for all orders placed on 2025-01-15. Which SELECT projects only needed columns and filters by date? Use the table.",
+          "kind": "multiple-choice",
+          "marks": 2,
+          "answer": "SELECT * FROM orders WHERE order_date = '2025-01-15';"
+        },
+        {
+          "questionId": "q2",
+          "prompt": "Team lead asks: to find customers with total order value > 1000, you can write WHERE total > 1000 on the orders table and get per-customer results. Based on the orders(order_id, customer_id, total) table, this single WHERE will correctly list customers meeting that aggregate threshold.",
+          "kind": "true-false",
+          "marks": 2,
+          "answer": "true"
+        }
+      ]
+    },
+    {
+      "turnId": "turn-2",
+      "turnLabel": "Turn 2",
+      "questions": [
+        {
+          "questionId": "q3",
+          "prompt": "Using orders(order_id, customer_id, order_date, total), write a short SQL query that returns each customer_id and their total spent across all orders, but only include customers whose total spent is at least 500. Use GROUP BY and an aggregate.",
+          "kind": "cloze",
+          "marks": 4,
+          "idealAnswer": "SELECT customer_id, SUM(total) AS total_spent FROM orders GROUP BY customer_id HAVING SUM(total) >= 500;",
+          "answer": "123"
+        },
+        {
+          "questionId": "q4",
+          "prompt": "The product database has customers(customer_id, name) and orders(order_id, customer_id, total). You need every customer and their latest order total if any; customers without orders should still appear with NULL. Which JOIN and query accomplishes this correctly?",
+          "kind": "multiple-choice",
+          "marks": 4,
+          "answer": "SELECT o.customer_id, o.total FROM orders o RIGHT JOIN customers c ON o.customer_id = c.customer_id WHERE o.order_date = (SELECT MAX(order_date) FROM orders WHERE customer_id = o.customer_id);"
+        },
+        {
+          "questionId": "q5",
+          "prompt": "Analytics asks for a running total of daily sales ordered by order_date for 2025-01- (first 20 days). Given orders(order_id, order_date, total), which SQL using a window function produces a cumulative sum per day (assume one row per order)?",
+          "kind": "multiple-choice",
+          "marks": 4,
+          "answer": "SELECT order_date, SUM(total) FROM orders WHERE order_date BETWEEN '2025-01-01' AND '2025-01-20' GROUP BY order_date ORDER BY order_date;"
+        }
+      ]
+    },
+    {
+      "turnId": "turn-3",
+      "turnLabel": "Turn 3",
+      "questions": [
+        {
+          "questionId": "q6",
+          "prompt": "Your team considers denormalizing a product_orders table by storing customer_address on every order row to speed reads for reporting. Describe tradeoffs and recommend whether to denormalize in a high-write, read-heavy reporting system. Use at least two pieces of evidence: expected update frequency of addresses and read latency requirements.",
+          "kind": "essay",
+          "marks": 6,
+          "idealAnswer": "Recommendation: avoid denormalizing if addresses change frequently or strong consistency is required; instead use caching or materialized views. Evidence 1: addresses update ~weekly -> consistency cost high. Evidence 2: reporting SLA requires <200ms reads -> consider read replica and indexed joins or cached materialized view to meet latency with normalized schema.",
+          "answer": "123"
+        },
+        {
+          "questionId": "q7",
+          "prompt": "A slow query joins orders and order_items; EXPLAIN shows a sequential scan on order_items and nested loop joining orders on item_id, causing high latency. Based on this evidence, diagnose the primary performance issues and propose two concrete fixes mentioning how each addresses the shown plan.",
+          "kind": "essay",
+          "marks": 6,
+          "idealAnswer": "Diagnosis: missing index on order_items.item_id causing seq scan; nested loop indicates many iterations. Fix 1: add index on order_items.item_id to enable index scan and reduce scanned rows. Fix 2: rewrite join to use hash join by ensuring sufficient memory or force planner with optimizer hints or aggregate beforehand to reduce rows.",
+          "answer": "123"
+        },
+        {
+          "questionId": "q8",
+          "prompt": "Write the logical steps (sequence) you would use to build a single SQL query that returns top 5 customers by total spending in 2025, including customer name and total_spent. Steps should form an ordered pipeline from raw tables to final result. Use customers(customer_id,name) and orders(order_id,customer_id,order_date,total).",
+          "kind": "sequence",
+          "marks": 6,
+          "answer": [
+            "LIMIT 5",
+            "GROUP BY customer_id and compute SUM(total) AS total_spent",
+            "JOIN the aggregated results to customers ON customer_id to get customer name",
+            "Filter orders to order_date between '2025-01-01' and '2025-12-31'",
+            "ORDER BY total_spent DESC"
+          ]
+        },
+        {
+          "questionId": "q9",
+          "prompt": "You must ensure reports run with consistent snapshot semantics while multiple updates occur. Which transaction isolation level should you choose to prevent non-repeatable reads and phantom reads for analytic reports, and why? Provide the level name and a one-sentence justification referencing snapshot behavior.",
+          "kind": "cloze",
+          "marks": 6,
+          "idealAnswer": "SERIALIZABLE — it ensures a serializable snapshot preventing both non-repeatable reads and phantoms by executing transactions as if sequentially.",
+          "answer": "123"
+        }
+      ]
+    }
+  ]
+}
