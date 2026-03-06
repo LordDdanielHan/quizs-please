@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import React, { useEffect, useMemo, useState } from "react";
 import React, { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { BitWrapperJson } from "@gmb/bitmark-parser-generator";
@@ -7,10 +9,16 @@ import { AlertTriangle, CheckCircle2, Clipboard, Loader2, Wand2 } from "lucide-r
 
 interface GenerationResult {
   quiz: BitWrapperJson[];
-  rawText?: string;
 }
 
 export default function Home() {
+  const processSteps = [
+    "Intake logged",
+    "Prompt dispatched",
+    "Model generating",
+    "Bitmark normalizing",
+    "Quiz ready",
+  ];
   const router = useRouter();
   const [topic, setTopic] = useState("");
   const [turns, setTurns] = useState(7);
@@ -19,9 +27,59 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [isCopied, setIsCopied] = useState(false);
   const [processLog, setProcessLog] = useState<string[]>([]);
+  const [showSplash, setShowSplash] = useState(true);
+  const [splashFadeOut, setSplashFadeOut] = useState(false);
+  const [logoReady, setLogoReady] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    const preload = new window.Image();
+    preload.src = "/logo.png";
+    const markReady = () => {
+      if (active) setLogoReady(true);
+    };
+    if (preload.complete) {
+      markReady();
+    } else {
+      preload.onload = markReady;
+      preload.onerror = markReady;
+    }
+    return () => {
+      active = false;
+      preload.onload = null;
+      preload.onerror = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!logoReady) return;
+    const fadeStartTimer = setTimeout(() => setSplashFadeOut(true), 3600);
+    const hideTimer = setTimeout(() => setShowSplash(false), 5600);
+    return () => {
+      clearTimeout(fadeStartTimer);
+      clearTimeout(hideTimer);
+    };
+  }, [logoReady]);
+
+  useEffect(() => {
+    let fallbackHideTimer: ReturnType<typeof setTimeout> | undefined;
+    const fallbackTimer = setTimeout(() => {
+      setSplashFadeOut(true);
+      fallbackHideTimer = setTimeout(() => setShowSplash(false), 2000);
+    }, 7800);
+    return () => {
+      clearTimeout(fallbackTimer);
+      if (fallbackHideTimer) clearTimeout(fallbackHideTimer);
+    };
+  }, []);
 
   const bitCount = result?.quiz.length ?? 0;
-  const rawOutput = result?.rawText ?? "";
+  const completedSteps = useMemo(() => {
+    if (processLog.length === 0) return 0;
+    return Math.min(processLog.length, processSteps.length);
+  }, [processLog, processSteps.length]);
+  const activeStepIndex = isLoading ? Math.min(completedSteps, processSteps.length - 1) : -1;
+  const progressPercent = processLog.length === 0 ? 0 : (completedSteps / processSteps.length) * 100;
   const jsonOutput = useMemo(() => {
     if (!result) return "";
     return JSON.stringify(result.quiz, null, 2);
@@ -38,18 +96,17 @@ export default function Home() {
     setIsLoading(true);
     setError(null);
     setResult(null);
-    setProcessLog([
-      "Request form stamped.",
-      "Sending topic to quiz generator...",
-      "Waiting for model response...",
-    ]);
+    setProcessLog(["Request form stamped."]);
 
     try {
-      const res = await fetch("/api/generate-quiz", {
+      setProcessLog((prev) => [...prev, "Sending topic to quiz generator..."]);
+      const responsePromise = fetch("/api/generate-quiz", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ topic: topic.trim(), turns }),
       });
+      setProcessLog((prev) => [...prev, "Waiting for model response..."]);
+      const res = await responsePromise;
       setProcessLog((prev) => [...prev, "Model response received. Normalizing with Bitmark..."]);
 
       const data = await res.json();
@@ -88,16 +145,35 @@ export default function Home() {
 
   return (
     <main className="pp-shell">
+      {showSplash && (
+        <section className={`pp-splash ${splashFadeOut ? "pp-splash-out" : ""}`} aria-hidden={splashFadeOut}>
+          <div className="pp-splash-logo-wrap">
+            <Image
+              src="/logo.png"
+              alt="Quizzes Please logo"
+              width={360}
+              height={120}
+              className={`pp-splash-logo ${logoReady ? "pp-splash-logo-ready" : ""}`}
+              priority
+            />
+          </div>
+        </section>
+      )}
+
       <div className="pp-noise" />
+      <div className="pp-bg-orb pp-bg-orb-a" />
+      <div className="pp-bg-orb pp-bg-orb-b" />
 
-      <section className="pp-header-wrap">
-        <p className="pp-kicker">Quizs Please</p>
-        <h1 className="pp-title">Central Quiz Intake Form</h1>
-        <p className="pp-subtitle">Describe your topic and instantly generate a polished, Bitmark-ready quiz.</p>
-      </section>
+      <section className={`pp-center-wrap pp-anim-rise-delayed ${showSplash ? "pp-preload-hide" : ""}`}>
+        <article className="pp-panel pp-form-panel pp-paper pp-hover-tilt">
+          <div className="pp-paper-hero">
+            <Image src="/logo.png" alt="Quizzes Please logo" width={260} height={88} className="pp-top-logo" />
+            <h1 className="pp-title pp-paper-title">Central Quiz Intake Form</h1>
+            <p className="pp-subtitle pp-paper-subtitle">
+              Describe your topic and instantly generate a polished, Bitmark-ready quiz.
+            </p>
+          </div>
 
-      <section className="pp-center-wrap">
-        <article className="pp-panel pp-form-panel pp-paper">
           <header className="pp-panel-head pp-paper-head">
             <div>
               <p className="pp-panel-kicker">Entry Permit</p>
@@ -153,7 +229,7 @@ export default function Home() {
 
         </article>
 
-        <article className="pp-panel pp-output-mini">
+        <article className="pp-panel pp-output-mini pp-hover-tilt">
           <header className="pp-panel-head pp-panel-head-mini">
             <div>
               <p className="pp-panel-kicker">Bitmark Trace</p>
@@ -168,7 +244,7 @@ export default function Home() {
           </header>
 
           {!isLoading && !result && !error && (
-            <p className="pp-hint-line">Submit the form to see process events and raw Bitmark output.</p>
+            <p className="pp-hint-line">Submit the form to see process events and Bitmark output.</p>
           )}
 
           {error && (
@@ -179,11 +255,38 @@ export default function Home() {
           )}
 
           {processLog.length > 0 && (
-            <ol className="pp-process-log">
-              {processLog.map((step, idx) => (
-                <li key={`${step}-${idx}`}>{step}</li>
-              ))}
-            </ol>
+            <>
+              <section className={`pp-progress ${error ? "pp-progress-error" : ""}`}>
+                <div className="pp-progress-head">
+                  <span>Pipeline Progress</span>
+                  <strong>{Math.round(progressPercent)}%</strong>
+                </div>
+                <div className="pp-progress-track" aria-hidden="true">
+                  <div className="pp-progress-fill" style={{ width: `${progressPercent}%` }} />
+                </div>
+                <ul className="pp-progress-steps">
+                  {processSteps.map((step, idx) => {
+                    const isDone = idx < completedSteps;
+                    const isActive = idx === activeStepIndex;
+                    return (
+                      <li
+                        key={step}
+                        className={`pp-progress-step ${isDone ? "pp-progress-step-done" : ""} ${isActive ? "pp-progress-step-active" : ""}`}
+                      >
+                        <span className="pp-progress-dot" />
+                        <span>{step}</span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </section>
+
+              <ol className="pp-process-log">
+                {processLog.map((step, idx) => (
+                  <li key={`${step}-${idx}`}>{step}</li>
+                ))}
+              </ol>
+            </>
           )}
 
           {isLoading && (
@@ -201,13 +304,6 @@ export default function Home() {
                   {isCopied ? "Copied" : "Copy Normalized JSON"}
                 </button>
               </div>
-
-              {rawOutput && (
-                <details className="pp-json-block" open>
-                  <summary>Raw model JSON text</summary>
-                  <pre>{rawOutput}</pre>
-                </details>
-              )}
 
               <details className="pp-json-block" open>
                 <summary>Bitmark normalized JSON</summary>
