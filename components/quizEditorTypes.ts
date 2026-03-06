@@ -26,6 +26,12 @@ export interface EditorQuestion {
   sourceBit: Record<string, unknown>;
 }
 
+export interface Turn {
+  id: string;
+  label: string;
+  questions: EditorQuestion[];
+}
+
 export type FlowMap = Record<
   string,
   {

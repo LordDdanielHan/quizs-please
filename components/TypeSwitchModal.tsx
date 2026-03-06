@@ -4,12 +4,14 @@ import styles from "@/styles/quiz-editor.module.css";
 
 interface TypeSwitchModalProps {
   open: boolean;
+  nextType?: string;
   onCancel: () => void;
   onConfirm: () => void;
 }
 
 export default function TypeSwitchModal({
   open,
+  nextType,
   onCancel,
   onConfirm,
 }: TypeSwitchModalProps) {
@@ -22,8 +24,8 @@ export default function TypeSwitchModal({
       <div className={styles.modalCard} role="dialog" aria-modal="true">
         <h3>Switch question type?</h3>
         <p>
-          Switching question type will discard current answer options. Are you
-          sure?
+          Switching to {nextType ? `.${nextType}` : "this type"} will discard current
+          answer options. Continue?
         </p>
         <div className={styles.modalActions}>
           <button type="button" className={styles.secondaryButton} onClick={onCancel}>
@@ -37,4 +39,3 @@ export default function TypeSwitchModal({
     </div>
   );
 }
-

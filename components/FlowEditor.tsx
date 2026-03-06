@@ -4,118 +4,89 @@ import { useMemo } from "react";
 import ReactFlow, {
   Background,
   Edge,
+  MarkerType,
   Node,
-  NodeChange,
-  applyNodeChanges,
+  ReactFlowProvider,
 } from "reactflow";
 import styles from "@/styles/quiz-editor.module.css";
-import { EditorQuestion, FlowMap, NodePositionMap } from "./quizEditorTypes";
+import { FlowMap, NodePositionMap, Turn } from "./quizEditorTypes";
 
 interface FlowEditorProps {
-  questions: EditorQuestion[];
+  turns: Turn[];
   flow: FlowMap;
   nodePositions: NodePositionMap;
-  onPositionsChange: (nextPositions: NodePositionMap) => void;
-  onEditEdge: (sourceQuestionId: string, branchType: "correct" | "incorrect") => void;
+  onEditEdge: (sourceTurnId: string, branchType: "correct" | "incorrect") => void;
 }
 
-export default function FlowEditor({
-  questions,
-  flow,
-  nodePositions,
-  onPositionsChange,
-  onEditEdge,
-}: FlowEditorProps) {
+function FlowCanvas({ turns, flow, nodePositions, onEditEdge }: FlowEditorProps) {
   const nodes = useMemo<Node[]>(() => {
-    const questionNodes: Node[] = questions.map((question, index) => ({
-      id: question.id,
-      type: "default",
-      position: nodePositions[question.id] ?? { x: 220, y: 100 + index * 120 },
-      data: { label: `Q${index + 1}: ${question.body || "(Untitled question)"}` },
-    }));
+    const turnNodes: Node[] = turns.map((turn, index) => {
+      const position = nodePositions[turn.id] ?? { x: 250, y: index * 160 };
+      const questionCount = turn.questions.length;
+      const questionLabel = questionCount === 1 ? "question" : "questions";
+      return {
+        id: turn.id,
+        type: "default",
+        position,
+        data: { label: `${turn.label} - ${questionCount} ${questionLabel}` },
+      };
+    });
 
+    const endY = Math.max(180, turns.length * 160 + 60);
     return [
-      {
-        id: "start",
-        type: "input",
-        position: { x: 20, y: 20 },
-        draggable: false,
-        data: { label: "Start" },
-      },
-      ...questionNodes,
+      ...turnNodes,
       {
         id: "end",
         type: "output",
-        position: { x: 620, y: Math.max(120, questions.length * 120 + 40) },
+        position: { x: 250, y: endY },
         draggable: false,
         data: { label: "End" },
       },
     ];
-  }, [nodePositions, questions]);
+  }, [nodePositions, turns]);
 
   const edges = useMemo<Edge[]>(() => {
-    const firstTarget = questions[0]?.id ?? "end";
-    const startEdge: Edge = {
-      id: "start-edge",
-      source: "start",
-      target: firstTarget,
-      animated: true,
-      style: { stroke: "#333" },
-      label: "Start",
-    };
+    if (turns.length === 0) {
+      return [];
+    }
 
-    const questionEdges = questions.flatMap<Edge>((question) => {
-      const branch = flow[question.id] ?? { correct: "end", incorrect: "end" };
+    return turns.flatMap<Edge>((turn, index) => {
+      const defaultCorrect = turns[index + 1]?.id ?? "end";
+      const branch = flow[turn.id] ?? { correct: defaultCorrect, incorrect: "end" };
+
       return [
         {
-          id: `${question.id}::correct`,
-          source: question.id,
+          id: `${turn.id}::correct`,
+          source: turn.id,
           target: branch.correct,
-          label: "Correct",
+          label: "✓ Correct",
           style: { stroke: "#1e7d34", strokeWidth: 2 },
           labelStyle: { fill: "#1e7d34", fontWeight: 700 },
+          markerEnd: { type: MarkerType.ArrowClosed, color: "#1e7d34" },
         },
         {
-          id: `${question.id}::incorrect`,
-          source: question.id,
+          id: `${turn.id}::incorrect`,
+          source: turn.id,
           target: branch.incorrect,
-          label: "Incorrect",
+          label: "✗ Incorrect",
           style: { stroke: "#bd2c2c", strokeWidth: 2 },
           labelStyle: { fill: "#bd2c2c", fontWeight: 700 },
+          markerEnd: { type: MarkerType.ArrowClosed, color: "#bd2c2c" },
         },
       ];
     });
-
-    return [startEdge, ...questionEdges];
-  }, [flow, questions]);
-
-  const handleNodesChange = (changes: NodeChange[]) => {
-    const nextNodes = applyNodeChanges(changes, nodes);
-    const nextPositions: NodePositionMap = { ...nodePositions };
-    nextNodes.forEach((node) => {
-      if (node.id !== "start" && node.id !== "end") {
-        nextPositions[node.id] = node.position;
-      }
-    });
-    onPositionsChange(nextPositions);
-  };
+  }, [flow, turns]);
 
   return (
-    <div className={styles.flowContainer}>
+    <div className={styles.flowCanvas}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
         fitView
-        onNodesChange={handleNodesChange}
+        nodesDraggable={false}
         onEdgeClick={(_, edge) => {
-          if (edge.id === "start-edge") {
-            return;
-          }
           const [sourceId, branchType] = edge.id.split("::");
-          if (
-            sourceId &&
-            (branchType === "correct" || branchType === "incorrect")
-          ) {
+          if (sourceId && (branchType === "correct" || branchType === "incorrect")) {
             onEditEdge(sourceId, branchType);
           }
         }}
@@ -126,3 +97,12 @@ export default function FlowEditor({
   );
 }
 
+export default function FlowEditor(props: FlowEditorProps) {
+  return (
+    <div className={styles.flowContainer}>
+      <ReactFlowProvider>
+        <FlowCanvas {...props} />
+      </ReactFlowProvider>
+    </div>
+  );
+}

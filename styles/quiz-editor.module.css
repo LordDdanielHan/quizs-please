@@ -18,6 +18,10 @@
   overflow: hidden;
 }
 
+.fullSpan {
+  grid-column: 1 / -1;
+}
+
 .panelTop {
   display: flex;
   align-items: center;
@@ -166,9 +170,49 @@
 .flowContainer {
   flex: 1;
   min-height: calc(100vh - 180px);
+  width: 100%;
+  height: 100%;
   border: 1px solid #dce1ea;
   border-radius: 10px;
   overflow: hidden;
+}
+
+.flowCanvas {
+  width: 100%;
+  height: 100%;
+  min-height: calc(100vh - 180px);
+}
+
+.actionRow {
+  display: flex;
+  gap: 8px;
+}
+
+.turnCard {
+  background: #f8faff;
+  border: 1px solid #d6def0;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.turnHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.turnMeta {
+  color: #465169;
+  font-size: 12px;
+  margin-left: auto;
+  margin-right: 8px;
+}
+
+.turnQuestions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .confirmButton {
@@ -230,4 +274,3 @@
     min-height: 420px;
   }
 }
-

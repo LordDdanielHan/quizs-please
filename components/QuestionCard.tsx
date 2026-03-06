@@ -1,7 +1,5 @@
 "use client";
 
-import { CSS } from "@dnd-kit/utilities";
-import { useSortable } from "@dnd-kit/sortable";
 import { EditorQuestion, QuestionType, SUPPORTED_TYPES } from "./quizEditorTypes";
 import styles from "@/styles/quiz-editor.module.css";
 
@@ -36,26 +34,9 @@ export default function QuestionCard({
   onSampleSolutionChange,
   onInstructionChange,
 }: QuestionCardProps) {
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: question.id });
-
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-  };
-
   return (
-    <article ref={setNodeRef} style={style} className={styles.card}>
+    <article className={styles.card}>
       <div className={styles.cardTop}>
-        <button
-          type="button"
-          className={styles.dragHandle}
-          aria-label={`Drag question ${index + 1}`}
-          {...attributes}
-          {...listeners}
-        >
-          ::
-        </button>
         <div className={styles.cardHeading}>
           <strong>Q{index + 1}</strong>
           <span className={styles.typeBadge}>{typeLabel(question.type)}</span>
@@ -97,10 +78,10 @@ export default function QuestionCard({
       </label>
 
       {isActive && (
-        <div className={styles.expandedArea}>
+        <div key={question.type} className={styles.expandedArea}>
           {question.type === "multiple-choice" && (
             <div className={styles.group}>
-              <h4 className={styles.groupTitle}>Choices (exactly 4)</h4>
+              <h4 className={styles.groupTitle}>Choices</h4>
               {question.options.map((option) => (
                 <div key={option.id} className={styles.optionRow}>
                   <input
@@ -136,12 +117,19 @@ export default function QuestionCard({
                   </button>
                 </div>
               ))}
+              <button
+                type="button"
+                className={styles.secondaryButton}
+                onClick={() => onAddOption(question.id)}
+              >
+                Add Option
+              </button>
             </div>
           )}
 
           {question.type === "true-false-1" && (
             <div className={styles.group}>
-              <h4 className={styles.groupTitle}>Correct Statement</h4>
+              <h4 className={styles.groupTitle}>True / False</h4>
               {question.options.map((option) => (
                 <label key={option.id} className={styles.inlineCheck}>
                   {option.text}
@@ -158,9 +146,35 @@ export default function QuestionCard({
             </div>
           )}
 
+          {(question.type === "question-1" || question.type === "essay" || question.type === "sequence") && (
+            <label className={styles.label}>
+              Instruction / Hint
+              <textarea
+                className={styles.textarea}
+                value={question.instruction}
+                rows={2}
+                onChange={(event) => onInstructionChange(question.id, event.target.value)}
+              />
+            </label>
+          )}
+
+          {(question.type === "question-1" || question.type === "essay") && (
+            <label className={styles.label}>
+              Sample Solution (Optional)
+              <textarea
+                className={styles.textarea}
+                value={question.sampleSolution}
+                rows={3}
+                onChange={(event) =>
+                  onSampleSolutionChange(question.id, event.target.value)
+                }
+              />
+            </label>
+          )}
+
           {question.type === "sequence" && (
             <div className={styles.group}>
-              <h4 className={styles.groupTitle}>Ordered Responses</h4>
+              <h4 className={styles.groupTitle}>Sequence Steps</h4>
               {question.options.map((option) => (
                 <div key={option.id} className={styles.optionRow}>
                   <input
@@ -186,37 +200,9 @@ export default function QuestionCard({
                 className={styles.secondaryButton}
                 onClick={() => onAddOption(question.id)}
               >
-                Add Option
+                Add Step
               </button>
             </div>
-          )}
-
-          {(question.type === "question-1" || question.type === "essay" || question.type === "sequence") && (
-            <label className={styles.label}>
-              Instruction
-              <textarea
-                className={styles.textarea}
-                value={question.instruction}
-                rows={2}
-                onChange={(event) =>
-                  onInstructionChange(question.id, event.target.value)
-                }
-              />
-            </label>
-          )}
-
-          {(question.type === "question-1" || question.type === "essay") && (
-            <label className={styles.label}>
-              Sample Solution (Optional)
-              <textarea
-                className={styles.textarea}
-                value={question.sampleSolution}
-                rows={3}
-                onChange={(event) =>
-                  onSampleSolutionChange(question.id, event.target.value)
-                }
-              />
-            </label>
           )}
         </div>
       )}

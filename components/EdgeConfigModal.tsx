@@ -5,7 +5,7 @@ import styles from "@/styles/quiz-editor.module.css";
 
 interface EdgeConfigModalProps {
   open: boolean;
-  questionLabel: string;
+  turnLabel: string;
   branchType: "correct" | "incorrect";
   currentTarget: FlowTarget;
   options: Array<{ id: string; label: string }>;
@@ -15,7 +15,7 @@ interface EdgeConfigModalProps {
 
 export default function EdgeConfigModal({
   open,
-  questionLabel,
+  turnLabel,
   branchType,
   currentTarget,
   options,
@@ -31,7 +31,7 @@ export default function EdgeConfigModal({
       <div className={styles.modalCard} role="dialog" aria-modal="true">
         <h3>Configure {branchType === "correct" ? "Correct" : "Incorrect"} Path</h3>
         <p>
-          {questionLabel} {branchType === "correct" ? "correct" : "incorrect"}{" "}
+          {turnLabel} {branchType === "correct" ? "correct" : "incorrect"}{" "}
           should go to:
         </p>
         <select
@@ -55,4 +55,3 @@ export default function EdgeConfigModal({
     </div>
   );
 }
-
