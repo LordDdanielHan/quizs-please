@@ -245,6 +245,10 @@ body {
   color: #d2bb95;
 }
 
+.pp-subtitle.pp-paper-subtitle {
+  color: #4f3720;
+}
+
 .pp-center-wrap {
   max-width: 760px;
   margin: 0 auto;
@@ -878,6 +882,7 @@ body {
   .pp-progress-step-active .pp-progress-dot {
     animation: none !important;
   }
+}
 .font-title {
   font-family: "Teko", Impact, "Arial Narrow Bold", sans-serif;
 }

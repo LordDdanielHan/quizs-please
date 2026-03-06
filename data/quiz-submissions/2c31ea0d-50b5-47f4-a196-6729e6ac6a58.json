@@ -1,0 +1,227 @@
+{
+  "id": "2c31ea0d-50b5-47f4-a196-6729e6ac6a58",
+  "userId": "123 (2)",
+  "completedAt": "2026-03-06T10:54:04.508Z",
+  "marked": true,
+  "markedAt": "2026-03-06T11:21:05.658Z",
+  "teacherName": "asd",
+  "maxScore": 6,
+  "awardedScore": 1,
+  "awardedMarks": {
+    "q1": 0,
+    "q2": 0,
+    "q3": 0,
+    "q4": 0,
+    "q5": 0,
+    "q6": 1
+  },
+  "quizData": {
+    "title": "Generated Quiz",
+    "turns": [
+      {
+        "id": "turn-1",
+        "label": "Turn 1",
+        "briefing": "Complete Turn 1.",
+        "documents": [],
+        "questions": [
+          {
+            "id": "q1",
+            "kind": "multiple-choice",
+            "prompt": "Which of the following is a primary tool used for data visualization in data science?",
+            "marks": 1,
+            "options": [
+              "Tableau",
+              "Excel",
+              "Word",
+              "Photoshop"
+            ],
+            "expected": "Tableau"
+          }
+        ]
+      },
+      {
+        "id": "turn-2",
+        "label": "Turn 2",
+        "briefing": "Complete Turn 2.",
+        "documents": [],
+        "questions": [
+          {
+            "id": "q2",
+            "kind": "true-false",
+            "prompt": "True or False: Python is a commonly used programming language for data science.",
+            "marks": 1,
+            "expected": "true"
+          }
+        ]
+      },
+      {
+        "id": "turn-3",
+        "label": "Turn 3",
+        "briefing": "Complete Turn 3.",
+        "documents": [],
+        "questions": [
+          {
+            "id": "q3",
+            "kind": "cloze",
+            "prompt": "Name a popular library in Python for data manipulation.",
+            "marks": 1,
+            "expected": "Pandas",
+            "idealAnswer": "Pandas"
+          }
+        ]
+      },
+      {
+        "id": "turn-4",
+        "label": "Turn 4",
+        "briefing": "Complete Turn 4.",
+        "documents": [],
+        "questions": [
+          {
+            "id": "q4",
+            "kind": "multiple-choice",
+            "prompt": "Which of the following is a supervised learning algorithm?",
+            "marks": 1,
+            "options": [
+              "Linear Regression",
+              "K-Means Clustering",
+              "Apriori",
+              "DBSCAN"
+            ],
+            "expected": "Linear Regression"
+          }
+        ]
+      },
+      {
+        "id": "turn-5",
+        "label": "Turn 5",
+        "briefing": "Complete Turn 5.",
+        "documents": [],
+        "questions": [
+          {
+            "id": "q5",
+            "kind": "sequence",
+            "prompt": "Arrange the steps of a typical data science project in order.",
+            "marks": 1,
+            "sequencePool": [
+              "Data Cleaning",
+              "Data Analysis",
+              "Model Building",
+              "Deployment",
+              "Data Collection"
+            ],
+            "expected": [
+              "Data Collection",
+              "Data Cleaning",
+              "Data Analysis",
+              "Model Building",
+              "Deployment"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "turn-6",
+        "label": "Turn 6",
+        "briefing": "Complete Turn 6.",
+        "documents": [],
+        "questions": [
+          {
+            "id": "q6",
+            "kind": "essay",
+            "prompt": "Discuss the ethical considerations a data scientist must keep in mind while handling data.",
+            "marks": 1,
+            "idealAnswer": "Data scientists must consider privacy, data security, bias in data, and the implications of data usage..."
+          }
+        ]
+      }
+    ]
+  },
+  "turns": [
+    {
+      "turnId": "turn-1",
+      "turnLabel": "Turn 1",
+      "questions": [
+        {
+          "questionId": "q1",
+          "prompt": "Which of the following is a primary tool used for data visualization in data science?",
+          "kind": "multiple-choice",
+          "marks": 1,
+          "answer": "Excel"
+        }
+      ]
+    },
+    {
+      "turnId": "turn-2",
+      "turnLabel": "Turn 2",
+      "questions": [
+        {
+          "questionId": "q2",
+          "prompt": "True or False: Python is a commonly used programming language for data science.",
+          "kind": "true-false",
+          "marks": 1,
+          "answer": "false"
+        }
+      ]
+    },
+    {
+      "turnId": "turn-3",
+      "turnLabel": "Turn 3",
+      "questions": [
+        {
+          "questionId": "q3",
+          "prompt": "Name a popular library in Python for data manipulation.",
+          "kind": "cloze",
+          "marks": 1,
+          "idealAnswer": "Pandas",
+          "answer": "123"
+        }
+      ]
+    },
+    {
+      "turnId": "turn-4",
+      "turnLabel": "Turn 4",
+      "questions": [
+        {
+          "questionId": "q4",
+          "prompt": "Which of the following is a supervised learning algorithm?",
+          "kind": "multiple-choice",
+          "marks": 1,
+          "answer": "K-Means Clustering"
+        }
+      ]
+    },
+    {
+      "turnId": "turn-5",
+      "turnLabel": "Turn 5",
+      "questions": [
+        {
+          "questionId": "q5",
+          "prompt": "Arrange the steps of a typical data science project in order.",
+          "kind": "sequence",
+          "marks": 1,
+          "answer": [
+            "Data Analysis",
+            "Model Building",
+            "Deployment",
+            "Data Cleaning",
+            "Data Collection"
+          ]
+        }
+      ]
+    },
+    {
+      "turnId": "turn-6",
+      "turnLabel": "Turn 6",
+      "questions": [
+        {
+          "questionId": "q6",
+          "prompt": "Discuss the ethical considerations a data scientist must keep in mind while handling data.",
+          "kind": "essay",
+          "marks": 1,
+          "idealAnswer": "Data scientists must consider privacy, data security, bias in data, and the implications of data usage...",
+          "answer": "123"
+        }
+      ]
+    }
+  ]
+}

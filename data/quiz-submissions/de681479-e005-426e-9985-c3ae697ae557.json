@@ -1,0 +1,690 @@
+{
+  "id": "de681479-e005-426e-9985-c3ae697ae557",
+  "userId": "daniel_6969",
+  "completedAt": "2026-03-06T12:19:50.288Z",
+  "marked": true,
+  "markedAt": "2026-03-06T12:20:50.894Z",
+  "teacherName": "Daniel's daddy",
+  "maxScore": 40,
+  "awardedScore": 24,
+  "awardedMarks": {
+    "q1": 2,
+    "q2": 0,
+    "q3": 4,
+    "q4": 0,
+    "q5": 0,
+    "q6": 6,
+    "q8": 6,
+    "q9": 6,
+    "q7": 0
+  },
+  "quizData": {
+    "title": "Generated Quiz",
+    "turns": [
+      {
+        "id": "turn-1",
+        "label": "Turn 1",
+        "briefing": "Complete Turn 1. Use the reference items on the desk.",
+        "documents": [
+          {
+            "id": "turn-1-brief",
+            "title": "Casewire Bulletin",
+            "type": "newspaper",
+            "width": 430,
+            "height": 340,
+            "persistent": false,
+            "headline": "Create A Practical SQL Quiz For A University Stu - Turn 1 Briefing",
+            "subhead": "Read the bulletin and supporting data before answering.",
+            "byline": "Scenario Desk",
+            "publishDate": "Turn 1/3 / Generated",
+            "columns": [
+              "Case focus: Sql / Business / Command / Create. Stage: baseline intake. Progress: turn 1 of 3. This is the opening turn for the case dossier.",
+              "Evidence digest: Cycle-time gains appear in 6/6 workflow stages.",
+              "Control note: Low-confidence rows are intended as review points, not direct conclusions."
+            ]
+          },
+          {
+            "id": "turn-1-sheet",
+            "title": "Operational Performance Sheet",
+            "type": "spreadsheet",
+            "width": 470,
+            "height": 330,
+            "persistent": false,
+            "filePath": "",
+            "table": {
+              "columns": [
+                "Workflow Step",
+                "Weekly Volume",
+                "Manual Cycle (h)",
+                "AI Cycle (h)",
+                "Variance Gain",
+                "Confidence",
+                "Status"
+              ],
+              "rows": [
+                [
+                  "Record cleanup",
+                  "169",
+                  "7.2",
+                  "3.7",
+                  "48.7%",
+                  "88.5%",
+                  "Stable"
+                ],
+                [
+                  "Validation pass",
+                  "211",
+                  "8.7",
+                  "6.4",
+                  "26.5%",
+                  "87.8%",
+                  "Stable"
+                ],
+                [
+                  "Exception handling",
+                  "204",
+                  "6.1",
+                  "4.7",
+                  "23.4%",
+                  "86.9%",
+                  "Stable"
+                ],
+                [
+                  "Reporting prep",
+                  "89",
+                  "4.7",
+                  "3.2",
+                  "31.7%",
+                  "90.1%",
+                  "Stable"
+                ],
+                [
+                  "Stakeholder review",
+                  "105",
+                  "6.7",
+                  "3.9",
+                  "42.0%",
+                  "77.7%",
+                  "Review"
+                ],
+                [
+                  "Closure checks",
+                  "75",
+                  "5.4",
+                  "2.7",
+                  "51.2%",
+                  "87.6%",
+                  "Stable"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "turn-1-image",
+            "title": "Workflow Board",
+            "type": "image",
+            "width": 350,
+            "height": 260,
+            "persistent": false,
+            "imagePrompt": "Sql / Business / Command / Create. baseline intake.",
+            "imageSrc": "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22760%22%20viewBox%3D%220%200%201200%20760%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%232b3447%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23576c8f%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22760%22%20fill%3D%22url(%23bg)%22%2F%3E%3Crect%20x%3D%2270%22%20y%3D%2270%22%20width%3D%221060%22%20height%3D%22620%22%20rx%3D%2224%22%20fill%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.35)%22%20stroke-width%3D%223%22%2F%3E%3Ctext%20x%3D%22110%22%20y%3D%22210%22%20fill%3D%22%23f4f8ff%22%20font-size%3D%2262%22%20font-family%3D%22Georgia%2C%20serif%22%3ECreate%20A%20Practical%20SQL%20Quiz%20For%20A%20University%20Stu%20T1%3C%2Ftext%3E%3Ctext%20x%3D%22110%22%20y%3D%22285%22%20fill%3D%22%23d7e4ff%22%20font-size%3D%2232%22%20font-family%3D%22Georgia%2C%20serif%22%3ESql%20%2F%20Business%20%2F%20Command%20%2F%20Create%3C%2Ftext%3E%3C%2Fsvg%3E"
+          },
+          {
+            "id": "turn-1-memo",
+            "title": "Supervisor Memo",
+            "type": "memo",
+            "width": 390,
+            "height": 290,
+            "persistent": false,
+            "content": "Turn 1 Analyst Memo\n\nStage: baseline intake.\nStarting point: establish a baseline before selecting an answer.\n\nHow to use the evidence:\n1) Compare manual vs AI columns row-by-row.\n2) Verify whether the same pattern appears in most rows.\n3) Use the repeated pattern, not a single outlier, to answer.\n\nSignal summary: Cycle-time gains appear in 6/6 workflow stages. Low-confidence rows are intended as review points, not direct conclusions."
+          }
+        ],
+        "questions": [
+          {
+            "id": "q1",
+            "kind": "multiple-choice",
+            "prompt": "What SQL command is used to combine rows from two or more tables based on a related column?",
+            "marks": 2,
+            "options": [
+              "JOIN",
+              "INSERT",
+              "UPDATE",
+              "DELETE"
+            ],
+            "expected": "JOIN",
+            "usesDocuments": [
+              "turn-1-brief",
+              "turn-1-sheet",
+              "turn-1-image",
+              "turn-1-memo"
+            ]
+          },
+          {
+            "id": "q2",
+            "kind": "true-false",
+            "prompt": "The SQL command 'SELECT *' retrieves all columns from a table.",
+            "marks": 2,
+            "expected": "true",
+            "usesDocuments": [
+              "turn-1-brief",
+              "turn-1-sheet",
+              "turn-1-image",
+              "turn-1-memo"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "turn-2",
+        "label": "Turn 2",
+        "briefing": "Complete Turn 2. Use the reference items on the desk.",
+        "documents": [
+          {
+            "id": "turn-2-brief",
+            "title": "Casewire Bulletin",
+            "type": "newspaper",
+            "width": 430,
+            "height": 340,
+            "persistent": false,
+            "headline": "Create A Practical SQL Quiz For A University Stu - Turn 2 Briefing",
+            "subhead": "Read the bulletin and supporting data before answering.",
+            "byline": "Scenario Desk",
+            "publishDate": "Turn 2/3 / Generated",
+            "columns": [
+              "Case focus: Sql / Query / Sales / Business. Stage: pilot rollout. Progress: turn 2 of 3. This turn extends the case from Turn 1, especially around Sql / Business / Command / Create.",
+              "Evidence digest: Cycle-time gains appear in 8/8 workflow stages.",
+              "Control note: Low-confidence rows are intended as review points, not direct conclusions."
+            ]
+          },
+          {
+            "id": "turn-2-sheet",
+            "title": "Operational Performance Sheet",
+            "type": "spreadsheet",
+            "width": 470,
+            "height": 330,
+            "persistent": false,
+            "filePath": "",
+            "table": {
+              "columns": [
+                "Workflow Step",
+                "Weekly Volume",
+                "Manual Cycle (h)",
+                "AI Cycle (h)",
+                "Variance Gain",
+                "Confidence",
+                "Status"
+              ],
+              "rows": [
+                [
+                  "Validation pass",
+                  "150",
+                  "5.8",
+                  "3.1",
+                  "47.1%",
+                  "93.3%",
+                  "Stable"
+                ],
+                [
+                  "Exception handling",
+                  "175",
+                  "7.8",
+                  "5.2",
+                  "33.0%",
+                  "90.1%",
+                  "Stable"
+                ],
+                [
+                  "Reporting prep",
+                  "84",
+                  "7.8",
+                  "3.9",
+                  "50.5%",
+                  "84.7%",
+                  "Stable"
+                ],
+                [
+                  "Stakeholder review",
+                  "153",
+                  "4.8",
+                  "2.4",
+                  "50.8%",
+                  "73.1%",
+                  "Review"
+                ],
+                [
+                  "Closure checks",
+                  "90",
+                  "9.9",
+                  "6.8",
+                  "31.2%",
+                  "76.4%",
+                  "Review"
+                ],
+                [
+                  "Feedback loop",
+                  "123",
+                  "7.8",
+                  "4.7",
+                  "40.7%",
+                  "75.5%",
+                  "Review"
+                ],
+                [
+                  "Policy update",
+                  "196",
+                  "4.6",
+                  "2.5",
+                  "45.1%",
+                  "73.0%",
+                  "Review"
+                ],
+                [
+                  "Root-cause audit",
+                  "177",
+                  "7.7",
+                  "4.6",
+                  "39.9%",
+                  "92.1%",
+                  "Stable"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "turn-2-image",
+            "title": "Workflow Board",
+            "type": "image",
+            "width": 350,
+            "height": 260,
+            "persistent": false,
+            "imagePrompt": "Sql / Query / Sales / Business. pilot rollout.",
+            "imageSrc": "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22760%22%20viewBox%3D%220%200%201200%20760%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%232b3447%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23576c8f%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22760%22%20fill%3D%22url(%23bg)%22%2F%3E%3Crect%20x%3D%2270%22%20y%3D%2270%22%20width%3D%221060%22%20height%3D%22620%22%20rx%3D%2224%22%20fill%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.35)%22%20stroke-width%3D%223%22%2F%3E%3Ctext%20x%3D%22110%22%20y%3D%22210%22%20fill%3D%22%23f4f8ff%22%20font-size%3D%2262%22%20font-family%3D%22Georgia%2C%20serif%22%3ECreate%20A%20Practical%20SQL%20Quiz%20For%20A%20University%20Stu%20T2%3C%2Ftext%3E%3Ctext%20x%3D%22110%22%20y%3D%22285%22%20fill%3D%22%23d7e4ff%22%20font-size%3D%2232%22%20font-family%3D%22Georgia%2C%20serif%22%3ESql%20%2F%20Query%20%2F%20Sales%20%2F%20Business%3C%2Ftext%3E%3C%2Fsvg%3E"
+          },
+          {
+            "id": "turn-2-transcript",
+            "title": "Operations Transcript",
+            "type": "transcript",
+            "width": 420,
+            "height": 300,
+            "persistent": false,
+            "entries": [
+              "Lead Analyst: Stage update is pilot rollout.",
+              "Ops Manager: We are continuing from Turn 1, where \"Sql / Business / Command / Create\" was the main thread.",
+              "Audit Officer: Cycle-time gains appear in 8/8 workflow stages.",
+              "Data Engineer: Outliers are intentional, validate the dominant pattern.",
+              "Lead Analyst: Final response must be evidence-backed, not assumption-backed."
+            ]
+          }
+        ],
+        "questions": [
+          {
+            "id": "q3",
+            "kind": "multiple-choice",
+            "prompt": "Which SQL clause is used to filter records returned by a query?",
+            "marks": 4,
+            "options": [
+              "WHERE",
+              "GROUP BY",
+              "ORDER BY",
+              "LIMIT"
+            ],
+            "expected": "WHERE",
+            "usesDocuments": [
+              "turn-2-brief",
+              "turn-2-sheet",
+              "turn-2-image",
+              "turn-2-transcript"
+            ]
+          },
+          {
+            "id": "q4",
+            "kind": "cloze",
+            "prompt": "Write an SQL query to find the total sales for each product in a sales table.",
+            "marks": 4,
+            "expected": "SELECT product, SUM(sales) FROM sales_table GROUP BY product;",
+            "idealAnswer": "SELECT product, SUM(sales) FROM sales_table GROUP BY product;",
+            "usesDocuments": [
+              "turn-2-brief",
+              "turn-2-sheet",
+              "turn-2-image",
+              "turn-2-transcript"
+            ]
+          },
+          {
+            "id": "q5",
+            "kind": "sequence",
+            "prompt": "Order the steps to perform a SQL query to find the highest sales value.",
+            "marks": 4,
+            "sequencePool": [
+              "Step 2",
+              "Step 1"
+            ],
+            "expected": [
+              "Step 1",
+              "Step 2"
+            ],
+            "usesDocuments": [
+              "turn-2-brief",
+              "turn-2-sheet",
+              "turn-2-image",
+              "turn-2-transcript"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "turn-3",
+        "label": "Turn 3",
+        "briefing": "Complete Turn 3. Use the reference items on the desk.",
+        "documents": [
+          {
+            "id": "turn-3-brief",
+            "title": "Casewire Bulletin",
+            "type": "newspaper",
+            "width": 430,
+            "height": 340,
+            "persistent": false,
+            "headline": "Create A Practical SQL Quiz For A University Stu - Turn 3 Briefing",
+            "subhead": "Read the bulletin and supporting data before answering.",
+            "byline": "Scenario Desk",
+            "publishDate": "Turn 3/3 / Generated",
+            "columns": [
+              "Case focus: Sql / Business / Used / Create. Stage: mid-cycle validation. Progress: turn 3 of 3. This turn extends the case from Turn 2, especially around Sql / Query / Sales / Business.",
+              "Evidence digest: Cycle-time gains appear in 10/10 workflow stages.",
+              "Control note: Low-confidence rows are intended as review points, not direct conclusions."
+            ]
+          },
+          {
+            "id": "turn-3-sheet",
+            "title": "Operational Performance Sheet",
+            "type": "spreadsheet",
+            "width": 470,
+            "height": 330,
+            "persistent": false,
+            "filePath": "",
+            "table": {
+              "columns": [
+                "Workflow Step",
+                "Weekly Volume",
+                "Manual Cycle (h)",
+                "AI Cycle (h)",
+                "Variance Gain",
+                "Confidence",
+                "Status"
+              ],
+              "rows": [
+                [
+                  "Exception handling",
+                  "184",
+                  "9.5",
+                  "6.0",
+                  "36.2%",
+                  "83.8%",
+                  "Stable"
+                ],
+                [
+                  "Reporting prep",
+                  "218",
+                  "10.2",
+                  "6.9",
+                  "32.5%",
+                  "75.4%",
+                  "Review"
+                ],
+                [
+                  "Stakeholder review",
+                  "176",
+                  "5.4",
+                  "3.3",
+                  "38.8%",
+                  "79.9%",
+                  "Review"
+                ],
+                [
+                  "Closure checks",
+                  "119",
+                  "4.5",
+                  "2.7",
+                  "38.6%",
+                  "88.6%",
+                  "Stable"
+                ],
+                [
+                  "Feedback loop",
+                  "70",
+                  "7.1",
+                  "4.4",
+                  "37.8%",
+                  "78.1%",
+                  "Review"
+                ],
+                [
+                  "Policy update",
+                  "125",
+                  "9.1",
+                  "5.9",
+                  "35.3%",
+                  "78.7%",
+                  "Review"
+                ],
+                [
+                  "Root-cause audit",
+                  "163",
+                  "8.7",
+                  "4.6",
+                  "47.4%",
+                  "88.6%",
+                  "Stable"
+                ],
+                [
+                  "Intake triage",
+                  "200",
+                  "8.6",
+                  "4.4",
+                  "49.2%",
+                  "85.9%",
+                  "Stable"
+                ],
+                [
+                  "Record cleanup",
+                  "197",
+                  "6.9",
+                  "5.1",
+                  "26.7%",
+                  "80.7%",
+                  "Stable"
+                ],
+                [
+                  "Validation pass",
+                  "211",
+                  "9.8",
+                  "6.0",
+                  "38.5%",
+                  "93.4%",
+                  "Stable"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "turn-3-image",
+            "title": "Workflow Board",
+            "type": "image",
+            "width": 350,
+            "height": 260,
+            "persistent": false,
+            "imagePrompt": "Sql / Business / Used / Create. mid-cycle validation.",
+            "imageSrc": "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22760%22%20viewBox%3D%220%200%201200%20760%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%232b3447%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23576c8f%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22760%22%20fill%3D%22url(%23bg)%22%2F%3E%3Crect%20x%3D%2270%22%20y%3D%2270%22%20width%3D%221060%22%20height%3D%22620%22%20rx%3D%2224%22%20fill%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.35)%22%20stroke-width%3D%223%22%2F%3E%3Ctext%20x%3D%22110%22%20y%3D%22210%22%20fill%3D%22%23f4f8ff%22%20font-size%3D%2262%22%20font-family%3D%22Georgia%2C%20serif%22%3ECreate%20A%20Practical%20SQL%20Quiz%20For%20A%20University%20Stu%20T3%3C%2Ftext%3E%3Ctext%20x%3D%22110%22%20y%3D%22285%22%20fill%3D%22%23d7e4ff%22%20font-size%3D%2232%22%20font-family%3D%22Georgia%2C%20serif%22%3ESql%20%2F%20Business%20%2F%20Used%20%2F%20Create%3C%2Ftext%3E%3C%2Fsvg%3E"
+          },
+          {
+            "id": "turn-3-memo",
+            "title": "Supervisor Strategy Memo",
+            "type": "memo",
+            "width": 390,
+            "height": 290,
+            "persistent": false,
+            "content": "Turn 3 Strategy Note\n\nStage: mid-cycle validation.\nCarry-over from Turn 2: Sql / Query / Sales / Business.\n\nGuidance:\n- This turn includes mixed signals by design.\n- Balance efficiency improvements against remaining risk.\n- Give a justified conclusion, not a one-sided claim.\n\nSignal summary: Cycle-time gains appear in 10/10 workflow stages. Low-confidence rows are intended as review points, not direct conclusions."
+          }
+        ],
+        "questions": [
+          {
+            "id": "q6",
+            "kind": "multiple-choice",
+            "prompt": "Which SQL function can be used to find the average of a numeric column?",
+            "marks": 6,
+            "options": [
+              "AVG",
+              "COUNT",
+              "SUM",
+              "MIN"
+            ],
+            "expected": "AVG",
+            "usesDocuments": [
+              "turn-3-brief",
+              "turn-3-sheet",
+              "turn-3-image",
+              "turn-3-memo"
+            ]
+          },
+          {
+            "id": "q7",
+            "kind": "essay",
+            "prompt": "Discuss how SQL queries can be used to improve business decision-making, providing two specific examples.",
+            "marks": 6,
+            "idealAnswer": "SQL queries allow businesses to analyze large datasets efficiently. For example, a company can use SQL to identify sales trends by querying sales data over time, which helps in inventory management. Additionally, SQL can be used to segment customers based on purchasing behavior, enabling targeted marketing strategies.",
+            "usesDocuments": [
+              "turn-3-brief",
+              "turn-3-sheet",
+              "turn-3-image",
+              "turn-3-memo"
+            ]
+          },
+          {
+            "id": "q8",
+            "kind": "sequence",
+            "prompt": "Arrange the SQL clauses in order to create a query that filters, sorts, and limits the results.",
+            "marks": 6,
+            "sequencePool": [
+              "Step 2",
+              "Step 1"
+            ],
+            "expected": [
+              "Step 1",
+              "Step 2"
+            ],
+            "usesDocuments": [
+              "turn-3-brief",
+              "turn-3-sheet",
+              "turn-3-image",
+              "turn-3-memo"
+            ]
+          },
+          {
+            "id": "q9",
+            "kind": "true-false",
+            "prompt": "The 'HAVING' clause in SQL is used to filter records before they are aggregated.",
+            "marks": 6,
+            "expected": "true",
+            "usesDocuments": [
+              "turn-3-brief",
+              "turn-3-sheet",
+              "turn-3-image",
+              "turn-3-memo"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "turns": [
+    {
+      "turnId": "turn-1",
+      "turnLabel": "Turn 1",
+      "questions": [
+        {
+          "questionId": "q1",
+          "prompt": "What SQL command is used to combine rows from two or more tables based on a related column?",
+          "kind": "multiple-choice",
+          "marks": 2,
+          "answer": "JOIN"
+        },
+        {
+          "questionId": "q2",
+          "prompt": "The SQL command 'SELECT *' retrieves all columns from a table.",
+          "kind": "true-false",
+          "marks": 2,
+          "answer": "false"
+        }
+      ]
+    },
+    {
+      "turnId": "turn-2",
+      "turnLabel": "Turn 2",
+      "questions": [
+        {
+          "questionId": "q3",
+          "prompt": "Which SQL clause is used to filter records returned by a query?",
+          "kind": "multiple-choice",
+          "marks": 4,
+          "answer": "WHERE"
+        },
+        {
+          "questionId": "q4",
+          "prompt": "Write an SQL query to find the total sales for each product in a sales table.",
+          "kind": "cloze",
+          "marks": 4,
+          "idealAnswer": "SELECT product, SUM(sales) FROM sales_table GROUP BY product;",
+          "answer": "SELECT  * FROM SALES GROUP BY "
+        },
+        {
+          "questionId": "q5",
+          "prompt": "Order the steps to perform a SQL query to find the highest sales value.",
+          "kind": "sequence",
+          "marks": 4,
+          "answer": [
+            "Step 2",
+            "Step 1"
+          ]
+        }
+      ]
+    },
+    {
+      "turnId": "turn-3",
+      "turnLabel": "Turn 3",
+      "questions": [
+        {
+          "questionId": "q6",
+          "prompt": "Which SQL function can be used to find the average of a numeric column?",
+          "kind": "multiple-choice",
+          "marks": 6,
+          "answer": "AVG"
+        },
+        {
+          "questionId": "q7",
+          "prompt": "Discuss how SQL queries can be used to improve business decision-making, providing two specific examples.",
+          "kind": "essay",
+          "marks": 6,
+          "idealAnswer": "SQL queries allow businesses to analyze large datasets efficiently. For example, a company can use SQL to identify sales trends by querying sales data over time, which helps in inventory management. Additionally, SQL can be used to segment customers based on purchasing behavior, enabling targeted marketing strategies.",
+          "answer": "It is much better than your daily YBB governance google sheet with 20000 rows and takes 5 min to load. "
+        },
+        {
+          "questionId": "q8",
+          "prompt": "Arrange the SQL clauses in order to create a query that filters, sorts, and limits the results.",
+          "kind": "sequence",
+          "marks": 6,
+          "answer": [
+            "Step 1",
+            "Step 2"
+          ]
+        },
+        {
+          "questionId": "q9",
+          "prompt": "The 'HAVING' clause in SQL is used to filter records before they are aggregated.",
+          "kind": "true-false",
+          "marks": 6,
+          "answer": "true"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "id": "98b2751e-4d33-4dee-85c8-e4a2d3a23e6c",
+  "userId": "1",
+  "completedAt": "2026-03-06T12:06:48.439Z",
+  "marked": false,
+  "markedAt": null,
+  "teacherName": null,
+  "maxScore": 3,
+  "awardedScore": 1,
+  "awardedMarks": {
+    "q1": 1,
+    "q2": 0
+  },
+  "quizData": {
+    "title": "Generated Quiz",
+    "turns": [
+      {
+        "id": "turn-1",
+        "label": "Turn 1",
+        "briefing": "Complete Turn 1. Use the reference items on the desk.",
+        "documents": [
+          {
+            "id": "turn-1-newspaper",
+            "title": "Daily Brief",
+            "type": "newspaper",
+            "width": 420,
+            "height": 340,
+            "persistent": false,
+            "headline": "What is one advantage of using AI for automating accounting tasks in Malaysia?",
+            "subhead": "Use this bulletin to answer the question.",
+            "byline": "Operations Desk",
+            "publishDate": "Generated",
+            "columns": [
+              "Context: What is one advantage of using AI for automating accounting tasks in Malaysia?",
+              "Action note: Difficulty: EASY."
+            ]
+          },
+          {
+            "id": "turn-1-memo",
+            "title": "Supervisor Memo",
+            "type": "memo",
+            "width": 360,
+            "height": 270,
+            "persistent": false,
+            "content": "Difficulty: EASY\n\nQuestion focus:\nWhat is one advantage of using AI for automating accounting tasks in Malaysia?\n\nCross-check the evidence before choosing."
+          }
+        ],
+        "questions": [
+          {
+            "id": "q1",
+            "kind": "multiple-choice",
+            "prompt": "What is one advantage of using AI for automating accounting tasks in Malaysia?",
+            "marks": 1,
+            "options": [
+              "Reduces manual errors",
+              "Increases manual workload",
+              "Decreases data accuracy",
+              "Limits innovation"
+            ],
+            "expected": "Reduces manual errors",
+            "usesDocuments": [
+              "turn-1-newspaper",
+              "turn-1-memo"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "turn-2",
+        "label": "Turn 2",
+        "briefing": "Complete Turn 2. Use the reference items on the desk.",
+        "documents": [
+          {
+            "id": "turn-2-spreadsheet",
+            "title": "Turn Data Sheet",
+            "type": "spreadsheet",
+            "width": 390,
+            "height": 300,
+            "persistent": false,
+            "filePath": "",
+            "table": {
+              "columns": [
+                "Entry",
+                "Value",
+                "Status"
+              ],
+              "rows": [
+                [
+                  "Item 1",
+                  "Primary signal",
+                  "Verified"
+                ],
+                [
+                  "Item 2",
+                  "Secondary signal",
+                  "Pending"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "turn-2-memo",
+            "title": "Calculation Note",
+            "type": "memo",
+            "width": 340,
+            "height": 250,
+            "persistent": false,
+            "content": "Review sheet values and compute the correct outcome before answering."
+          }
+        ],
+        "questions": [
+          {
+            "id": "q2",
+            "kind": "cloze",
+            "prompt": "Explain how AI can help automate tax compliance in Malaysia.",
+            "marks": 1,
+            "expected": "AI can automate the tracking of tax regulations, calculate tax liabilities, and ensure timely filing of returns, reducing compliance risks.",
+            "idealAnswer": "AI can automate the tracking of tax regulations, calculate tax liabilities, and ensure timely filing of returns, reducing compliance risks.",
+            "usesDocuments": [
+              "turn-2-spreadsheet",
+              "turn-2-memo"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "turn-3",
+        "label": "Turn 3",
+        "briefing": "Complete Turn 3. Use the reference items on the desk.",
+        "documents": [
+          {
+            "id": "turn-3-image",
+            "title": "Evidence Image",
+            "type": "image",
+            "width": 340,
+            "height": 260,
+            "persistent": false,
+            "imagePrompt": "Discuss the challenges and solutions of integrating AI into accounting systems in Malaysia's changing business",
+            "imageSrc": "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22760%22%20viewBox%3D%220%200%201200%20760%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%232b3447%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23576c8f%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22760%22%20fill%3D%22url(%23bg)%22%2F%3E%3Crect%20x%3D%2270%22%20y%3D%2270%22%20width%3D%221060%22%20height%3D%22620%22%20rx%3D%2224%22%20fill%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.35)%22%20stroke-width%3D%223%22%2F%3E%3Ctext%20x%3D%22110%22%20y%3D%22210%22%20fill%3D%22%23f4f8ff%22%20font-size%3D%2262%22%20font-family%3D%22Georgia%2C%20serif%22%3EEvidence%20Board%3C%2Ftext%3E%3Ctext%20x%3D%22110%22%20y%3D%22285%22%20fill%3D%22%23d7e4ff%22%20font-size%3D%2232%22%20font-family%3D%22Georgia%2C%20serif%22%3EDiscuss%20the%20challenges%20and%20solutions%20of%20integrating%20AI%20into%20accounting%20systems%20in%20Malaysia%26%2339%3Bs%20changing%20business%3C%2Ftext%3E%3C%2Fsvg%3E"
+          },
+          {
+            "id": "turn-3-transcript",
+            "title": "Witness Transcript",
+            "type": "transcript",
+            "width": 390,
+            "height": 300,
+            "persistent": false,
+            "entries": [
+              "Inspector: Discuss the challenges and solutions of integrating AI into accounting systems in Malaysia's changing business",
+              "Analyst: Reviewing all attached material.",
+              "Inspector: Confirm your conclusion with evidence."
+            ]
+          }
+        ],
+        "questions": [
+          {
+            "id": "q3",
+            "kind": "essay",
+            "prompt": "Discuss the challenges and solutions of integrating AI into accounting systems in Malaysia's changing business environment.",
+            "marks": 1,
+            "idealAnswer": "Challenges include data privacy concerns, lack of skilled personnel, and integration costs. Solutions involve investing in training, ensuring robust data security measures, and phased implementation.",
+            "usesDocuments": [
+              "turn-3-image",
+              "turn-3-transcript"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "turns": [
+    {
+      "turnId": "turn-1",
+      "turnLabel": "Turn 1",
+      "questions": [
+        {
+          "questionId": "q1",
+          "prompt": "What is one advantage of using AI for automating accounting tasks in Malaysia?",
+          "kind": "multiple-choice",
+          "marks": 1,
+          "answer": "Reduces manual errors"
+        }
+      ]
+    },
+    {
+      "turnId": "turn-2",
+      "turnLabel": "Turn 2",
+      "questions": [
+        {
+          "questionId": "q2",
+          "prompt": "Explain how AI can help automate tax compliance in Malaysia.",
+          "kind": "cloze",
+          "marks": 1,
+          "idealAnswer": "AI can automate the tracking of tax regulations, calculate tax liabilities, and ensure timely filing of returns, reducing compliance risks.",
+          "answer": "Idk("
+        }
+      ]
+    },
+    {
+      "turnId": "turn-3",
+      "turnLabel": "Turn 3",
+      "questions": [
+        {
+          "questionId": "q3",
+          "prompt": "Discuss the challenges and solutions of integrating AI into accounting systems in Malaysia's changing business environment.",
+          "kind": "essay",
+          "marks": 1,
+          "idealAnswer": "Challenges include data privacy concerns, lack of skilled personnel, and integration costs. Solutions involve investing in training, ensuring robust data security measures, and phased implementation.",
+          "answer": "123"
+        }
+      ]
+    }
+  ]
+}

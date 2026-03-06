@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import React, { useEffect, useMemo, useState } from "react";
-import React, { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { BitWrapperJson } from "@gmb/bitmark-parser-generator";
 import { AlertTriangle, CheckCircle2, Clipboard, Loader2, Wand2 } from "lucide-react";
@@ -103,7 +102,7 @@ export default function Home() {
       const responsePromise = fetch("/api/generate-quiz", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ topic: topic.trim(), turns }),
+        body: JSON.stringify({ topic: topic.trim(), turns, generateImages: true }),
       });
       setProcessLog((prev) => [...prev, "Waiting for model response..."]);
       const res = await responsePromise;

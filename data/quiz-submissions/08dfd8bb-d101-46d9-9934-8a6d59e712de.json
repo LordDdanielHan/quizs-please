@@ -1,0 +1,668 @@
+{
+  "id": "08dfd8bb-d101-46d9-9934-8a6d59e712de",
+  "userId": "Artemii",
+  "completedAt": "2026-03-06T14:27:11.010Z",
+  "marked": false,
+  "markedAt": null,
+  "teacherName": null,
+  "maxScore": 40,
+  "awardedScore": 2,
+  "awardedMarks": {
+    "q1": 0,
+    "q2": 2,
+    "q3": 0,
+    "q4": 0,
+    "q5": 0,
+    "q7": 0,
+    "q8": 0,
+    "q9": 0
+  },
+  "quizData": {
+    "title": "Generated Quiz",
+    "turns": [
+      {
+        "id": "turn-1",
+        "label": "Turn 1",
+        "briefing": "Complete Turn 1. Use the reference items on the desk.",
+        "documents": [
+          {
+            "id": "turn-1-brief",
+            "title": "Casewire Bulletin",
+            "type": "newspaper",
+            "width": 430,
+            "height": 340,
+            "persistent": false,
+            "headline": "Generate SQL Quiz. - Turn 1 Briefing",
+            "subhead": "Read the bulletin and supporting data before answering.",
+            "byline": "Scenario Desk",
+            "publishDate": "Turn 1/3 / Generated",
+            "columns": [
+              "Case focus: Customers / Name / First / Email. Stage: baseline intake. Progress: turn 1 of 3. This is the opening turn for the case dossier.",
+              "Evidence digest: Cycle-time gains appear in 6/6 workflow stages.",
+              "Control note: Low-confidence rows are intended as review points, not direct conclusions."
+            ]
+          },
+          {
+            "id": "turn-1-sheet",
+            "title": "Operational Performance Sheet",
+            "type": "spreadsheet",
+            "width": 470,
+            "height": 330,
+            "persistent": false,
+            "filePath": "",
+            "table": {
+              "columns": [
+                "Workflow Step",
+                "Weekly Volume",
+                "Manual Cycle (h)",
+                "AI Cycle (h)",
+                "Variance Gain",
+                "Confidence",
+                "Status"
+              ],
+              "rows": [
+                [
+                  "Record cleanup",
+                  "164",
+                  "8.6",
+                  "6.5",
+                  "24.6%",
+                  "74.0%",
+                  "Review"
+                ],
+                [
+                  "Validation pass",
+                  "201",
+                  "5.0",
+                  "2.6",
+                  "48.7%",
+                  "79.7%",
+                  "Review"
+                ],
+                [
+                  "Exception handling",
+                  "169",
+                  "8.5",
+                  "5.1",
+                  "40.5%",
+                  "89.9%",
+                  "Stable"
+                ],
+                [
+                  "Reporting prep",
+                  "184",
+                  "11.2",
+                  "7.7",
+                  "31.1%",
+                  "86.8%",
+                  "Stable"
+                ],
+                [
+                  "Stakeholder review",
+                  "167",
+                  "9.1",
+                  "5.7",
+                  "37.3%",
+                  "78.5%",
+                  "Review"
+                ],
+                [
+                  "Closure checks",
+                  "87",
+                  "6.6",
+                  "3.5",
+                  "47.7%",
+                  "78.8%",
+                  "Review"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "turn-1-image",
+            "title": "Workflow Board",
+            "type": "image",
+            "width": 350,
+            "height": 260,
+            "persistent": false,
+            "imagePrompt": "Customers / Name / First / Email. baseline intake.",
+            "imageSrc": "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22760%22%20viewBox%3D%220%200%201200%20760%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%232b3447%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23576c8f%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22760%22%20fill%3D%22url(%23bg)%22%2F%3E%3Crect%20x%3D%2270%22%20y%3D%2270%22%20width%3D%221060%22%20height%3D%22620%22%20rx%3D%2224%22%20fill%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.35)%22%20stroke-width%3D%223%22%2F%3E%3Ctext%20x%3D%22110%22%20y%3D%22210%22%20fill%3D%22%23f4f8ff%22%20font-size%3D%2262%22%20font-family%3D%22Georgia%2C%20serif%22%3EGenerate%20SQL%20Quiz.%20T1%3C%2Ftext%3E%3Ctext%20x%3D%22110%22%20y%3D%22285%22%20fill%3D%22%23d7e4ff%22%20font-size%3D%2232%22%20font-family%3D%22Georgia%2C%20serif%22%3ECustomers%20%2F%20Name%20%2F%20First%20%2F%20Email%3C%2Ftext%3E%3C%2Fsvg%3E"
+          },
+          {
+            "id": "turn-1-memo",
+            "title": "Supervisor Memo",
+            "type": "memo",
+            "width": 390,
+            "height": 290,
+            "persistent": false,
+            "content": "Turn 1 Analyst Memo\n\nStage: baseline intake.\nStarting point: establish a baseline before selecting an answer.\n\nHow to use the evidence:\n1) Compare manual vs AI columns row-by-row.\n2) Verify whether the same pattern appears in most rows.\n3) Use the repeated pattern, not a single outlier, to answer.\n\nSignal summary: Cycle-time gains appear in 6/6 workflow stages. Low-confidence rows are intended as review points, not direct conclusions."
+          }
+        ],
+        "questions": [
+          {
+            "id": "q1",
+            "kind": "multiple-choice",
+            "prompt": "You have a customers table (id, first_name, last_name, email, signup_date). Manager asks: write a SELECT to return only first_name and email for all customers. Which query is correct for this minimal retrieval task?",
+            "marks": 2,
+            "options": [
+              "SELECT * FROM customers WHERE first_name, email;",
+              "SELECT first_name, email FROM customers;",
+              "SELECT customers.first_name AND customers.email FROM customers;",
+              "GET first_name, email FROM customers;"
+            ],
+            "expected": "SELECT first_name, email FROM customers;",
+            "usesDocuments": [
+              "turn-1-sheet"
+            ]
+          },
+          {
+            "id": "q2",
+            "kind": "true-false",
+            "prompt": "You have an orders table (order_id, customer_id, amount, status). Manager asks: fetch orders with amount > 100. The query 'SELECT * FROM orders WHERE amount > 100;' returns only those rows. True or False?",
+            "marks": 2,
+            "expected": "true",
+            "usesDocuments": [
+              "turn-1-brief"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "turn-2",
+        "label": "Turn 2",
+        "briefing": "Complete Turn 2. Use the reference items on the desk.",
+        "documents": [
+          {
+            "id": "turn-2-brief",
+            "title": "Casewire Bulletin",
+            "type": "newspaper",
+            "width": 430,
+            "height": 340,
+            "persistent": false,
+            "headline": "Generate SQL Quiz. - Turn 2 Briefing",
+            "subhead": "Read the bulletin and supporting data before answering.",
+            "byline": "Scenario Desk",
+            "publishDate": "Turn 2/3 / Generated",
+            "columns": [
+              "Case focus: Customers / Orders / Name / Select. Stage: pilot rollout. Progress: turn 2 of 3. This turn extends the case from Turn 1, especially around Customers / Name / First / Email.",
+              "Evidence digest: Cycle-time gains appear in 8/8 workflow stages.",
+              "Control note: Low-confidence rows are intended as review points, not direct conclusions."
+            ]
+          },
+          {
+            "id": "turn-2-sheet",
+            "title": "Operational Performance Sheet",
+            "type": "spreadsheet",
+            "width": 470,
+            "height": 330,
+            "persistent": false,
+            "filePath": "",
+            "table": {
+              "columns": [
+                "Workflow Step",
+                "Weekly Volume",
+                "Manual Cycle (h)",
+                "AI Cycle (h)",
+                "Variance Gain",
+                "Confidence",
+                "Status"
+              ],
+              "rows": [
+                [
+                  "Validation pass",
+                  "154",
+                  "6.9",
+                  "5.4",
+                  "22.3%",
+                  "83.3%",
+                  "Stable"
+                ],
+                [
+                  "Exception handling",
+                  "222",
+                  "5.7",
+                  "3.3",
+                  "42.1%",
+                  "86.9%",
+                  "Stable"
+                ],
+                [
+                  "Reporting prep",
+                  "141",
+                  "10.6",
+                  "5.8",
+                  "45.6%",
+                  "80.0%",
+                  "Review"
+                ],
+                [
+                  "Stakeholder review",
+                  "190",
+                  "7.8",
+                  "6.0",
+                  "22.3%",
+                  "72.6%",
+                  "Review"
+                ],
+                [
+                  "Closure checks",
+                  "131",
+                  "8.3",
+                  "4.8",
+                  "41.9%",
+                  "81.2%",
+                  "Stable"
+                ],
+                [
+                  "Feedback loop",
+                  "72",
+                  "8.0",
+                  "4.2",
+                  "47.2%",
+                  "95.7%",
+                  "Stable"
+                ],
+                [
+                  "Policy update",
+                  "139",
+                  "4.8",
+                  "3.3",
+                  "30.9%",
+                  "76.7%",
+                  "Review"
+                ],
+                [
+                  "Root-cause audit",
+                  "194",
+                  "11.2",
+                  "7.7",
+                  "31.2%",
+                  "71.3%",
+                  "Review"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "turn-2-image",
+            "title": "Workflow Board",
+            "type": "image",
+            "width": 350,
+            "height": 260,
+            "persistent": false,
+            "imagePrompt": "Customers / Orders / Name / Select. pilot rollout.",
+            "imageSrc": "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22760%22%20viewBox%3D%220%200%201200%20760%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%232b3447%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23576c8f%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22760%22%20fill%3D%22url(%23bg)%22%2F%3E%3Crect%20x%3D%2270%22%20y%3D%2270%22%20width%3D%221060%22%20height%3D%22620%22%20rx%3D%2224%22%20fill%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.35)%22%20stroke-width%3D%223%22%2F%3E%3Ctext%20x%3D%22110%22%20y%3D%22210%22%20fill%3D%22%23f4f8ff%22%20font-size%3D%2262%22%20font-family%3D%22Georgia%2C%20serif%22%3EGenerate%20SQL%20Quiz.%20T2%3C%2Ftext%3E%3Ctext%20x%3D%22110%22%20y%3D%22285%22%20fill%3D%22%23d7e4ff%22%20font-size%3D%2232%22%20font-family%3D%22Georgia%2C%20serif%22%3ECustomers%20%2F%20Orders%20%2F%20Name%20%2F%20Select%3C%2Ftext%3E%3C%2Fsvg%3E"
+          },
+          {
+            "id": "turn-2-transcript",
+            "title": "Operations Transcript",
+            "type": "transcript",
+            "width": 420,
+            "height": 300,
+            "persistent": false,
+            "entries": [
+              "Lead Analyst: Stage update is pilot rollout.",
+              "Ops Manager: We are continuing from Turn 1, where \"Customers / Name / First / Email\" was the main thread.",
+              "Audit Officer: Cycle-time gains appear in 8/8 workflow stages.",
+              "Data Engineer: Outliers are intentional, validate the dominant pattern.",
+              "Lead Analyst: Final response must be evidence-backed, not assumption-backed."
+            ]
+          }
+        ],
+        "questions": [
+          {
+            "id": "q3",
+            "kind": "multiple-choice",
+            "prompt": "After initial checks, the analytics lead asks you to join customers and orders to list customer email and their order amount for all orders placed in Jan 2026. Tables: customers(id, email), orders(id, customer_id, amount, placed_at). Which JOIN query is correct and avoids duplicating customers with multiple orders?",
+            "marks": 4,
+            "options": [
+              "SELECT c.email, SUM(o.amount) FROM customers c JOIN orders o ON c.id = o.customer_id WHERE o.placed_at BETWEEN '2026-01-01' AND '2026-01-31';",
+              "SELECT c.email, o.amount FROM customers c JOIN orders o ON c.id = o.customer_id WHERE o.placed_at >= '2026-01-01' AND o.placed_at < '2026-02-01';",
+              "SELECT email, amount FROM customers LEFT JOIN orders ON customers.id = orders.id WHERE placed_at BETWEEN '2026-01-01' AND '2026-01-31';",
+              "SELECT c.email, o.amount FROM customers c, orders o WHERE c.id = o.id AND o.placed_at BETWEEN '2026-01-01' AND '2026-01-31';"
+            ],
+            "expected": "SELECT c.email, o.amount FROM customers c JOIN orders o ON c.id = o.customer_id WHERE o.placed_at >= '2026-01-01' AND o.placed_at < '2026-02-01';",
+            "usesDocuments": [
+              "turn-2-image"
+            ]
+          },
+          {
+            "id": "q4",
+            "kind": "multiple-choice",
+            "prompt": "You must report total sales per product and only include products with total_sales > 1000. Tables: products(id, name), order_items(id, order_id, product_id, qty, unit_price). Which query correctly uses GROUP BY and HAVING to meet this?",
+            "marks": 4,
+            "options": [
+              "SELECT p.name, SUM(oi.qty * oi.unit_price) total_sales FROM products p JOIN order_items oi ON p.id = oi.product_id GROUP BY p.name HAVING total_sales > 1000;",
+              "SELECT p.id, p.name, SUM(oi.qty * oi.unit_price) AS total_sales FROM products p JOIN order_items oi ON p.id = oi.product_id GROUP BY p.id, p.name HAVING SUM(oi.qty * oi.unit_price) > 1000;",
+              "SELECT p.name, SUM(oi.qty * oi.unit_price) FROM products p, order_items oi WHERE p.id = oi.product_id GROUP BY p.name WHERE SUM(oi.qty * oi.unit_price) > 1000;",
+              "SELECT p.id, p.name, SUM(oi.qty) total_qty FROM products p JOIN order_items oi ON p.id = oi.product_id GROUP BY p.id HAVING total_qty * unit_price > 1000;"
+            ],
+            "expected": "SELECT p.id, p.name, SUM(oi.qty * oi.unit_price) AS total_sales FROM products p JOIN order_items oi ON p.id = oi.product_id GROUP BY p.id, p.name HAVING SUM(oi.qty * oi.unit_price) > 1000;",
+            "usesDocuments": [
+              "turn-2-brief"
+            ]
+          },
+          {
+            "id": "q5",
+            "kind": "cloze",
+            "prompt": "Given tables customers(id, city) and orders(id, customer_id, amount), write a SQL query using a subquery to return customers from cities where the average order amount (across all customers in that city) exceeds 200. Provide the SQL and briefly justify why you chose a subquery over a JOIN.",
+            "marks": 4,
+            "expected": "SELECT c.* FROM customers c WHERE c.city IN (SELECT c2.city FROM customers c2 JOIN orders o ON c2.id = o.customer_id GROUP BY c2.city HAVING AVG(o.amount) > 200);",
+            "idealAnswer": "SELECT c.* FROM customers c WHERE c.city IN (SELECT c2.city FROM customers c2 JOIN orders o ON c2.id = o.customer_id GROUP BY c2.city HAVING AVG(o.amount) > 200);",
+            "usesDocuments": [
+              "turn-2-brief",
+              "turn-2-sheet"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "turn-3",
+        "label": "Turn 3",
+        "briefing": "Complete Turn 3. Use the reference items on the desk.",
+        "documents": [
+          {
+            "id": "turn-3-brief",
+            "title": "Casewire Bulletin",
+            "type": "newspaper",
+            "width": 430,
+            "height": 340,
+            "persistent": false,
+            "headline": "Generate SQL Quiz. - Turn 3 Briefing",
+            "subhead": "Read the bulletin and supporting data before answering.",
+            "byline": "Scenario Desk",
+            "publishDate": "Turn 3/3 / Generated",
+            "columns": [
+              "Case focus: Promo / Code / Welcome / Null. Stage: mid-cycle validation. Progress: turn 3 of 3. This turn extends the case from Turn 2, especially around Customers / Orders / Name / Select.",
+              "Evidence digest: Cycle-time gains appear in 10/10 workflow stages.",
+              "Control note: Low-confidence rows are intended as review points, not direct conclusions."
+            ]
+          },
+          {
+            "id": "turn-3-sheet",
+            "title": "Operational Performance Sheet",
+            "type": "spreadsheet",
+            "width": 470,
+            "height": 330,
+            "persistent": false,
+            "filePath": "",
+            "table": {
+              "columns": [
+                "Workflow Step",
+                "Weekly Volume",
+                "Manual Cycle (h)",
+                "AI Cycle (h)",
+                "Variance Gain",
+                "Confidence",
+                "Status"
+              ],
+              "rows": [
+                [
+                  "Exception handling",
+                  "205",
+                  "7.8",
+                  "5.3",
+                  "32.4%",
+                  "94.9%",
+                  "Stable"
+                ],
+                [
+                  "Reporting prep",
+                  "137",
+                  "5.4",
+                  "3.3",
+                  "39.2%",
+                  "83.6%",
+                  "Stable"
+                ],
+                [
+                  "Stakeholder review",
+                  "168",
+                  "11.2",
+                  "6.3",
+                  "43.7%",
+                  "82.9%",
+                  "Stable"
+                ],
+                [
+                  "Closure checks",
+                  "235",
+                  "8.8",
+                  "6.0",
+                  "31.6%",
+                  "76.4%",
+                  "Review"
+                ],
+                [
+                  "Feedback loop",
+                  "125",
+                  "9.6",
+                  "4.7",
+                  "50.9%",
+                  "91.3%",
+                  "Stable"
+                ],
+                [
+                  "Policy update",
+                  "101",
+                  "5.5",
+                  "3.2",
+                  "41.9%",
+                  "81.0%",
+                  "Stable"
+                ],
+                [
+                  "Root-cause audit",
+                  "202",
+                  "4.8",
+                  "2.6",
+                  "45.7%",
+                  "81.0%",
+                  "Stable"
+                ],
+                [
+                  "Intake triage",
+                  "224",
+                  "7.5",
+                  "4.9",
+                  "34.5%",
+                  "95.0%",
+                  "Stable"
+                ],
+                [
+                  "Record cleanup",
+                  "127",
+                  "6.1",
+                  "3.4",
+                  "43.9%",
+                  "86.4%",
+                  "Stable"
+                ],
+                [
+                  "Validation pass",
+                  "198",
+                  "8.6",
+                  "5.7",
+                  "33.3%",
+                  "78.8%",
+                  "Review"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "turn-3-image",
+            "title": "Workflow Board",
+            "type": "image",
+            "width": 350,
+            "height": 260,
+            "persistent": false,
+            "imagePrompt": "Promo / Code / Welcome / Null. mid-cycle validation.",
+            "imageSrc": "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22760%22%20viewBox%3D%220%200%201200%20760%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%232b3447%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23576c8f%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22760%22%20fill%3D%22url(%23bg)%22%2F%3E%3Crect%20x%3D%2270%22%20y%3D%2270%22%20width%3D%221060%22%20height%3D%22620%22%20rx%3D%2224%22%20fill%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.35)%22%20stroke-width%3D%223%22%2F%3E%3Ctext%20x%3D%22110%22%20y%3D%22210%22%20fill%3D%22%23f4f8ff%22%20font-size%3D%2262%22%20font-family%3D%22Georgia%2C%20serif%22%3EGenerate%20SQL%20Quiz.%20T3%3C%2Ftext%3E%3Ctext%20x%3D%22110%22%20y%3D%22285%22%20fill%3D%22%23d7e4ff%22%20font-size%3D%2232%22%20font-family%3D%22Georgia%2C%20serif%22%3EPromo%20%2F%20Code%20%2F%20Welcome%20%2F%20Null%3C%2Ftext%3E%3C%2Fsvg%3E"
+          },
+          {
+            "id": "turn-3-memo",
+            "title": "Supervisor Strategy Memo",
+            "type": "memo",
+            "width": 390,
+            "height": 290,
+            "persistent": false,
+            "content": "Turn 3 Strategy Note\n\nStage: mid-cycle validation.\nCarry-over from Turn 2: Customers / Orders / Name / Select.\n\nGuidance:\n- This turn includes mixed signals by design.\n- Balance efficiency improvements against remaining risk.\n- Give a justified conclusion, not a one-sided claim.\n\nSignal summary: Cycle-time gains appear in 10/10 workflow stages. Low-confidence rows are intended as review points, not direct conclusions."
+          }
+        ],
+        "questions": [
+          {
+            "id": "q6",
+            "kind": "essay",
+            "prompt": "The DB admin provides two EXPLAIN outputs for a slow SELECT on the transactions table (id, user_id, amount, created_at): one before adding an index on created_at and one after. Explain in ~3–5 sentences which plan shows an index was used and what metrics in EXPLAIN indicate improvement. Attach what additional evidence (and which EXPLAIN fields) you would request to be confident about production impact.",
+            "marks": 6,
+            "idealAnswer": "After indexing, plan shows an index scan on created_at and lower estimated and actual rows scanned and smaller total cost; request runtime timings (actual time, buffers) and repeat EXPLAIN ANALYZE under production-like load.",
+            "usesDocuments": [
+              "turn-3-brief",
+              "turn-3-sheet"
+            ]
+          },
+          {
+            "id": "q7",
+            "kind": "multiple-choice",
+            "prompt": "You must construct a WHERE clause that matches rows where optional column promo_code IS NULL or equals 'WELCOME' — but exclude rows where promo_code is an empty string ''. Which predicate correctly implements three-valued logic to match only NULL or 'WELCOME' (and not '')?",
+            "marks": 6,
+            "options": [
+              "WHERE promo_code = NULL OR promo_code = 'WELCOME'",
+              "WHERE (promo_code IS NULL OR promo_code = 'WELCOME') AND (promo_code IS NOT NULL OR promo_code <> '')",
+              "WHERE (promo_code IS NULL OR promo_code = 'WELCOME') AND promo_code <> ''",
+              "WHERE COALESCE(promo_code, 'WELCOME') = 'WELCOME'"
+            ],
+            "expected": "WHERE (promo_code IS NULL OR promo_code = 'WELCOME') AND promo_code <> ''",
+            "usesDocuments": []
+          },
+          {
+            "id": "q8",
+            "kind": "sequence",
+            "prompt": "You need to produce a running total of amount per user ordered by created_at using window functions. Put these steps in correct execution order to write the query: A) SELECT user_id, amount, SUM(amount) OVER (PARTITION BY user_id ORDER BY created_at ROWS UNBOUNDED PRECEDING) AS running_total FROM transactions; B) Ensure ORDER BY created_at inside the OVER clause for deterministic running totals per user; C) Add an index on (user_id, created_at) if performance concerns arise; D) Verify results with sample data covering same-day timestamps. Order the sequence from writing query to validating and optimizing.",
+            "marks": 6,
+            "sequencePool": [
+              "D",
+              "C",
+              "B",
+              "A"
+            ],
+            "expected": [
+              "A",
+              "D",
+              "C",
+              "B"
+            ],
+            "usesDocuments": [
+              "turn-3-sheet",
+              "turn-3-image"
+            ]
+          },
+          {
+            "id": "q9",
+            "kind": "cloze",
+            "prompt": "As lead on a migration, design a single SQL statement that creates a denormalized reporting table monthly_user_summary populated from users(id, created_at) and transactions(user_id, amount, created_at). The table should include user_id, month (YYYY-MM), signup_month, total_spent_this_month, total_transactions_this_month, first_transaction_at, last_transaction_at. Provide the CREATE TABLE AS SELECT ... statement. Also name one tradeoff of this denormalized approach.",
+            "marks": 6,
+            "expected": "CREATE TABLE monthly_user_summary AS SELECT u.id AS user_id, to_char(t.created_at,'YYYY-MM') AS month, to_char(u.created_at,'YYYY-MM') AS signup_month, SUM(t.amount) AS total_spent_this_month, COUNT(*) AS total_transactions_this_month, MIN(t.created_at) AS first_transaction_at, MAX(t.created_at) AS last_transaction_at FROM users u JOIN transactions t ON u.id = t.user_id GROUP BY u.id, to_char(t.created_at,'YYYY-MM'), to_char(u.created_at,'YYYY-MM'); -- Tradeoff: faster reads but higher storage and need for ETL to keep current.",
+            "idealAnswer": "CREATE TABLE monthly_user_summary AS SELECT u.id AS user_id, to_char(t.created_at,'YYYY-MM') AS month, to_char(u.created_at,'YYYY-MM') AS signup_month, SUM(t.amount) AS total_spent_this_month, COUNT(*) AS total_transactions_this_month, MIN(t.created_at) AS first_transaction_at, MAX(t.created_at) AS last_transaction_at FROM users u JOIN transactions t ON u.id = t.user_id GROUP BY u.id, to_char(t.created_at,'YYYY-MM'), to_char(u.created_at,'YYYY-MM'); -- Tradeoff: faster reads but higher storage and need for ETL to keep current.",
+            "usesDocuments": [
+              "turn-3-brief",
+              "turn-3-sheet"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "turns": [
+    {
+      "turnId": "turn-1",
+      "turnLabel": "Turn 1",
+      "questions": [
+        {
+          "questionId": "q1",
+          "prompt": "You have a customers table (id, first_name, last_name, email, signup_date). Manager asks: write a SELECT to return only first_name and email for all customers. Which query is correct for this minimal retrieval task?",
+          "kind": "multiple-choice",
+          "marks": 2,
+          "answer": "GET first_name, email FROM customers;"
+        },
+        {
+          "questionId": "q2",
+          "prompt": "You have an orders table (order_id, customer_id, amount, status). Manager asks: fetch orders with amount > 100. The query 'SELECT * FROM orders WHERE amount > 100;' returns only those rows. True or False?",
+          "kind": "true-false",
+          "marks": 2,
+          "answer": "true"
+        }
+      ]
+    },
+    {
+      "turnId": "turn-2",
+      "turnLabel": "Turn 2",
+      "questions": [
+        {
+          "questionId": "q3",
+          "prompt": "After initial checks, the analytics lead asks you to join customers and orders to list customer email and their order amount for all orders placed in Jan 2026. Tables: customers(id, email), orders(id, customer_id, amount, placed_at). Which JOIN query is correct and avoids duplicating customers with multiple orders?",
+          "kind": "multiple-choice",
+          "marks": 4,
+          "answer": "SELECT email, amount FROM customers LEFT JOIN orders ON customers.id = orders.id WHERE placed_at BETWEEN '2026-01-01' AND '2026-01-31';"
+        },
+        {
+          "questionId": "q4",
+          "prompt": "You must report total sales per product and only include products with total_sales > 1000. Tables: products(id, name), order_items(id, order_id, product_id, qty, unit_price). Which query correctly uses GROUP BY and HAVING to meet this?",
+          "kind": "multiple-choice",
+          "marks": 4,
+          "answer": "SELECT p.name, SUM(oi.qty * oi.unit_price) FROM products p, order_items oi WHERE p.id = oi.product_id GROUP BY p.name WHERE SUM(oi.qty * oi.unit_price) > 1000;"
+        },
+        {
+          "questionId": "q5",
+          "prompt": "Given tables customers(id, city) and orders(id, customer_id, amount), write a SQL query using a subquery to return customers from cities where the average order amount (across all customers in that city) exceeds 200. Provide the SQL and briefly justify why you chose a subquery over a JOIN.",
+          "kind": "cloze",
+          "marks": 4,
+          "idealAnswer": "SELECT c.* FROM customers c WHERE c.city IN (SELECT c2.city FROM customers c2 JOIN orders o ON c2.id = o.customer_id GROUP BY c2.city HAVING AVG(o.amount) > 200);",
+          "answer": "123"
+        }
+      ]
+    },
+    {
+      "turnId": "turn-3",
+      "turnLabel": "Turn 3",
+      "questions": [
+        {
+          "questionId": "q6",
+          "prompt": "The DB admin provides two EXPLAIN outputs for a slow SELECT on the transactions table (id, user_id, amount, created_at): one before adding an index on created_at and one after. Explain in ~3–5 sentences which plan shows an index was used and what metrics in EXPLAIN indicate improvement. Attach what additional evidence (and which EXPLAIN fields) you would request to be confident about production impact.",
+          "kind": "essay",
+          "marks": 6,
+          "idealAnswer": "After indexing, plan shows an index scan on created_at and lower estimated and actual rows scanned and smaller total cost; request runtime timings (actual time, buffers) and repeat EXPLAIN ANALYZE under production-like load.",
+          "answer": "123"
+        },
+        {
+          "questionId": "q7",
+          "prompt": "You must construct a WHERE clause that matches rows where optional column promo_code IS NULL or equals 'WELCOME' — but exclude rows where promo_code is an empty string ''. Which predicate correctly implements three-valued logic to match only NULL or 'WELCOME' (and not '')?",
+          "kind": "multiple-choice",
+          "marks": 6,
+          "answer": "WHERE promo_code = NULL OR promo_code = 'WELCOME'"
+        },
+        {
+          "questionId": "q8",
+          "prompt": "You need to produce a running total of amount per user ordered by created_at using window functions. Put these steps in correct execution order to write the query: A) SELECT user_id, amount, SUM(amount) OVER (PARTITION BY user_id ORDER BY created_at ROWS UNBOUNDED PRECEDING) AS running_total FROM transactions; B) Ensure ORDER BY created_at inside the OVER clause for deterministic running totals per user; C) Add an index on (user_id, created_at) if performance concerns arise; D) Verify results with sample data covering same-day timestamps. Order the sequence from writing query to validating and optimizing.",
+          "kind": "sequence",
+          "marks": 6,
+          "answer": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        },
+        {
+          "questionId": "q9",
+          "prompt": "As lead on a migration, design a single SQL statement that creates a denormalized reporting table monthly_user_summary populated from users(id, created_at) and transactions(user_id, amount, created_at). The table should include user_id, month (YYYY-MM), signup_month, total_spent_this_month, total_transactions_this_month, first_transaction_at, last_transaction_at. Provide the CREATE TABLE AS SELECT ... statement. Also name one tradeoff of this denormalized approach.",
+          "kind": "cloze",
+          "marks": 6,
+          "idealAnswer": "CREATE TABLE monthly_user_summary AS SELECT u.id AS user_id, to_char(t.created_at,'YYYY-MM') AS month, to_char(u.created_at,'YYYY-MM') AS signup_month, SUM(t.amount) AS total_spent_this_month, COUNT(*) AS total_transactions_this_month, MIN(t.created_at) AS first_transaction_at, MAX(t.created_at) AS last_transaction_at FROM users u JOIN transactions t ON u.id = t.user_id GROUP BY u.id, to_char(t.created_at,'YYYY-MM'), to_char(u.created_at,'YYYY-MM'); -- Tradeoff: faster reads but higher storage and need for ETL to keep current.",
+          "answer": "123"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,759 @@
+{
+  "id": "019bb553-1736-4269-a27c-b973e46e87c2",
+  "userId": "Artemii (2)",
+  "completedAt": "2026-03-06T14:47:03.534Z",
+  "marked": false,
+  "markedAt": null,
+  "teacherName": null,
+  "maxScore": 40,
+  "awardedScore": 4,
+  "awardedMarks": {
+    "q1": 2,
+    "q2": 2,
+    "q3": 0,
+    "q4": 0,
+    "q5": 0,
+    "q8": 0,
+    "q9": 0
+  },
+  "quizData": {
+    "title": "Generated Quiz",
+    "turns": [
+      {
+        "id": "turn-1",
+        "label": "Turn 1",
+        "briefing": "Complete Turn 1. Use the reference items on the desk.",
+        "documents": [
+          {
+            "id": "turn-1-sheet",
+            "title": "Customer Orders Dataset",
+            "type": "spreadsheet",
+            "width": 470,
+            "height": 330,
+            "persistent": false,
+            "filePath": "",
+            "table": {
+              "columns": [
+                "customer_id",
+                "region",
+                "tier",
+                "orders_count",
+                "avg_order_value",
+                "total_spend",
+                "discount_pct",
+                "days_late",
+                "risk_score",
+                "payment_status"
+              ],
+              "rows": [
+                [
+                  "1100",
+                  "EMEA",
+                  "Mid-Market",
+                  "15",
+                  "1088",
+                  "16324",
+                  "4",
+                  "16",
+                  "37",
+                  "Late"
+                ],
+                [
+                  "1101",
+                  "NA",
+                  "SMB",
+                  "18",
+                  "1101",
+                  "19822",
+                  "4",
+                  "14",
+                  "83",
+                  "Late"
+                ],
+                [
+                  "1102",
+                  "LATAM",
+                  "Enterprise",
+                  "3",
+                  "710",
+                  "2131",
+                  "26",
+                  "10",
+                  "88",
+                  "On-time"
+                ],
+                [
+                  "1103",
+                  "APAC",
+                  "Mid-Market",
+                  "16",
+                  "1008",
+                  "16127",
+                  "2",
+                  "17",
+                  "46",
+                  "Late"
+                ],
+                [
+                  "1104",
+                  "EMEA",
+                  "SMB",
+                  "7",
+                  "807",
+                  "5649",
+                  "17",
+                  "10",
+                  "82",
+                  "On-time"
+                ],
+                [
+                  "1105",
+                  "NA",
+                  "Enterprise",
+                  "8",
+                  "581",
+                  "4650",
+                  "12",
+                  "17",
+                  "59",
+                  "Late"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "turn-1-brief",
+            "title": "Casewire Bulletin",
+            "type": "newspaper",
+            "width": 430,
+            "height": 340,
+            "persistent": false,
+            "headline": "Generate A Quiz About SQL. - Turn 1 Briefing",
+            "subhead": "Use this briefing together with the referenced evidence.",
+            "byline": "Scenario Desk",
+            "publishDate": "Turn 1/3 / Generated",
+            "columns": [
+              "Case focus: Name / Salary / Employees / First. Stage: baseline intake. Progress: turn 1 of 3. This is the opening turn for the case dossier.",
+              "Evidence digest: 3/6 rows are high-value accounts by total_spend.",
+              "Control note: 4/6 rows have payment_status=Late and may affect filtering logic."
+            ]
+          },
+          {
+            "id": "turn-1-memo",
+            "title": "Supervisor Memo",
+            "type": "memo",
+            "width": 390,
+            "height": 290,
+            "persistent": false,
+            "content": "Turn 1 Analyst Memo\n\nStage: baseline intake.\nStarting point: establish a baseline before selecting an answer.\n\nHow to use the evidence:\n1) Compare manual vs AI columns row-by-row.\n2) Verify whether the same pattern appears in most rows.\n3) Use the repeated pattern, not a single outlier, to answer.\n\nSignal summary: 3/6 rows are high-value accounts by total_spend. 4/6 rows have payment_status=Late and may affect filtering logic."
+          }
+        ],
+        "questions": [
+          {
+            "id": "q1",
+            "kind": "multiple-choice",
+            "prompt": "You are given a table employees(emp_id, first_name, last_name, department, salary). A developer wrote: SELECT first_name, last_name, salary FROM employees; The product manager asks for the full name in one column as 'full_name'. Which SQL expression best produces that result (assume standard SQL concatenation)?",
+            "marks": 2,
+            "options": [
+              "SELECT first_name || ' ' || last_name AS full_name, salary FROM employees;",
+              "SELECT CONCAT_WS('-', first_name,last_name) AS full_name, salary FROM employees;",
+              "SELECT first_name + ' ' + last_name AS full_name, salary FROM employees;",
+              "SELECT full_name, salary FROM employees;"
+            ],
+            "expected": "SELECT first_name || ' ' || last_name AS full_name, salary FROM employees;",
+            "usesDocuments": [
+              "turn-1-sheet"
+            ],
+            "tools": [
+              "calculator",
+              "notepad",
+              "highlighter",
+              "eraser"
+            ]
+          },
+          {
+            "id": "q2",
+            "kind": "true-false",
+            "prompt": "Case: The products table must ensure every product has a unique identifier. The team considers adding a primary key constraint on product_id. Statement: A primary key enforces uniqueness and also allows fast lookups by default in most RDBMS implementations.",
+            "marks": 2,
+            "expected": "true",
+            "usesDocuments": [
+              "turn-1-sheet"
+            ],
+            "tools": [
+              "calculator",
+              "notepad",
+              "highlighter",
+              "eraser"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "turn-2",
+        "label": "Turn 2",
+        "briefing": "Complete Turn 2. Use the reference items on the desk.",
+        "documents": [
+          {
+            "id": "turn-2-sheet",
+            "title": "Customer Orders Dataset",
+            "type": "spreadsheet",
+            "width": 470,
+            "height": 330,
+            "persistent": false,
+            "filePath": "",
+            "table": {
+              "columns": [
+                "customer_id",
+                "region",
+                "tier",
+                "orders_count",
+                "avg_order_value",
+                "total_spend",
+                "discount_pct",
+                "days_late",
+                "risk_score",
+                "payment_status"
+              ],
+              "rows": [
+                [
+                  "1200",
+                  "NA",
+                  "SMB",
+                  "13",
+                  "567",
+                  "7372",
+                  "26",
+                  "19",
+                  "34",
+                  "Late"
+                ],
+                [
+                  "1201",
+                  "LATAM",
+                  "Enterprise",
+                  "4",
+                  "973",
+                  "3893",
+                  "12",
+                  "7",
+                  "54",
+                  "On-time"
+                ],
+                [
+                  "1202",
+                  "APAC",
+                  "Mid-Market",
+                  "15",
+                  "649",
+                  "9742",
+                  "26",
+                  "16",
+                  "64",
+                  "Late"
+                ],
+                [
+                  "1203",
+                  "EMEA",
+                  "SMB",
+                  "13",
+                  "766",
+                  "9959",
+                  "11",
+                  "22",
+                  "82",
+                  "Late"
+                ],
+                [
+                  "1204",
+                  "NA",
+                  "Enterprise",
+                  "13",
+                  "833",
+                  "10834",
+                  "18",
+                  "17",
+                  "62",
+                  "Late"
+                ],
+                [
+                  "1205",
+                  "LATAM",
+                  "Mid-Market",
+                  "12",
+                  "352",
+                  "4229",
+                  "8",
+                  "16",
+                  "65",
+                  "Late"
+                ],
+                [
+                  "1206",
+                  "APAC",
+                  "SMB",
+                  "14",
+                  "875",
+                  "12257",
+                  "11",
+                  "5",
+                  "51",
+                  "On-time"
+                ],
+                [
+                  "1207",
+                  "EMEA",
+                  "Enterprise",
+                  "12",
+                  "424",
+                  "5088",
+                  "4",
+                  "1",
+                  "44",
+                  "On-time"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "turn-2-brief",
+            "title": "Casewire Bulletin",
+            "type": "newspaper",
+            "width": 430,
+            "height": 340,
+            "persistent": false,
+            "headline": "Generate A Quiz About SQL. - Turn 2 Briefing",
+            "subhead": "Use this briefing together with the referenced evidence.",
+            "byline": "Scenario Desk",
+            "publishDate": "Turn 2/3 / Generated",
+            "columns": [
+              "Case focus: Amount / Region / Avg / Sales. Stage: pilot rollout. Progress: turn 2 of 3. This turn extends the case from Turn 1, especially around Name / Salary / Employees / First.",
+              "Evidence digest: 5/8 rows are high-value accounts by total_spend.",
+              "Control note: 5/8 rows have payment_status=Late and may affect filtering logic."
+            ]
+          },
+          {
+            "id": "turn-2-transcript",
+            "title": "Operations Transcript",
+            "type": "transcript",
+            "width": 420,
+            "height": 300,
+            "persistent": false,
+            "entries": [
+              "Lead Analyst: Stage update is pilot rollout.",
+              "Ops Manager: We are continuing from Turn 1, where \"Name / Salary / Employees / First\" was the main thread.",
+              "Audit Officer: 5/8 rows are high-value accounts by total_spend.",
+              "Data Engineer: Outliers are intentional, validate the dominant pattern.",
+              "Lead Analyst: Final response must be evidence-backed, not assumption-backed."
+            ]
+          }
+        ],
+        "questions": [
+          {
+            "id": "q3",
+            "kind": "cloze",
+            "prompt": "Turn 2 continues: You have tables orders(order_id, customer_id, order_date) and customers(customer_id, name). Write a single SQL query that returns order_id, order_date, and customer name for all orders in 2023. Use standard JOIN syntax and filter by year using order_date.",
+            "marks": 4,
+            "expected": "SELECT o.order_id, o.order_date, c.name FROM orders o JOIN customers c ON o.customer_id = c.customer_id WHERE EXTRACT(YEAR FROM o.order_date) = 2023;",
+            "idealAnswer": "SELECT o.order_id, o.order_date, c.name FROM orders o JOIN customers c ON o.customer_id = c.customer_id WHERE EXTRACT(YEAR FROM o.order_date) = 2023;",
+            "usesDocuments": [
+              "turn-2-sheet"
+            ],
+            "tools": [
+              "calculator",
+              "notepad",
+              "highlighter",
+              "eraser"
+            ]
+          },
+          {
+            "id": "q4",
+            "kind": "sequence",
+            "prompt": "Using the sales table(sales_id, region, amount), you need to produce a summary showing region and total_sales, ordered from highest to lowest total. Order the steps below into the correct SQL operation sequence to achieve this.",
+            "marks": 4,
+            "sequencePool": [
+              "GROUP BY region",
+              "WHERE amount IS NOT NULL",
+              "ORDER BY total_sales DESC",
+              "SELECT region, SUM(amount) AS total_sales FROM sales"
+            ],
+            "expected": [
+              "SELECT region, SUM(amount) AS total_sales FROM sales",
+              "GROUP BY region",
+              "WHERE amount IS NOT NULL",
+              "ORDER BY total_sales DESC"
+            ],
+            "usesDocuments": [
+              "turn-2-sheet"
+            ],
+            "tools": [
+              "calculator",
+              "notepad",
+              "highlighter",
+              "eraser"
+            ]
+          },
+          {
+            "id": "q5",
+            "kind": "multiple-choice",
+            "prompt": "Case: The analytics team needs regions with average order value > 100. You must decide whether to filter using WHERE or HAVING. Which query correctly returns region and avg_amount for regions where average(amount) > 100?",
+            "marks": 4,
+            "options": [
+              "SELECT region, AVG(amount) AS avg_amount FROM sales GROUP BY region HAVING AVG(amount) > 100;",
+              "SELECT region, AVG(amount) AS avg_amount FROM sales WHERE AVG(amount) > 100 GROUP BY region;",
+              "SELECT region, AVG(amount) AS avg_amount FROM sales WHERE amount > 100 GROUP BY region HAVING amount > 100;",
+              "SELECT region, AVG(amount) AS avg_amount FROM sales GROUP BY region WHERE AVG(amount) > 100;"
+            ],
+            "expected": "SELECT region, AVG(amount) AS avg_amount FROM sales GROUP BY region HAVING AVG(amount) > 100;",
+            "usesDocuments": [],
+            "tools": [
+              "calculator",
+              "notepad"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "turn-3",
+        "label": "Turn 3",
+        "briefing": "Complete Turn 3. Use the reference items on the desk.",
+        "documents": [
+          {
+            "id": "turn-3-sheet",
+            "title": "Customer Orders Dataset",
+            "type": "spreadsheet",
+            "width": 470,
+            "height": 330,
+            "persistent": false,
+            "filePath": "",
+            "table": {
+              "columns": [
+                "customer_id",
+                "region",
+                "tier",
+                "orders_count",
+                "avg_order_value",
+                "total_spend",
+                "discount_pct",
+                "days_late",
+                "risk_score",
+                "payment_status"
+              ],
+              "rows": [
+                [
+                  "1300",
+                  "LATAM",
+                  "Enterprise",
+                  "14",
+                  "329",
+                  "4600",
+                  "5",
+                  "1",
+                  "89",
+                  "On-time"
+                ],
+                [
+                  "1301",
+                  "APAC",
+                  "Mid-Market",
+                  "3",
+                  "217",
+                  "650",
+                  "2",
+                  "16",
+                  "80",
+                  "Late"
+                ],
+                [
+                  "1302",
+                  "EMEA",
+                  "SMB",
+                  "12",
+                  "297",
+                  "3561",
+                  "3",
+                  "7",
+                  "55",
+                  "On-time"
+                ],
+                [
+                  "1303",
+                  "NA",
+                  "Enterprise",
+                  "17",
+                  "1150",
+                  "19545",
+                  "9",
+                  "9",
+                  "66",
+                  "On-time"
+                ],
+                [
+                  "1304",
+                  "LATAM",
+                  "Mid-Market",
+                  "14",
+                  "150",
+                  "2102",
+                  "26",
+                  "2",
+                  "76",
+                  "On-time"
+                ],
+                [
+                  "1305",
+                  "APAC",
+                  "SMB",
+                  "16",
+                  "439",
+                  "7025",
+                  "18",
+                  "11",
+                  "36",
+                  "Late"
+                ],
+                [
+                  "1306",
+                  "EMEA",
+                  "Enterprise",
+                  "5",
+                  "759",
+                  "3794",
+                  "24",
+                  "3",
+                  "91",
+                  "On-time"
+                ],
+                [
+                  "1307",
+                  "NA",
+                  "Mid-Market",
+                  "16",
+                  "1085",
+                  "17368",
+                  "12",
+                  "18",
+                  "79",
+                  "Late"
+                ],
+                [
+                  "1308",
+                  "LATAM",
+                  "SMB",
+                  "3",
+                  "991",
+                  "2973",
+                  "24",
+                  "8",
+                  "82",
+                  "On-time"
+                ],
+                [
+                  "1309",
+                  "APAC",
+                  "Enterprise",
+                  "3",
+                  "343",
+                  "1029",
+                  "2",
+                  "9",
+                  "47",
+                  "On-time"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "turn-3-brief",
+            "title": "Casewire Bulletin",
+            "type": "newspaper",
+            "width": 430,
+            "height": 340,
+            "persistent": false,
+            "headline": "Generate A Quiz About SQL. - Turn 3 Briefing",
+            "subhead": "Use this briefing together with the referenced evidence.",
+            "byline": "Scenario Desk",
+            "publishDate": "Turn 3/3 / Generated",
+            "columns": [
+              "Case focus: Read / Lost / Updates / Generate. Stage: mid-cycle validation. Progress: turn 3 of 3. This turn extends the case from Turn 2, especially around Amount / Region / Avg / Sales.",
+              "Evidence digest: 3/10 rows are high-value accounts by total_spend.",
+              "Control note: 3/10 rows have payment_status=Late and may affect filtering logic."
+            ]
+          },
+          {
+            "id": "turn-3-memo",
+            "title": "Supervisor Strategy Memo",
+            "type": "memo",
+            "width": 390,
+            "height": 290,
+            "persistent": false,
+            "content": "Turn 3 Strategy Note\n\nStage: mid-cycle validation.\nCarry-over from Turn 2: Amount / Region / Avg / Sales.\n\nGuidance:\n- This turn includes mixed signals by design.\n- Balance efficiency improvements against remaining risk.\n- Give a justified conclusion, not a one-sided claim.\n\nSignal summary: 3/10 rows are high-value accounts by total_spend. 3/10 rows have payment_status=Late and may affect filtering logic."
+          }
+        ],
+        "questions": [
+          {
+            "id": "q6",
+            "kind": "essay",
+            "prompt": "Turn 3 scenario: A production query joining orders and order_items is slow. Explain two indexing strategies to improve performance, show the SQL to create each index (using common column names), and discuss tradeoffs for write performance and storage. Evidence required: reference the scenario and justify choices.",
+            "marks": 6,
+            "idealAnswer": "CREATE INDEX idx_order_items_order_id ON order_items(order_id);\nCREATE INDEX idx_orders_order_date_status ON orders(order_date, status);\nTradeoffs: indexes speed reads but slow INSERT/UPDATE/DELETE and increase storage; composite index helps covered queries but must match query order.",
+            "usesDocuments": [
+              "turn-3-sheet",
+              "turn-3-memo"
+            ],
+            "tools": [
+              "calculator",
+              "notepad",
+              "highlighter",
+              "eraser"
+            ]
+          },
+          {
+            "id": "q7",
+            "kind": "essay",
+            "prompt": "A report shows incorrect totals: a developer aggregated sales.amount but joined to a promotions table that duplicates rows, inflating sums. Diagnose the root cause and provide two concrete fixes (SQL-level and schema-level). Evidence required: refer to join multiplicity and show corrected SQL.",
+            "marks": 6,
+            "idealAnswer": "Diagnosis: join duplicated promotions per sale causing multiplicative sums. SQL fix: aggregate sales before joining: WITH s AS (SELECT sale_id, SUM(amount) AS amt FROM sales GROUP BY sale_id) SELECT SUM(s.amt) FROM s JOIN promotions p ON s.sale_id = p.sale_id;\nSchema fix: add unique constraint on promotions(sale_id, promotion_type) or normalize promotions to avoid duplicates.",
+            "usesDocuments": [
+              "turn-3-sheet",
+              "turn-3-brief"
+            ],
+            "tools": [
+              "calculator",
+              "notepad",
+              "highlighter",
+              "eraser"
+            ]
+          },
+          {
+            "id": "q8",
+            "kind": "cloze",
+            "prompt": "Design a normalized schema for a simple library: books, authors, and loans. List tables with columns and primary/foreign keys. Evidence required: justify how your design avoids redundancy and supports many-to-many author relationships.",
+            "marks": 6,
+            "expected": "Tables: books(book_id PK, title, pub_year), authors(author_id PK, name), book_authors(book_id FK->books, author_id FK->authors, PK(book_id,author_id)), members(member_id PK, name), loans(loan_id PK, book_id FK->books, member_id FK->members, loan_date, return_date). Justification: book_authors avoids repeating author data and supports many-to-many; loans reference book and member to avoid duplicating loan info.",
+            "idealAnswer": "Tables: books(book_id PK, title, pub_year), authors(author_id PK, name), book_authors(book_id FK->books, author_id FK->authors, PK(book_id,author_id)), members(member_id PK, name), loans(loan_id PK, book_id FK->books, member_id FK->members, loan_date, return_date). Justification: book_authors avoids repeating author data and supports many-to-many; loans reference book and member to avoid duplicating loan info.",
+            "usesDocuments": [
+              "turn-3-sheet",
+              "turn-3-brief"
+            ],
+            "tools": [
+              "calculator",
+              "notepad",
+              "highlighter",
+              "eraser"
+            ]
+          },
+          {
+            "id": "q9",
+            "kind": "multiple-choice",
+            "prompt": "Your application experiences lost updates under concurrent transactions. You must choose an isolation level to prevent lost updates while minimizing locking. Which isolation level is the best compromise across many RDBMSs to prevent lost updates but avoid full serialization overhead?",
+            "marks": 6,
+            "options": [
+              "REPEATABLE READ",
+              "READ COMMITTED",
+              "SERIALIZABLE",
+              "READ UNCOMMITTED"
+            ],
+            "expected": "REPEATABLE READ",
+            "usesDocuments": [],
+            "tools": [
+              "notepad"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "turns": [
+    {
+      "turnId": "turn-1",
+      "turnLabel": "Turn 1",
+      "questions": [
+        {
+          "questionId": "q1",
+          "prompt": "You are given a table employees(emp_id, first_name, last_name, department, salary). A developer wrote: SELECT first_name, last_name, salary FROM employees; The product manager asks for the full name in one column as 'full_name'. Which SQL expression best produces that result (assume standard SQL concatenation)?",
+          "kind": "multiple-choice",
+          "marks": 2,
+          "answer": "SELECT first_name || ' ' || last_name AS full_name, salary FROM employees;"
+        },
+        {
+          "questionId": "q2",
+          "prompt": "Case: The products table must ensure every product has a unique identifier. The team considers adding a primary key constraint on product_id. Statement: A primary key enforces uniqueness and also allows fast lookups by default in most RDBMS implementations.",
+          "kind": "true-false",
+          "marks": 2,
+          "answer": "true"
+        }
+      ]
+    },
+    {
+      "turnId": "turn-2",
+      "turnLabel": "Turn 2",
+      "questions": [
+        {
+          "questionId": "q3",
+          "prompt": "Turn 2 continues: You have tables orders(order_id, customer_id, order_date) and customers(customer_id, name). Write a single SQL query that returns order_id, order_date, and customer name for all orders in 2023. Use standard JOIN syntax and filter by year using order_date.",
+          "kind": "cloze",
+          "marks": 4,
+          "idealAnswer": "SELECT o.order_id, o.order_date, c.name FROM orders o JOIN customers c ON o.customer_id = c.customer_id WHERE EXTRACT(YEAR FROM o.order_date) = 2023;",
+          "answer": "select *"
+        },
+        {
+          "questionId": "q4",
+          "prompt": "Using the sales table(sales_id, region, amount), you need to produce a summary showing region and total_sales, ordered from highest to lowest total. Order the steps below into the correct SQL operation sequence to achieve this.",
+          "kind": "sequence",
+          "marks": 4,
+          "answer": [
+            "ORDER BY total_sales DESC",
+            "GROUP BY region",
+            "SELECT region, SUM(amount) AS total_sales FROM sales",
+            "WHERE amount IS NOT NULL"
+          ]
+        },
+        {
+          "questionId": "q5",
+          "prompt": "Case: The analytics team needs regions with average order value > 100. You must decide whether to filter using WHERE or HAVING. Which query correctly returns region and avg_amount for regions where average(amount) > 100?",
+          "kind": "multiple-choice",
+          "marks": 4,
+          "answer": "SELECT region, AVG(amount) AS avg_amount FROM sales WHERE AVG(amount) > 100 GROUP BY region;"
+        }
+      ]
+    },
+    {
+      "turnId": "turn-3",
+      "turnLabel": "Turn 3",
+      "questions": [
+        {
+          "questionId": "q6",
+          "prompt": "Turn 3 scenario: A production query joining orders and order_items is slow. Explain two indexing strategies to improve performance, show the SQL to create each index (using common column names), and discuss tradeoffs for write performance and storage. Evidence required: reference the scenario and justify choices.",
+          "kind": "essay",
+          "marks": 6,
+          "idealAnswer": "CREATE INDEX idx_order_items_order_id ON order_items(order_id);\nCREATE INDEX idx_orders_order_date_status ON orders(order_date, status);\nTradeoffs: indexes speed reads but slow INSERT/UPDATE/DELETE and increase storage; composite index helps covered queries but must match query order.",
+          "answer": "asd"
+        },
+        {
+          "questionId": "q7",
+          "prompt": "A report shows incorrect totals: a developer aggregated sales.amount but joined to a promotions table that duplicates rows, inflating sums. Diagnose the root cause and provide two concrete fixes (SQL-level and schema-level). Evidence required: refer to join multiplicity and show corrected SQL.",
+          "kind": "essay",
+          "marks": 6,
+          "idealAnswer": "Diagnosis: join duplicated promotions per sale causing multiplicative sums. SQL fix: aggregate sales before joining: WITH s AS (SELECT sale_id, SUM(amount) AS amt FROM sales GROUP BY sale_id) SELECT SUM(s.amt) FROM s JOIN promotions p ON s.sale_id = p.sale_id;\nSchema fix: add unique constraint on promotions(sale_id, promotion_type) or normalize promotions to avoid duplicates.",
+          "answer": "asd"
+        },
+        {
+          "questionId": "q8",
+          "prompt": "Design a normalized schema for a simple library: books, authors, and loans. List tables with columns and primary/foreign keys. Evidence required: justify how your design avoids redundancy and supports many-to-many author relationships.",
+          "kind": "cloze",
+          "marks": 6,
+          "idealAnswer": "Tables: books(book_id PK, title, pub_year), authors(author_id PK, name), book_authors(book_id FK->books, author_id FK->authors, PK(book_id,author_id)), members(member_id PK, name), loans(loan_id PK, book_id FK->books, member_id FK->members, loan_date, return_date). Justification: book_authors avoids repeating author data and supports many-to-many; loans reference book and member to avoid duplicating loan info.",
+          "answer": "asd"
+        },
+        {
+          "questionId": "q9",
+          "prompt": "Your application experiences lost updates under concurrent transactions. You must choose an isolation level to prevent lost updates while minimizing locking. Which isolation level is the best compromise across many RDBMSs to prevent lost updates but avoid full serialization overhead?",
+          "kind": "multiple-choice",
+          "marks": 6,
+          "answer": "READ COMMITTED"
+        }
+      ]
+    }
+  ]
+}

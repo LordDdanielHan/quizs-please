@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import quizData from "./quiz-data.json";
+import quizDataJson from "./quiz-data.json";
+import { parseRuntimeQuizData, QUIZ_RUNTIME_SESSION_KEY } from "@/lib/quiz-runtime";
 import type {
   AnswerValue,
   DocumentDropAnswer,
@@ -10,6 +11,7 @@ import type {
   QuizData,
   QuizDocument,
   QuizQuestion,
+  QuizToolId,
   QuizTurn,
 } from "@/lib/quiz-types";
 
@@ -25,7 +27,7 @@ interface PlacedItem {
 }
 
 interface ToolSpec {
-  id: "calculator" | "notepad" | "converter" | "highlighter" | "eraser";
+  id: QuizToolId;
   title: string;
   width: number;
   height: number;
@@ -53,12 +55,13 @@ interface UnitDefinition {
   fromBase: (base: number) => number;
 }
 
-const data = quizData as QuizData;
+const defaultQuizData = quizDataJson as QuizData;
+const QUIZ_EDITOR_SESSION_KEY = "quiz-editor:questions";
 const PEEK_SIZE = 24;
 const MIN_WIDTH = 220;
 const MIN_HEIGHT = 150;
 
-const tools: ToolSpec[] = [
+const allToolSpecs: ToolSpec[] = [
   { id: "calculator", title: "Pocket Calculator", width: 280, height: 360 },
   { id: "notepad", title: "Inspector Notepad", width: 340, height: 290 },
   { id: "converter", title: "Unit Converter", width: 340, height: 300 },
@@ -154,7 +157,24 @@ function buildMarkerColor(hue: number, alpha: number): string {
   return `hsla(${Math.round(hue)}, 82%, 52%, ${alpha})`;
 }
 
+async function parseApiJson<T>(response: Response): Promise<T> {
+  const text = await response.text();
+  if (!text) {
+    return {} as T;
+  }
+
+  try {
+    return JSON.parse(text) as T;
+  } catch {
+    const preview = text.replace(/\s+/g, " ").trim().slice(0, 180);
+    throw new Error(
+      `Expected JSON from ${response.url} (status ${response.status}), received: ${preview || "<empty>"}`
+    );
+  }
+}
+
 export default function QuizPage() {
+  const [data, setData] = useState<QuizData>(defaultQuizData);
   const [userId, setUserId] = useState("");
   const [turnIndex, setTurnIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, AnswerValue>>({});
@@ -197,15 +217,62 @@ export default function QuizPage() {
     originH: number;
   } | null>(null);
 
+  useEffect(() => {
+    const parsed =
+      parseRuntimeQuizData(window.sessionStorage.getItem(QUIZ_RUNTIME_SESSION_KEY)) ??
+      parseRuntimeQuizData(window.sessionStorage.getItem(QUIZ_EDITOR_SESSION_KEY));
+    if (!parsed) {
+      return;
+    }
+    setData(parsed);
+    setTurnIndex(0);
+    setAnswers({});
+    setPlaced({});
+    setTurnModalOpen(false);
+    setFinished(false);
+    setSubmissionId("");
+    setErrorMessage("");
+  }, []);
+
   const turn: QuizTurn = data.turns[turnIndex];
   const totalTurns = data.turns.length;
+  const hasQuestionDocumentAssignments = useMemo(
+    () => turn.questions.some((question) => Array.isArray(question.usesDocuments)),
+    [turn.questions]
+  );
+  const activeTurnDocumentIds = useMemo(() => {
+    const ids = new Set<string>();
+    for (const question of turn.questions) {
+      if (!Array.isArray(question.usesDocuments)) {
+        continue;
+      }
+      for (const docId of question.usesDocuments) {
+        if (typeof docId !== "string") continue;
+        const normalizedId = docId.trim();
+        if (!normalizedId) continue;
+        ids.add(normalizedId);
+      }
+    }
+    return ids;
+  }, [turn.questions]);
 
   const visibleDocs = useMemo(() => {
     const docs: QuizDocument[] = [];
     const seen = new Set<string>();
 
-    for (let i = 0; i <= turnIndex; i += 1) {
+    if (hasQuestionDocumentAssignments && activeTurnDocumentIds.size === 0) {
+      return docs;
+    }
+
+    for (let i = 0; i <= turnIndex && i < data.turns.length; i += 1) {
       for (const doc of data.turns[i].documents) {
+        if (
+          hasQuestionDocumentAssignments &&
+          !activeTurnDocumentIds.has(doc.id)
+        ) {
+          continue;
+        }
+
         if ((i === turnIndex || doc.persistent) && !seen.has(doc.id)) {
           docs.push(doc);
           seen.add(doc.id);
@@ -214,7 +281,44 @@ export default function QuizPage() {
     }
 
     return docs;
-  }, [turnIndex]);
+  }, [activeTurnDocumentIds, data.turns, hasQuestionDocumentAssignments, turnIndex]);
+  const activeToolIds = useMemo(() => {
+    const ids = new Set<QuizToolId>();
+
+    for (const question of turn.questions) {
+      if (!Array.isArray(question.tools)) {
+        continue;
+      }
+      for (const toolId of question.tools) {
+        if (
+          toolId === "calculator" ||
+          toolId === "notepad" ||
+          toolId === "converter" ||
+          toolId === "highlighter" ||
+          toolId === "eraser"
+        ) {
+          ids.add(toolId);
+        }
+      }
+      if (Array.isArray(question.usesDocuments) && question.usesDocuments.length > 0) {
+        ids.add("highlighter");
+      }
+    }
+
+    if (ids.has("highlighter")) {
+      ids.add("eraser");
+    }
+
+    return ids;
+  }, [turn.questions]);
+  const visibleTools = useMemo(
+    () => allToolSpecs.filter((tool) => activeToolIds.has(tool.id)),
+    [activeToolIds]
+  );
+  const activeToolKeys = useMemo(
+    () => new Set(visibleTools.map((tool) => `tool:${tool.id}`)),
+    [visibleTools]
+  );
 
   const activeDocKeys = useMemo(() => new Set(visibleDocs.map((doc) => `doc:${doc.id}`)), [visibleDocs]);
   const visibleDocById = useMemo(
@@ -229,7 +333,7 @@ export default function QuizPage() {
       }
     }
     return docs;
-  }, []);
+  }, [data.turns]);
   const topLayerKey = useMemo(() => {
     const keys = Object.keys(placed);
     if (keys.length === 0) {
@@ -549,8 +653,8 @@ export default function QuizPage() {
         stack += 1;
       }
 
-      for (let index = 0; index < tools.length; index += 1) {
-        const tool = tools[index];
+      for (let index = 0; index < visibleTools.length; index += 1) {
+        const tool = visibleTools[index];
         const key = `tool:${tool.id}`;
         const existing = prev[key];
         if (existing) {
@@ -572,7 +676,7 @@ export default function QuizPage() {
       }
 
       for (const [key, value] of Object.entries(prev)) {
-        if (key.startsWith("tool:") && !next[key]) {
+        if (key.startsWith("tool:") && activeToolKeys.has(key) && !next[key]) {
           next[key] = value;
         }
         if (key.startsWith("doc:") && activeDocKeys.has(key) && !next[key]) {
@@ -582,7 +686,7 @@ export default function QuizPage() {
 
       return next;
     });
-  }, [activeDocKeys, boardSize.height, boardSize.width, clampItem, visibleDocs]);
+  }, [activeDocKeys, activeToolKeys, boardSize.height, boardSize.width, clampItem, visibleDocs, visibleTools]);
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -609,6 +713,16 @@ export default function QuizPage() {
       setToolCursor(null);
     }
   }, [markupMode]);
+
+  useEffect(() => {
+    if (markupMode === "highlight" && !activeToolIds.has("highlighter")) {
+      setMarkupMode("none");
+      return;
+    }
+    if (markupMode === "erase" && !activeToolIds.has("eraser")) {
+      setMarkupMode("none");
+    }
+  }, [activeToolIds, markupMode]);
 
   useEffect(() => {
     setStrokesByItem((prev) => {
@@ -969,14 +1083,14 @@ export default function QuizPage() {
       const response = await fetch("/api/quiz/submissions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId, answers }),
+        body: JSON.stringify({ userId, answers, quizData: data }),
       });
 
-      const payload = (await response.json()) as {
+      const payload = await parseApiJson<{
         submissionId?: string;
         userId?: string;
         error?: string;
-      };
+      }>(response);
 
       if (!response.ok || !payload.submissionId) {
         throw new Error(payload.error || "Failed to save submission");
@@ -1782,7 +1896,7 @@ export default function QuizPage() {
             );
           })}
 
-          {tools.map((tool) => {
+          {visibleTools.map((tool) => {
             const key = `tool:${tool.id}`;
             const item = placed[key];
             if (!item) {

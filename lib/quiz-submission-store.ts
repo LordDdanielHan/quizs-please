@@ -1,7 +1,7 @@
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
-import type { QuizSubmission, SubmissionListItem, SubmissionTurn } from "./quiz-types";
+import type { QuizData, QuizSubmission, SubmissionListItem, SubmissionTurn } from "./quiz-types";
 
 const submissionsDir = path.join(process.cwd(), "data", "quiz-submissions");
 
@@ -56,6 +56,7 @@ export async function createSubmission(
     turns: SubmissionTurn[];
     awardedScore?: number | null;
     awardedMarks?: Record<string, number>;
+    quizData?: QuizData;
   }
 ): Promise<QuizSubmission> {
   await ensureDir();
@@ -70,6 +71,7 @@ export async function createSubmission(
     maxScore: payload.maxScore,
     awardedScore: payload.awardedScore ?? null,
     awardedMarks: payload.awardedMarks ?? {},
+    quizData: payload.quizData,
     turns: payload.turns,
   };
 

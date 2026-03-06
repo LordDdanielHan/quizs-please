@@ -5,6 +5,7 @@ import {
   listSubmissions,
 } from "@/lib/quiz-submission-store";
 import { isAnswerCorrect, isAutoGradableQuestion } from "@/lib/quiz-grading";
+import { isQuizData } from "@/lib/quiz-runtime";
 import type { AnswerValue, QuizData, SubmissionTurn } from "@/lib/quiz-types";
 
 export const runtime = "nodejs";
@@ -12,6 +13,7 @@ export const runtime = "nodejs";
 interface CreateSubmissionBody {
   userId?: string;
   answers?: Record<string, AnswerValue>;
+  quizData?: unknown;
 }
 
 export async function GET() {
@@ -31,7 +33,8 @@ export async function POST(request: Request) {
     );
   }
 
-  const data = quizData as QuizData;
+  const fallbackData = quizData as QuizData;
+  const data = isQuizData(body.quizData) ? body.quizData : fallbackData;
   const awardedMarks: Record<string, number> = {};
   let awardedScore = 0;
   const turns: SubmissionTurn[] = data.turns.map((turn) => ({
@@ -67,6 +70,7 @@ export async function POST(request: Request) {
     turns,
     awardedMarks,
     awardedScore,
+    quizData: data,
   });
 
   return NextResponse.json({

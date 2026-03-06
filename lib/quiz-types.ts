@@ -25,6 +25,13 @@ export type DocumentType =
   | "transcript"
   | "checklist";
 
+export type QuizToolId =
+  | "calculator"
+  | "notepad"
+  | "converter"
+  | "highlighter"
+  | "eraser";
+
 export interface HighlightPoint {
   x: number;
   y: number;
@@ -85,6 +92,7 @@ export interface QuizQuestion {
   expected?: string | string[] | Record<string, string>;
   idealAnswer?: string;
   usesDocuments?: string[];
+  tools?: QuizToolId[];
   matchLeft?: string[];
   matchRight?: string[];
   sequencePool?: string[];
@@ -128,6 +136,7 @@ export interface QuizSubmission {
   maxScore: number;
   awardedScore: number | null;
   awardedMarks: Record<string, number>;
+  quizData?: QuizData;
   turns: SubmissionTurn[];
 }
 

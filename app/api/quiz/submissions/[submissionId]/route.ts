@@ -41,7 +41,8 @@ export async function PATCH(
   const body = (await request.json()) as MarkSubmissionBody;
   const awardedMarks = body.awardedMarks ?? {};
   const teacherName = (body.teacherName ?? "").trim();
-  const data = quizData as QuizData;
+  const fallbackData = quizData as QuizData;
+  const data = submission.quizData ?? fallbackData;
   const questionById = new Map<string, QuizQuestion>();
   for (const turn of data.turns) {
     for (const question of turn.questions) {

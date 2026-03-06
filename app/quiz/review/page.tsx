@@ -1,8 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import quizData from "@/app/quiz/quiz-data.json";
+import quizDataJson from "@/app/quiz/quiz-data.json";
 import { isAnswerCorrect, isAutoGradableQuestion } from "@/lib/quiz-grading";
+import { coerceQuizData, parseRuntimeQuizData, QUIZ_RUNTIME_SESSION_KEY } from "@/lib/quiz-runtime";
 import type {
   DocumentDropAnswer,
   HighlightStroke,
@@ -11,6 +12,9 @@ import type {
   QuizSubmission,
   SubmissionListItem,
 } from "@/lib/quiz-types";
+
+const fallbackQuiz = quizDataJson as QuizData;
+const QUIZ_EDITOR_SESSION_KEY = "quiz-editor:questions";
 
 function isDocumentDropAnswer(
   answer: QuizSubmission["turns"][number]["questions"][number]["answer"]
@@ -47,8 +51,33 @@ function formatAnswer(answer: QuizSubmission["turns"][number]["questions"][numbe
     .join("; ");
 }
 
+function buildQuestionMap(quiz: QuizData): Map<string, QuizQuestion> {
+  const map = new Map<string, QuizQuestion>();
+  for (const turn of quiz.turns) {
+    for (const question of turn.questions) {
+      map.set(question.id, question);
+    }
+  }
+  return map;
+}
+
+async function parseApiJson<T>(response: Response): Promise<T> {
+  const text = await response.text();
+  if (!text) {
+    return {} as T;
+  }
+
+  try {
+    return JSON.parse(text) as T;
+  } catch {
+    const preview = text.replace(/\s+/g, " ").trim().slice(0, 180);
+    throw new Error(
+      `Expected JSON from ${response.url} (status ${response.status}), received: ${preview || "<empty>"}`
+    );
+  }
+}
+
 export default function QuizReviewPage() {
-  const quiz = quizData as QuizData;
   const [submissions, setSubmissions] = useState<SubmissionListItem[]>([]);
   const [selectedUser, setSelectedUser] = useState<string>("all");
   const [selectedId, setSelectedId] = useState<string>("");
@@ -59,6 +88,12 @@ export default function QuizReviewPage() {
   const [loadingSubmission, setLoadingSubmission] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
+  const [sessionQuiz, setSessionQuiz] = useState<QuizData | null>(null);
+
+  const activeQuiz = useMemo(
+    () => coerceQuizData(submission?.quizData) ?? sessionQuiz ?? fallbackQuiz,
+    [sessionQuiz, submission?.quizData]
+  );
 
   const users = useMemo(() => {
     const ids = new Set(submissions.map((item) => item.userId));
@@ -72,22 +107,14 @@ export default function QuizReviewPage() {
     return submissions.filter((item) => item.userId === selectedUser);
   }, [selectedUser, submissions]);
 
-  const questionById = useMemo(() => {
-    const map = new Map<string, QuizQuestion>();
-    for (const turn of quiz.turns) {
-      for (const question of turn.questions) {
-        map.set(question.id, question);
-      }
-    }
-    return map;
-  }, [quiz.turns]);
+  const questionById = useMemo(() => buildQuestionMap(activeQuiz), [activeQuiz]);
   const quizMaxScore = useMemo(
     () =>
-      quiz.turns.reduce(
+      activeQuiz.turns.reduce(
         (turnSum, turn) => turnSum + turn.questions.reduce((questionSum, question) => questionSum + question.marks, 0),
         0
       ),
-    [quiz.turns]
+    [activeQuiz]
   );
 
   const getAutoMark = useCallback(
@@ -120,12 +147,13 @@ export default function QuizReviewPage() {
     setError("");
     try {
       const response = await fetch("/api/quiz/submissions", { cache: "no-store" });
-      const payload = (await response.json()) as { submissions?: SubmissionListItem[]; error?: string };
+      const payload = await parseApiJson<{ submissions?: SubmissionListItem[]; error?: string }>(response);
       if (!response.ok || !payload.submissions) {
         throw new Error(payload.error || "Failed to load submissions");
       }
-      setSubmissions(payload.submissions);
-      setSelectedId((prev) => prev || payload.submissions[0]?.id || "");
+      const list = payload.submissions;
+      setSubmissions(list);
+      setSelectedId((prev) => prev || list[0]?.id || "");
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "Failed to load submissions");
     } finally {
@@ -142,20 +170,32 @@ export default function QuizReviewPage() {
       setError("");
       try {
         const response = await fetch(`/api/quiz/submissions/${submissionId}`, { cache: "no-store" });
-        const payload = (await response.json()) as { submission?: QuizSubmission; error?: string };
+        const payload = await parseApiJson<{ submission?: QuizSubmission; error?: string }>(response);
         if (!response.ok || !payload.submission) {
           throw new Error(payload.error || "Failed to load submission");
         }
-        setSubmission(payload.submission);
-        setTeacherName(payload.submission.teacherName ?? "");
 
-        const mergedMarks = { ...(payload.submission.awardedMarks ?? {}) };
-        for (const turn of payload.submission.turns) {
+        const normalizedQuiz =
+          coerceQuizData(payload.submission.quizData) ?? sessionQuiz ?? fallbackQuiz;
+        const normalizedSubmission: QuizSubmission = {
+          ...payload.submission,
+          quizData: normalizedQuiz,
+        };
+
+        setSubmission(normalizedSubmission);
+        setTeacherName(normalizedSubmission.teacherName ?? "");
+
+        const mergedMarks = { ...(normalizedSubmission.awardedMarks ?? {}) };
+        const questionMap = buildQuestionMap(normalizedQuiz);
+        for (const turn of normalizedSubmission.turns) {
           for (const question of turn.questions) {
-            const auto = getAutoMark(question.questionId, question.answer);
-            if (auto !== null) {
-              mergedMarks[question.questionId] = auto;
+            const sourceQuestion = questionMap.get(question.questionId);
+            if (!sourceQuestion || !isAutoGradableQuestion(sourceQuestion)) {
+              continue;
             }
+            mergedMarks[question.questionId] = isAnswerCorrect(sourceQuestion, question.answer)
+              ? question.marks
+              : 0;
           }
         }
         setAwardedMarks(mergedMarks);
@@ -165,7 +205,7 @@ export default function QuizReviewPage() {
         setLoadingSubmission(false);
       }
     },
-    [getAutoMark]
+    [sessionQuiz]
   );
 
   async function saveMarks(): Promise<void> {
@@ -192,11 +232,14 @@ export default function QuizReviewPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ teacherName, awardedMarks: normalizedMarks }),
       });
-      const payload = (await response.json()) as { submission?: QuizSubmission; error?: string };
+      const payload = await parseApiJson<{ submission?: QuizSubmission; error?: string }>(response);
       if (!response.ok || !payload.submission) {
         throw new Error(payload.error || "Failed to save marks");
       }
-      setSubmission(payload.submission);
+      setSubmission({
+        ...payload.submission,
+        quizData: coerceQuizData(payload.submission.quizData) ?? activeQuiz,
+      });
       await loadList();
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "Failed to save marks");
@@ -204,6 +247,15 @@ export default function QuizReviewPage() {
       setSaving(false);
     }
   }
+
+  useEffect(() => {
+    const parsed =
+      parseRuntimeQuizData(window.sessionStorage.getItem(QUIZ_RUNTIME_SESSION_KEY)) ??
+      parseRuntimeQuizData(window.sessionStorage.getItem(QUIZ_EDITOR_SESSION_KEY));
+    if (parsed) {
+      setSessionQuiz(parsed);
+    }
+  }, []);
 
   useEffect(() => {
     void loadList();

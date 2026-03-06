@@ -8,6 +8,8 @@ import { CSS } from "@dnd-kit/utilities";
 import QuestionCard from "@/components/QuestionCard";
 import TypeSwitchModal from "@/components/TypeSwitchModal";
 import { mockTurns } from "@/lib/mockQuizData";
+import { buildQuizDataFromEditorTurns } from "@/lib/editor-to-quiz";
+import { QUIZ_RUNTIME_SESSION_KEY } from "@/lib/quiz-runtime";
 import {
   AnswerOption,
   EditorQuestion,
@@ -271,12 +273,42 @@ const normalizeTurn = (turn: Record<string, unknown>, index: number): Turn => {
   };
 };
 
-const questionsToTurns = (questions: Record<string, unknown>[]): Turn[] =>
-  questions.map((question, index) => ({
-    id: `turn-${index + 1}`,
-    label: `Turn ${index + 1}`,
-    questions: [normalizeQuestion(question)],
-  }));
+const readTurnNumber = (question: Record<string, unknown>, fallbackIndex: number): number => {
+  const extraProperties = question.extraProperties;
+  if (
+    extraProperties &&
+    typeof extraProperties === "object" &&
+    !Array.isArray(extraProperties)
+  ) {
+    const turn = (extraProperties as Record<string, unknown>).turn;
+    if (typeof turn === "number" && Number.isFinite(turn) && turn >= 1) {
+      return Math.round(turn);
+    }
+  }
+  return fallbackIndex + 1;
+};
+
+const questionsToTurns = (questions: Record<string, unknown>[]): Turn[] => {
+  const grouped = new Map<number, Record<string, unknown>[]>();
+
+  questions.forEach((question, index) => {
+    const turnNumber = readTurnNumber(question, index);
+    const bucket = grouped.get(turnNumber);
+    if (bucket) {
+      bucket.push(question);
+      return;
+    }
+    grouped.set(turnNumber, [question]);
+  });
+
+  return Array.from(grouped.entries())
+    .sort(([a], [b]) => a - b)
+    .map(([turnNumber, groupedQuestions]) => ({
+      id: `turn-${turnNumber}`,
+      label: `Turn ${turnNumber}`,
+      questions: groupedQuestions.map((question) => normalizeQuestion(question)),
+    }));
+};
 
 const serializeQuestion = (question: EditorQuestion) => {
   const nextBit: Record<string, unknown> = { ...question.sourceBit };
@@ -586,13 +618,9 @@ export default function QuizEditorPage() {
       })),
     }));
 
-    window.sessionStorage.setItem("next-page:state", JSON.stringify({ turns: finalTurns }));
-
-    (router as unknown as { push: (...args: unknown[]) => void }).push(
-      "/next-page",
-      undefined,
-      { state: { turns: finalTurns } }
-    );
+    const runtimeQuiz = buildQuizDataFromEditorTurns(finalTurns);
+    window.sessionStorage.setItem(QUIZ_RUNTIME_SESSION_KEY, JSON.stringify(runtimeQuiz));
+    router.push("/quiz");
   };
 
   const exportBitmarkFile = () => {
