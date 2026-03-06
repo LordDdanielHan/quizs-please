@@ -10,6 +10,13 @@ interface GenerationResult {
 }
 
 export default function Home() {
+  const processSteps = [
+    "Intake logged",
+    "Prompt dispatched",
+    "Model generating",
+    "Bitmark normalizing",
+    "Quiz ready",
+  ];
   const [topic, setTopic] = useState("");
   const [turns, setTurns] = useState(7);
   const [isLoading, setIsLoading] = useState(false);
@@ -64,6 +71,12 @@ export default function Home() {
   }, []);
 
   const bitCount = result?.quiz.length ?? 0;
+  const completedSteps = useMemo(() => {
+    if (processLog.length === 0) return 0;
+    return Math.min(processLog.length, processSteps.length);
+  }, [processLog, processSteps.length]);
+  const activeStepIndex = isLoading ? Math.min(completedSteps, processSteps.length - 1) : -1;
+  const progressPercent = processLog.length === 0 ? 0 : (completedSteps / processSteps.length) * 100;
   const jsonOutput = useMemo(() => {
     if (!result) return "";
     return JSON.stringify(result.quiz, null, 2);
@@ -80,18 +93,17 @@ export default function Home() {
     setIsLoading(true);
     setError(null);
     setResult(null);
-    setProcessLog([
-      "Request form stamped.",
-      "Sending topic to quiz generator...",
-      "Waiting for model response...",
-    ]);
+    setProcessLog(["Request form stamped."]);
 
     try {
-      const res = await fetch("/api/generate-quiz", {
+      setProcessLog((prev) => [...prev, "Sending topic to quiz generator..."]);
+      const responsePromise = fetch("/api/generate-quiz", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ topic: topic.trim(), turns }),
       });
+      setProcessLog((prev) => [...prev, "Waiting for model response..."]);
+      const res = await responsePromise;
       setProcessLog((prev) => [...prev, "Model response received. Normalizing with Bitmark..."]);
 
       const data = await res.json();
@@ -231,11 +243,38 @@ export default function Home() {
           )}
 
           {processLog.length > 0 && (
-            <ol className="pp-process-log">
-              {processLog.map((step, idx) => (
-                <li key={`${step}-${idx}`}>{step}</li>
-              ))}
-            </ol>
+            <>
+              <section className={`pp-progress ${error ? "pp-progress-error" : ""}`}>
+                <div className="pp-progress-head">
+                  <span>Pipeline Progress</span>
+                  <strong>{Math.round(progressPercent)}%</strong>
+                </div>
+                <div className="pp-progress-track" aria-hidden="true">
+                  <div className="pp-progress-fill" style={{ width: `${progressPercent}%` }} />
+                </div>
+                <ul className="pp-progress-steps">
+                  {processSteps.map((step, idx) => {
+                    const isDone = idx < completedSteps;
+                    const isActive = idx === activeStepIndex;
+                    return (
+                      <li
+                        key={step}
+                        className={`pp-progress-step ${isDone ? "pp-progress-step-done" : ""} ${isActive ? "pp-progress-step-active" : ""}`}
+                      >
+                        <span className="pp-progress-dot" />
+                        <span>{step}</span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </section>
+
+              <ol className="pp-process-log">
+                {processLog.map((step, idx) => (
+                  <li key={`${step}-${idx}`}>{step}</li>
+                ))}
+              </ol>
+            </>
           )}
 
           {isLoading && (
