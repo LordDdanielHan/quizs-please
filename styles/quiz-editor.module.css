@@ -1,0 +1,233 @@
+.page {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 16px 16px 100px;
+  background: #f6f7fb;
+  color: #1f2430;
+}
+
+.leftPanel,
+.rightPanel {
+  background: #ffffff;
+  border: 1px solid #dce1ea;
+  border-radius: 12px;
+  padding: 14px;
+  overflow: hidden;
+}
+
+.panelTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.cardList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: calc(100vh - 210px);
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.card {
+  background: #fcfdff;
+  border: 1px solid #dce1ea;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dragHandle {
+  border: 1px solid #dce1ea;
+  background: #f4f7fc;
+  border-radius: 8px;
+  padding: 6px;
+  cursor: grab;
+}
+
+.cardHeading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.typeBadge {
+  background: #e9eef8;
+  color: #2a3b68;
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 12px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.textarea,
+.select,
+.inlineInput {
+  border: 1px solid #ccd5e3;
+  border-radius: 8px;
+  padding: 7px 9px;
+  font-size: 14px;
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.expandedArea {
+  margin-top: 8px;
+  border-top: 1px dashed #d8dfec;
+  padding-top: 8px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.groupTitle {
+  margin: 0;
+}
+
+.optionRow,
+.pairRow {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.pairRow {
+  grid-template-columns: 1fr 1fr auto;
+}
+
+.inlineCheck {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.primaryButton,
+.secondaryButton,
+.dangerButton {
+  border-radius: 8px;
+  border: 1px solid #c7d2e5;
+  padding: 7px 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.primaryButton {
+  background: #2d67f8;
+  border-color: #2d67f8;
+  color: #ffffff;
+}
+
+.secondaryButton {
+  background: #f6f8fc;
+  color: #1f2937;
+}
+
+.dangerButton {
+  background: #fff4f4;
+  border-color: #eab4b4;
+  color: #9f1239;
+}
+
+.rightPanel {
+  display: flex;
+  flex-direction: column;
+}
+
+.helperText {
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: #4a5568;
+  font-size: 13px;
+}
+
+.flowContainer {
+  flex: 1;
+  min-height: calc(100vh - 180px);
+  border: 1px solid #dce1ea;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.confirmButton {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 20;
+  background: #0f766e;
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 20px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.emptyState {
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #dce1ea;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgb(17 24 39 / 45%);
+  display: grid;
+  place-items: center;
+  z-index: 100;
+}
+
+.modalCard {
+  width: min(460px, calc(100vw - 24px));
+  background: #ffffff;
+  border: 1px solid #dce1ea;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+@media (max-width: 980px) {
+  .page {
+    grid-template-columns: 1fr;
+  }
+
+  .cardList {
+    max-height: unset;
+  }
+
+  .flowContainer {
+    min-height: 420px;
+  }
+}
+
