@@ -2,7 +2,7 @@
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Quizs Please - AI Quiz Generator",
+  title: "Quizzes Please - AI Quiz Generator",
   description:
     "Generate structured quizzes in Bitmark format from a topic prompt and turn count.",
 };

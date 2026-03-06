@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import Image from "next/image";
+import React, { useEffect, useMemo, useState } from "react";
 import type { BitWrapperJson } from "@gmb/bitmark-parser-generator";
 import { AlertTriangle, CheckCircle2, Clipboard, Loader2, Wand2 } from "lucide-react";
 
@@ -17,6 +18,51 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [isCopied, setIsCopied] = useState(false);
   const [processLog, setProcessLog] = useState<string[]>([]);
+  const [showSplash, setShowSplash] = useState(true);
+  const [splashFadeOut, setSplashFadeOut] = useState(false);
+  const [logoReady, setLogoReady] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    const preload = new window.Image();
+    preload.src = "/logo.png";
+    const markReady = () => {
+      if (active) setLogoReady(true);
+    };
+    if (preload.complete) {
+      markReady();
+    } else {
+      preload.onload = markReady;
+      preload.onerror = markReady;
+    }
+    return () => {
+      active = false;
+      preload.onload = null;
+      preload.onerror = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!logoReady) return;
+    const fadeStartTimer = setTimeout(() => setSplashFadeOut(true), 3600);
+    const hideTimer = setTimeout(() => setShowSplash(false), 5600);
+    return () => {
+      clearTimeout(fadeStartTimer);
+      clearTimeout(hideTimer);
+    };
+  }, [logoReady]);
+
+  useEffect(() => {
+    let fallbackHideTimer: ReturnType<typeof setTimeout> | undefined;
+    const fallbackTimer = setTimeout(() => {
+      setSplashFadeOut(true);
+      fallbackHideTimer = setTimeout(() => setShowSplash(false), 2000);
+    }, 7800);
+    return () => {
+      clearTimeout(fallbackTimer);
+      if (fallbackHideTimer) clearTimeout(fallbackHideTimer);
+    };
+  }, []);
 
   const bitCount = result?.quiz.length ?? 0;
   const rawOutput = result?.rawText ?? "";
@@ -77,16 +123,35 @@ export default function Home() {
 
   return (
     <main className="pp-shell">
+      {showSplash && (
+        <section className={`pp-splash ${splashFadeOut ? "pp-splash-out" : ""}`} aria-hidden={splashFadeOut}>
+          <div className="pp-splash-logo-wrap">
+            <Image
+              src="/logo.png"
+              alt="Quizzes Please logo"
+              width={360}
+              height={120}
+              className={`pp-splash-logo ${logoReady ? "pp-splash-logo-ready" : ""}`}
+              priority
+            />
+          </div>
+        </section>
+      )}
+
       <div className="pp-noise" />
+      <div className="pp-bg-orb pp-bg-orb-a" />
+      <div className="pp-bg-orb pp-bg-orb-b" />
 
-      <section className="pp-header-wrap">
-        <p className="pp-kicker">Quizs Please</p>
-        <h1 className="pp-title">Central Quiz Intake Form</h1>
-        <p className="pp-subtitle">Describe your topic and instantly generate a polished, Bitmark-ready quiz.</p>
-      </section>
+      <section className={`pp-center-wrap pp-anim-rise-delayed ${showSplash ? "pp-preload-hide" : ""}`}>
+        <article className="pp-panel pp-form-panel pp-paper pp-hover-tilt">
+          <div className="pp-paper-hero">
+            <Image src="/logo.png" alt="Quizzes Please logo" width={260} height={88} className="pp-top-logo" />
+            <h1 className="pp-title pp-paper-title">Central Quiz Intake Form</h1>
+            <p className="pp-subtitle pp-paper-subtitle">
+              Describe your topic and instantly generate a polished, Bitmark-ready quiz.
+            </p>
+          </div>
 
-      <section className="pp-center-wrap">
-        <article className="pp-panel pp-form-panel pp-paper">
           <header className="pp-panel-head pp-paper-head">
             <div>
               <p className="pp-panel-kicker">Entry Permit</p>
@@ -142,7 +207,7 @@ export default function Home() {
 
         </article>
 
-        <article className="pp-panel pp-output-mini">
+        <article className="pp-panel pp-output-mini pp-hover-tilt">
           <header className="pp-panel-head pp-panel-head-mini">
             <div>
               <p className="pp-panel-kicker">Bitmark Trace</p>
