@@ -12,7 +12,6 @@ import {
   AnswerOption,
   EditorQuestion,
   FlowMap,
-  MatchPair,
   NodePositionMap,
   QuestionType,
   SUPPORTED_TYPES,
@@ -33,33 +32,59 @@ const makeId = () => Math.random().toString(36).slice(2, 10);
 
 const normalizeType = (input: unknown): QuestionType => {
   const cleaned =
-    typeof input === "string" ? input.replace(/^\./, "") : "multiple-choice-1";
+    typeof input === "string" ? input.replace(/^\./, "") : "multiple-choice";
   if (SUPPORTED_TYPES.includes(cleaned as QuestionType)) {
     return cleaned as QuestionType;
   }
-  return "multiple-choice-1";
+  return "multiple-choice";
 };
 
-const defaultOptions = (): AnswerOption[] => [
+const defaultOptions = (count = 2): AnswerOption[] =>
+  Array.from({ length: count }, () => ({ id: makeId(), text: "", isCorrect: false }));
+
+const defaultMultipleChoiceOptions = (): AnswerOption[] => [
+  { id: makeId(), text: "", isCorrect: true },
+  { id: makeId(), text: "", isCorrect: false },
   { id: makeId(), text: "", isCorrect: false },
   { id: makeId(), text: "", isCorrect: false },
 ];
 
-const defaultPairs = (): MatchPair[] => [
-  { id: makeId(), left: "", right: "" },
-  { id: makeId(), left: "", right: "" },
+const defaultTrueFalseOptions = (): AnswerOption[] => [
+  { id: makeId(), text: "True", isCorrect: true },
+  { id: makeId(), text: "False", isCorrect: false },
 ];
 
-const defaultsForType = (
-  type: QuestionType
-): Pick<EditorQuestion, "options" | "pairs" | "sampleAnswer"> => {
-  if (type === "match") {
-    return { options: [], pairs: defaultPairs(), sampleAnswer: "" };
+const defaultInstructionForType = (type: QuestionType): string => {
+  if (type === "multiple-choice") return "Select one answer.";
+  if (type === "true-false-1") return "Select whether the statement is true or false.";
+  if (type === "question-1") return "Provide a short answer.";
+  if (type === "sequence") return "Arrange the responses in the correct order.";
+  return "Write your answer.";
+};
+
+const defaultsForType = (type: QuestionType): Pick<EditorQuestion, "options" | "sampleSolution" | "instruction"> => {
+  if (type === "multiple-choice") {
+    return {
+      options: defaultMultipleChoiceOptions(),
+      sampleSolution: "",
+      instruction: defaultInstructionForType(type),
+    };
   }
-  if (type === "essay") {
-    return { options: [], pairs: [], sampleAnswer: "" };
+  if (type === "true-false-1") {
+    return {
+      options: defaultTrueFalseOptions(),
+      sampleSolution: "",
+      instruction: defaultInstructionForType(type),
+    };
   }
-  return { options: defaultOptions(), pairs: [], sampleAnswer: "" };
+  if (type === "sequence") {
+    return {
+      options: defaultOptions(),
+      sampleSolution: "",
+      instruction: defaultInstructionForType(type),
+    };
+  }
+  return { options: [], sampleSolution: "", instruction: defaultInstructionForType(type) };
 };
 
 const parseArraySafe = (value: unknown): Record<string, unknown>[] | null => {
@@ -78,13 +103,13 @@ const parseArraySafe = (value: unknown): Record<string, unknown>[] | null => {
 };
 
 const readQuestionBody = (bit: Record<string, unknown>): string => {
-  const item = bit.item;
-  if (typeof item === "string") {
-    return item;
-  }
   const body = bit.body;
   if (typeof body === "string") {
     return body;
+  }
+  const item = bit.item;
+  if (typeof item === "string") {
+    return item;
   }
   const cardNode = bit.cardNode as Record<string, unknown> | undefined;
   if (cardNode && typeof cardNode.body === "string") {
@@ -93,7 +118,26 @@ const readQuestionBody = (bit: Record<string, unknown>): string => {
   return "";
 };
 
-const readOptions = (bit: Record<string, unknown>): AnswerOption[] => {
+const readInstruction = (bit: Record<string, unknown>, type: QuestionType): string => {
+  return typeof bit.instruction === "string"
+    ? (bit.instruction as string)
+    : defaultInstructionForType(type);
+};
+
+const readMultipleChoiceOptions = (bit: Record<string, unknown>): AnswerOption[] => {
+  const choices = bit.choices;
+  if (Array.isArray(choices)) {
+    const normalized = choices.map((choice) => {
+      const record = choice as Record<string, unknown>;
+      return {
+        id: makeId(),
+        text: typeof record.choice === "string" ? (record.choice as string) : "",
+        isCorrect: record.isCorrect === true,
+      };
+    });
+    return normalized.length > 0 ? normalized : defaultMultipleChoiceOptions();
+  }
+
   const responses = bit.responses;
   const solutions = Array.isArray(bit.solutions)
     ? (bit.solutions as Array<Record<string, unknown>>)
@@ -120,29 +164,49 @@ const readOptions = (bit: Record<string, unknown>): AnswerOption[] => {
       isCorrect: correctValues.has(text),
     };
   });
+  return normalized.length > 0 ? normalized : defaultMultipleChoiceOptions();
+};
+
+const readTrueFalseOptions = (bit: Record<string, unknown>): AnswerOption[] => {
+  const statements = bit.statements;
+  if (Array.isArray(statements)) {
+    const first = statements[0] as Record<string, unknown> | undefined;
+    const correctStatement = first && typeof first.statement === "string" ? first.statement : "True";
+    return [
+      { id: makeId(), text: "True", isCorrect: correctStatement === "True" },
+      { id: makeId(), text: "False", isCorrect: correctStatement === "False" },
+    ];
+  }
+  return defaultTrueFalseOptions();
+};
+
+const readSequenceResponses = (bit: Record<string, unknown>): AnswerOption[] => {
+  const responses = bit.responses;
+  if (!Array.isArray(responses)) {
+    return defaultOptions();
+  }
+  const normalized = responses.map((response) => {
+    const record = response as Record<string, unknown>;
+    return {
+      id: makeId(),
+      text:
+        typeof response === "string"
+          ? response
+          : typeof record.response === "string"
+            ? (record.response as string)
+            : typeof record.text === "string"
+              ? (record.text as string)
+              : "",
+      isCorrect: true,
+    };
+  });
   return normalized.length > 0 ? normalized : defaultOptions();
 };
 
-const readPairs = (bit: Record<string, unknown>): MatchPair[] => {
-  const pairs = bit.pairs;
-  if (!Array.isArray(pairs)) {
-    return defaultPairs();
+const readSampleSolution = (bit: Record<string, unknown>): string => {
+  if (typeof bit.sampleSolution === "string") {
+    return bit.sampleSolution as string;
   }
-  const normalized = pairs.map((pair) => {
-    const record = pair as Record<string, unknown>;
-    const rightValues = Array.isArray(record.values)
-      ? (record.values as unknown[])
-      : [];
-    return {
-      id: makeId(),
-      left: typeof record.key === "string" ? record.key : "",
-      right: typeof rightValues[0] === "string" ? (rightValues[0] as string) : "",
-    };
-  });
-  return normalized.length > 0 ? normalized : defaultPairs();
-};
-
-const readSampleAnswer = (bit: Record<string, unknown>): string => {
   const solutions = Array.isArray(bit.solutions)
     ? (bit.solutions as Array<Record<string, unknown>>)
     : [];
@@ -157,11 +221,16 @@ const normalizeQuestion = (bit: Record<string, unknown>): EditorQuestion => {
     type,
     body: readQuestionBody(bit),
     options:
-      type === "multiple-choice-1" || type === "multiple-response-1"
-        ? readOptions(bit)
-        : [],
-    sampleAnswer: type === "essay" ? readSampleAnswer(bit) : "",
-    pairs: type === "match" ? readPairs(bit) : [],
+      type === "multiple-choice"
+        ? readMultipleChoiceOptions(bit)
+        : type === "true-false-1"
+          ? readTrueFalseOptions(bit)
+          : type === "sequence"
+            ? readSequenceResponses(bit)
+            : [],
+    sampleSolution:
+      type === "question-1" || type === "essay" ? readSampleSolution(bit) : "",
+    instruction: readInstruction(bit, type),
     sourceBit: bit,
   };
 };
@@ -170,35 +239,57 @@ const serializeQuestion = (question: EditorQuestion, flow: FlowMap) => {
   const nextBit: Record<string, unknown> = { ...question.sourceBit };
   nextBit.id = question.id;
   nextBit.type = question.type;
-  nextBit.item = question.body;
+  nextBit.body = question.body;
+  nextBit.instruction = question.instruction.trim() || defaultInstructionForType(question.type);
 
-  if (question.type === "multiple-choice-1" || question.type === "multiple-response-1") {
-    const cleanedOptions = question.options.filter((option) => option.text.trim().length > 0);
-    nextBit.responses = cleanedOptions.map((option) => ({ text: option.text.trim() }));
-    nextBit.solutions = cleanedOptions
-      .filter((option) => option.isCorrect)
-      .map((option) => ({ response: option.text.trim(), isExample: false }));
-    delete nextBit.pairs;
-  }
+  delete nextBit.item;
+  delete nextBit.choices;
+  delete nextBit.statements;
+  delete nextBit.responses;
+  delete nextBit.solutions;
+  delete nextBit.pairs;
+  delete nextBit.sampleSolution;
 
-  if (question.type === "essay") {
-    nextBit.responses = [];
-    nextBit.solutions = question.sampleAnswer.trim()
-      ? [{ response: question.sampleAnswer.trim(), isExample: false }]
-      : [];
-    delete nextBit.pairs;
-  }
-
-  if (question.type === "match") {
-    const cleanedPairs = question.pairs.filter(
-      (pair) => pair.left.trim().length > 0 || pair.right.trim().length > 0
-    );
-    nextBit.pairs = cleanedPairs.map((pair) => ({
-      key: pair.left.trim(),
-      values: [pair.right.trim()],
+  if (question.type === "multiple-choice") {
+    const cleanedOptions = question.options.map((option) => ({
+      ...option,
+      text: option.text.trim(),
     }));
-    nextBit.responses = [];
-    nextBit.solutions = [];
+    while (cleanedOptions.length < 4) {
+      cleanedOptions.push({ id: makeId(), text: "", isCorrect: false });
+    }
+    const exactFour = cleanedOptions.slice(0, 4);
+    const firstCorrectIndex = exactFour.findIndex((option) => option.isCorrect);
+    const normalizedCorrectIndex = firstCorrectIndex >= 0 ? firstCorrectIndex : 0;
+    nextBit.choices = exactFour.map((option, index) => ({
+      choice: option.text,
+      isCorrect: index === normalizedCorrectIndex,
+    }));
+  }
+
+  if (question.type === "true-false-1") {
+    const trueOption = question.options.find((option) => option.text === "True");
+    const falseOption = question.options.find((option) => option.text === "False");
+    const correctStatement = trueOption?.isCorrect
+      ? "True"
+      : falseOption?.isCorrect
+        ? "False"
+        : "True";
+    nextBit.statements = [{ statement: correctStatement, isCorrect: true }];
+  }
+
+  if (question.type === "question-1" || question.type === "essay") {
+    nextBit.sampleSolution = question.sampleSolution.trim();
+  }
+
+  if (question.type === "sequence") {
+    const cleanedResponses = question.options
+      .map((option) => option.text.trim())
+      .filter((text) => text.length > 0);
+    nextBit.responses = cleanedResponses.map((response) => ({
+      response,
+      isCorrect: true,
+    }));
   }
 
   nextBit.flow = flow[question.id] ?? { correct: "end", incorrect: "end" };
@@ -207,11 +298,11 @@ const serializeQuestion = (question: EditorQuestion, flow: FlowMap) => {
 
 const emptyQuestion = (): EditorQuestion => ({
   id: makeId(),
-  type: "multiple-choice-1",
+  type: "multiple-choice",
   body: "",
-  options: defaultOptions(),
-  sampleAnswer: "",
-  pairs: [],
+  options: defaultMultipleChoiceOptions(),
+  sampleSolution: "",
+  instruction: defaultInstructionForType("multiple-choice"),
   sourceBit: {},
 });
 
@@ -412,7 +503,10 @@ export default function QuizEditorPage() {
                       ...previous,
                       options: previous.options.map((option) => {
                         if (option.id !== optionId) {
-                          if (previous.type === "multiple-choice-1") {
+                          if (
+                            previous.type === "multiple-choice" ||
+                            previous.type === "true-false-1"
+                          ) {
                             return { ...option, isCorrect: false };
                           }
                           return option;
@@ -436,30 +530,16 @@ export default function QuizEditorPage() {
                       options: previous.options.filter((option) => option.id !== optionId),
                     }))
                   }
-                  onSampleAnswerChange={(id, value) =>
+                  onSampleSolutionChange={(id, value) =>
                     updateQuestion(id, (previous) => ({
                       ...previous,
-                      sampleAnswer: value,
+                      sampleSolution: value,
                     }))
                   }
-                  onPairChange={(id, pairId, side, value) =>
+                  onInstructionChange={(id, value) =>
                     updateQuestion(id, (previous) => ({
                       ...previous,
-                      pairs: previous.pairs.map((pair) =>
-                        pair.id === pairId ? { ...pair, [side]: value } : pair
-                      ),
-                    }))
-                  }
-                  onAddPair={(id) =>
-                    updateQuestion(id, (previous) => ({
-                      ...previous,
-                      pairs: [...previous.pairs, { id: makeId(), left: "", right: "" }],
-                    }))
-                  }
-                  onRemovePair={(id, pairId) =>
-                    updateQuestion(id, (previous) => ({
-                      ...previous,
-                      pairs: previous.pairs.filter((pair) => pair.id !== pairId),
+                      instruction: value,
                     }))
                   }
                 />

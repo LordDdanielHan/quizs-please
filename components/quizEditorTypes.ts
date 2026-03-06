@@ -1,8 +1,9 @@
 export const SUPPORTED_TYPES = [
-  "multiple-choice-1",
-  "multiple-response-1",
+  "multiple-choice",
+  "true-false-1",
+  "question-1",
   "essay",
-  "match",
+  "sequence",
 ] as const;
 
 export type QuestionType = (typeof SUPPORTED_TYPES)[number];
@@ -15,19 +16,13 @@ export interface AnswerOption {
   isCorrect: boolean;
 }
 
-export interface MatchPair {
-  id: string;
-  left: string;
-  right: string;
-}
-
 export interface EditorQuestion {
   id: string;
   type: QuestionType;
   body: string;
   options: AnswerOption[];
-  sampleAnswer: string;
-  pairs: MatchPair[];
+  sampleSolution: string;
+  instruction: string;
   sourceBit: Record<string, unknown>;
 }
 
@@ -40,4 +35,3 @@ export type FlowMap = Record<
 >;
 
 export type NodePositionMap = Record<string, { x: number; y: number }>;
-

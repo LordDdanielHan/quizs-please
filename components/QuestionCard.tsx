@@ -16,15 +16,8 @@ interface QuestionCardProps {
   onOptionCorrectChange: (id: string, optionId: string, checked: boolean) => void;
   onAddOption: (id: string) => void;
   onRemoveOption: (id: string, optionId: string) => void;
-  onSampleAnswerChange: (id: string, value: string) => void;
-  onPairChange: (
-    id: string,
-    pairId: string,
-    side: "left" | "right",
-    value: string
-  ) => void;
-  onAddPair: (id: string) => void;
-  onRemovePair: (id: string, pairId: string) => void;
+  onSampleSolutionChange: (id: string, value: string) => void;
+  onInstructionChange: (id: string, value: string) => void;
 }
 
 const typeLabel = (type: QuestionType): string => `.${type}`;
@@ -40,10 +33,8 @@ export default function QuestionCard({
   onOptionCorrectChange,
   onAddOption,
   onRemoveOption,
-  onSampleAnswerChange,
-  onPairChange,
-  onAddPair,
-  onRemovePair,
+  onSampleSolutionChange,
+  onInstructionChange,
 }: QuestionCardProps) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: question.id });
@@ -107,10 +98,9 @@ export default function QuestionCard({
 
       {isActive && (
         <div className={styles.expandedArea}>
-          {(question.type === "multiple-choice-1" ||
-            question.type === "multiple-response-1") && (
+          {question.type === "multiple-choice" && (
             <div className={styles.group}>
-              <h4 className={styles.groupTitle}>Answer Options</h4>
+              <h4 className={styles.groupTitle}>Choices (exactly 4)</h4>
               {question.options.map((option) => (
                 <div key={option.id} className={styles.optionRow}>
                   <input
@@ -123,9 +113,9 @@ export default function QuestionCard({
                     }
                   />
                   <label className={styles.inlineCheck}>
-                    {question.type === "multiple-choice-1" ? "Correct" : "Correct?"}
+                    Correct
                     <input
-                      type={question.type === "multiple-choice-1" ? "radio" : "checkbox"}
+                      type="radio"
                       name={`correct-${question.id}`}
                       checked={option.isCorrect}
                       onChange={(event) =>
@@ -146,6 +136,51 @@ export default function QuestionCard({
                   </button>
                 </div>
               ))}
+            </div>
+          )}
+
+          {question.type === "true-false-1" && (
+            <div className={styles.group}>
+              <h4 className={styles.groupTitle}>Correct Statement</h4>
+              {question.options.map((option) => (
+                <label key={option.id} className={styles.inlineCheck}>
+                  {option.text}
+                  <input
+                    type="radio"
+                    name={`tf-${question.id}`}
+                    checked={option.isCorrect}
+                    onChange={(event) =>
+                      onOptionCorrectChange(question.id, option.id, event.target.checked)
+                    }
+                  />
+                </label>
+              ))}
+            </div>
+          )}
+
+          {question.type === "sequence" && (
+            <div className={styles.group}>
+              <h4 className={styles.groupTitle}>Ordered Responses</h4>
+              {question.options.map((option) => (
+                <div key={option.id} className={styles.optionRow}>
+                  <input
+                    className={styles.inlineInput}
+                    type="text"
+                    value={option.text}
+                    placeholder="Step text"
+                    onChange={(event) =>
+                      onOptionTextChange(question.id, option.id, event.target.value)
+                    }
+                  />
+                  <button
+                    type="button"
+                    className={styles.dangerButton}
+                    onClick={() => onRemoveOption(question.id, option.id)}
+                  >
+                    Remove
+                  </button>
+                </div>
+              ))}
               <button
                 type="button"
                 className={styles.secondaryButton}
@@ -156,64 +191,35 @@ export default function QuestionCard({
             </div>
           )}
 
-          {question.type === "essay" && (
+          {(question.type === "question-1" || question.type === "essay" || question.type === "sequence") && (
             <label className={styles.label}>
-              Sample Answer (Optional)
+              Instruction
               <textarea
                 className={styles.textarea}
-                value={question.sampleAnswer}
-                rows={3}
+                value={question.instruction}
+                rows={2}
                 onChange={(event) =>
-                  onSampleAnswerChange(question.id, event.target.value)
+                  onInstructionChange(question.id, event.target.value)
                 }
               />
             </label>
           )}
 
-          {question.type === "match" && (
-            <div className={styles.group}>
-              <h4 className={styles.groupTitle}>Match Pairs</h4>
-              {question.pairs.map((pair) => (
-                <div key={pair.id} className={styles.pairRow}>
-                  <input
-                    className={styles.inlineInput}
-                    type="text"
-                    value={pair.left}
-                    placeholder="Left item"
-                    onChange={(event) =>
-                      onPairChange(question.id, pair.id, "left", event.target.value)
-                    }
-                  />
-                  <input
-                    className={styles.inlineInput}
-                    type="text"
-                    value={pair.right}
-                    placeholder="Right item"
-                    onChange={(event) =>
-                      onPairChange(question.id, pair.id, "right", event.target.value)
-                    }
-                  />
-                  <button
-                    type="button"
-                    className={styles.dangerButton}
-                    onClick={() => onRemovePair(question.id, pair.id)}
-                  >
-                    Remove
-                  </button>
-                </div>
-              ))}
-              <button
-                type="button"
-                className={styles.secondaryButton}
-                onClick={() => onAddPair(question.id)}
-              >
-                Add Pair
-              </button>
-            </div>
+          {(question.type === "question-1" || question.type === "essay") && (
+            <label className={styles.label}>
+              Sample Solution (Optional)
+              <textarea
+                className={styles.textarea}
+                value={question.sampleSolution}
+                rows={3}
+                onChange={(event) =>
+                  onSampleSolutionChange(question.id, event.target.value)
+                }
+              />
+            </label>
           )}
         </div>
       )}
     </article>
   );
 }
-

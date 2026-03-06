@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import type { BitWrapperJson } from "@gmb/bitmark-parser-generator";
 import { AlertTriangle, CheckCircle2, Clipboard, Loader2, Wand2 } from "lucide-react";
 
@@ -10,6 +11,7 @@ interface GenerationResult {
 }
 
 export default function Home() {
+  const router = useRouter();
   const [topic, setTopic] = useState("");
   const [turns, setTurns] = useState(7);
   const [isLoading, setIsLoading] = useState(false);
@@ -60,6 +62,15 @@ export default function Home() {
         ...prev,
         `Done. Generated ${data.quiz?.length ?? 0} Bitmark question wrappers.`,
       ]);
+
+      const editorBits = Array.isArray(data.quiz)
+        ? data.quiz
+            .map((wrapper: BitWrapperJson) => wrapper?.bit)
+            .filter((bit: unknown): bit is Record<string, unknown> => !!bit && typeof bit === "object")
+        : [];
+
+      window.sessionStorage.setItem("quiz-editor:questions", JSON.stringify(editorBits));
+      router.push("/quiz-editor");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unexpected server error.");
       setProcessLog((prev) => [...prev, "Generation failed. See error report below."]);
