@@ -19,8 +19,11 @@
   --font-hand: "Caveat", "Comic Sans MS", cursive;
 }
 
-* {
-  box-sizing: border-box;
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Manrope", "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: "Courier New", "Lucida Console", monospace;
 }
 
 html,
@@ -518,4 +521,12 @@ body {
   .pp-output-mini {
     padding: 1.1rem;
   }
+}
+
+.font-title {
+  font-family: "Teko", Impact, "Arial Narrow Bold", sans-serif;
+}
+
+.font-body {
+  font-family: "Manrope", "Segoe UI", Helvetica, Arial, sans-serif;
 }
