@@ -1,0 +1,5 @@
+Shipment,Declared,Actual,Status
+AX-19,450,450,OK
+BQ-12,200,238,Weight Gap
+MD-04,120,120,OK
+EL-88,500,560,Weight Gap
