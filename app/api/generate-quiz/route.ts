@@ -77,7 +77,6 @@ Type-specific fields:
 
 Supported tools (choose what is relevant per question):
 - "calculator"
-- "formula-sheet"
 - "unit-converter"
 - "data-workbench"
 - "scratchpad"
@@ -103,9 +102,8 @@ Tool payload rules:
   - "sort"
   - "filter"
   - "formula"
-  - "stats"
+- "stats"
 - Use "chartSuggestions" when charting helps.
-- For "formula-sheet", include initialData.formulas as array of { "name", "formula", "note" }.
 - For "calculator", do NOT include any input data payload. Only declare the tool so the UI shows a calculator.
 - For "unit-converter", include initialData with { "category", "fromUnit", "toUnit", "values" } when needed.
 - For "text-highlighter", include initialData.text and optional initialData.keywords.
@@ -187,7 +185,16 @@ function validateTooling(normalized: BitWrapperJson[]): void {
       }
     );
 
-    const ensuredTools = bitWithExtras.extraProperties.quizTools as unknown[];
+    const ensuredTools = (bitWithExtras.extraProperties.quizTools as unknown[]).filter(
+      (entry) =>
+        !(
+          typeof entry === "object" &&
+          entry !== null &&
+          "tool" in entry &&
+          (entry as { tool?: unknown }).tool === "formula-sheet"
+        )
+    );
+    bitWithExtras.extraProperties.quizTools = ensuredTools;
     const hasTool = (name: string) =>
       ensuredTools.some(
         (entry) =>
