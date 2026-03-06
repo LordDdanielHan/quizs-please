@@ -7,7 +7,6 @@ import { AlertTriangle, CheckCircle2, Clipboard, Loader2, Wand2 } from "lucide-r
 
 interface GenerationResult {
   quiz: BitWrapperJson[];
-  rawText?: string;
 }
 
 export default function Home() {
@@ -65,7 +64,6 @@ export default function Home() {
   }, []);
 
   const bitCount = result?.quiz.length ?? 0;
-  const rawOutput = result?.rawText ?? "";
   const jsonOutput = useMemo(() => {
     if (!result) return "";
     return JSON.stringify(result.quiz, null, 2);
@@ -222,7 +220,7 @@ export default function Home() {
           </header>
 
           {!isLoading && !result && !error && (
-            <p className="pp-hint-line">Submit the form to see process events and raw Bitmark output.</p>
+            <p className="pp-hint-line">Submit the form to see process events and Bitmark output.</p>
           )}
 
           {error && (
@@ -255,13 +253,6 @@ export default function Home() {
                   {isCopied ? "Copied" : "Copy Normalized JSON"}
                 </button>
               </div>
-
-              {rawOutput && (
-                <details className="pp-json-block" open>
-                  <summary>Raw model JSON text</summary>
-                  <pre>{rawOutput}</pre>
-                </details>
-              )}
 
               <details className="pp-json-block" open>
                 <summary>Bitmark normalized JSON</summary>
