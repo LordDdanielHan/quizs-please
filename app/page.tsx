@@ -167,7 +167,7 @@ export default function Home() {
         <article className="pp-panel pp-form-panel pp-paper pp-hover-tilt">
           <div className="pp-paper-hero">
             <Image src="/logo.png" alt="Quizzes Please logo" width={260} height={88} className="pp-top-logo" />
-            <h1 className="pp-title pp-paper-title">Central Quiz Intake Form</h1>
+            <h1 className="pp-title pp-paper-title">Question form</h1>
             <p className="pp-subtitle pp-paper-subtitle">
               Describe your topic and instantly generate a polished, Bitmark-ready quiz.
             </p>
